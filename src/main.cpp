@@ -7,11 +7,8 @@
 #include <uuid/uuid.h>
 #include <curses.h>
 
-using std::cout;
-using std::endl;
-
-
 int main(int, char *[]) {
+  
   unsigned int universe = 1;  // universe to use for sending data
   // turn on OLA logging
   ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
@@ -22,7 +19,7 @@ int main(int, char *[]) {
       (ola::client::StreamingClient::Options()));
   // Setup the client, this connects to the server
   if (!ola_client.Setup()) {
-    std::cerr << "Setup failed" << endl;
+    std::cerr << "Setup failed" << std::endl;
     exit(1);
   }
 
@@ -31,7 +28,7 @@ int main(int, char *[]) {
   for (unsigned int i = 0; i < 500; i++) {
     buffer.SetChannel(0, i);
     if (!ola_client.SendDmx(universe, buffer)) {
-      cout << "Send DMX failed" << endl;
+      std::cout << "Send DMX failed" << std::endl;
       exit(1);
     }
     usleep(25000);   // sleep for 25ms between frames.

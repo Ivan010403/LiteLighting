@@ -6,10 +6,13 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o /usr/local/lib/libola.so",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "-g", "${file}", 
+                "/usr/local/lib/libola.a", "/usr/local/lib/libolaartnet.a",
+                    "/usr/local/lib/libolaartnetconf.a", "/usr/local/lib/libolacommon.a", 
+                    "/usr/local/lib/liboladummy.a", "/usr/local/lib/libolae131.a", "/usr/local/lib/libolae131conf.a",
+                    "/usr/local/lib/libolaespnet.a", "/usr/local/lib/libolaartnet.a", "-lprotobuf",
+                "-I", "/home/ivan/OpenLighting/include/classes/",
+                "-o", "main",
             ],
             "options": {
                 "cwd": "${fileDirname}"
