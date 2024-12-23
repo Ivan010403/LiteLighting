@@ -200,45 +200,6 @@ LiteLighting_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting_autogen.dir/build.make CMakeFiles/LiteLighting_autogen.dir/build
 .PHONY : LiteLighting_autogen/fast
 
-#=============================================================================
-# Target rules for targets named lIBR_OLA
-
-# Build rule for target.
-lIBR_OLA: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lIBR_OLA
-.PHONY : lIBR_OLA
-
-# fast build rule for target.
-lIBR_OLA/fast:
-	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lIBR_OLA.dir/build.make lib/CMakeFiles/lIBR_OLA.dir/build
-.PHONY : lIBR_OLA/fast
-
-#=============================================================================
-# Target rules for targets named lIBR_OLA_autogen_timestamp_deps
-
-# Build rule for target.
-lIBR_OLA_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lIBR_OLA_autogen_timestamp_deps
-.PHONY : lIBR_OLA_autogen_timestamp_deps
-
-# fast build rule for target.
-lIBR_OLA_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lIBR_OLA_autogen_timestamp_deps.dir/build.make lib/CMakeFiles/lIBR_OLA_autogen_timestamp_deps.dir/build
-.PHONY : lIBR_OLA_autogen_timestamp_deps/fast
-
-#=============================================================================
-# Target rules for targets named lIBR_OLA_autogen
-
-# Build rule for target.
-lIBR_OLA_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lIBR_OLA_autogen
-.PHONY : lIBR_OLA_autogen
-
-# fast build rule for target.
-lIBR_OLA_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lIBR_OLA_autogen.dir/build.make lib/CMakeFiles/lIBR_OLA_autogen.dir/build
-.PHONY : lIBR_OLA_autogen/fast
-
 LiteLighting_autogen/mocs_compilation.o: LiteLighting_autogen/mocs_compilation.cpp.o
 .PHONY : LiteLighting_autogen/mocs_compilation.o
 
@@ -349,10 +310,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... LiteLighting_autogen"
 	@echo "... LiteLighting_autogen_timestamp_deps"
-	@echo "... lIBR_OLA_autogen"
-	@echo "... lIBR_OLA_autogen_timestamp_deps"
 	@echo "... LiteLighting"
-	@echo "... lIBR_OLA"
 	@echo "... LiteLighting_autogen/mocs_compilation.o"
 	@echo "... LiteLighting_autogen/mocs_compilation.i"
 	@echo "... LiteLighting_autogen/mocs_compilation.s"

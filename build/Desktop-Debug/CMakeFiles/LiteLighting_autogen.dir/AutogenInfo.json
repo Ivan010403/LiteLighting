@@ -220,6 +220,12 @@
 			null
 		],
 		[
+			"/home/ivan/LiteLighting/include/light_headers/Patcher.h",
+			"MU",
+			"MZTRUF5H3J/moc_Patcher.cpp",
+			null
+		],
+		[
 			"/home/ivan/LiteLighting/include/qt_headers/mainwindow.h",
 			"MU",
 			"YMAWQYOZEC/moc_mainwindow.cpp",

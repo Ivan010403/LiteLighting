@@ -7,12 +7,3 @@
 /home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/install/strip.dir
 /home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/LiteLighting_autogen_timestamp_deps.dir
 /home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/LiteLighting_autogen.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/lIBR_OLA.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/edit_cache.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/rebuild_cache.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/list_install_components.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/install.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/install/local.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/install/strip.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/lIBR_OLA_autogen_timestamp_deps.dir
-/home/ivan/LiteLighting/build/Desktop-Debug/lib/CMakeFiles/lIBR_OLA_autogen.dir
