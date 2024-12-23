@@ -200,6 +200,45 @@ LiteLighting_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting_autogen.dir/build.make CMakeFiles/LiteLighting_autogen.dir/build
 .PHONY : LiteLighting_autogen/fast
 
+#=============================================================================
+# Target rules for targets named lIBR_OLA
+
+# Build rule for target.
+lIBR_OLA: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lIBR_OLA
+.PHONY : lIBR_OLA
+
+# fast build rule for target.
+lIBR_OLA/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lIBR_OLA.dir/build.make lib/CMakeFiles/lIBR_OLA.dir/build
+.PHONY : lIBR_OLA/fast
+
+#=============================================================================
+# Target rules for targets named lIBR_OLA_autogen_timestamp_deps
+
+# Build rule for target.
+lIBR_OLA_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lIBR_OLA_autogen_timestamp_deps
+.PHONY : lIBR_OLA_autogen_timestamp_deps
+
+# fast build rule for target.
+lIBR_OLA_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lIBR_OLA_autogen_timestamp_deps.dir/build.make lib/CMakeFiles/lIBR_OLA_autogen_timestamp_deps.dir/build
+.PHONY : lIBR_OLA_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named lIBR_OLA_autogen
+
+# Build rule for target.
+lIBR_OLA_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lIBR_OLA_autogen
+.PHONY : lIBR_OLA_autogen
+
+# fast build rule for target.
+lIBR_OLA_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lIBR_OLA_autogen.dir/build.make lib/CMakeFiles/lIBR_OLA_autogen.dir/build
+.PHONY : lIBR_OLA_autogen/fast
+
 LiteLighting_autogen/mocs_compilation.o: LiteLighting_autogen/mocs_compilation.cpp.o
 .PHONY : LiteLighting_autogen/mocs_compilation.o
 
@@ -224,77 +263,77 @@ LiteLighting_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.s
 .PHONY : LiteLighting_autogen/mocs_compilation.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/light_src/Fixture.o: src/light_src/Fixture.cpp.o
+.PHONY : src/light_src/Fixture.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/light_src/Fixture.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o
+.PHONY : src/light_src/Fixture.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/light_src/Fixture.i: src/light_src/Fixture.cpp.i
+.PHONY : src/light_src/Fixture.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/light_src/Fixture.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.i
+.PHONY : src/light_src/Fixture.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/light_src/Fixture.s: src/light_src/Fixture.cpp.s
+.PHONY : src/light_src/Fixture.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/light_src/Fixture.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s
+.PHONY : src/light_src/Fixture.cpp.s
 
-mainwindow.o: mainwindow.cpp.o
-.PHONY : mainwindow.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-mainwindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/mainwindow.cpp.o
-.PHONY : mainwindow.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-mainwindow.i: mainwindow.cpp.i
-.PHONY : mainwindow.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-mainwindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/mainwindow.cpp.i
-.PHONY : mainwindow.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-mainwindow.s: mainwindow.cpp.s
-.PHONY : mainwindow.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-mainwindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/mainwindow.cpp.s
-.PHONY : mainwindow.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
-src/Fixture.o: src/Fixture.cpp.o
-.PHONY : src/Fixture.o
+src/qt_src/mainwindow.o: src/qt_src/mainwindow.cpp.o
+.PHONY : src/qt_src/mainwindow.o
 
 # target to build an object file
-src/Fixture.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o
-.PHONY : src/Fixture.cpp.o
+src/qt_src/mainwindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o
+.PHONY : src/qt_src/mainwindow.cpp.o
 
-src/Fixture.i: src/Fixture.cpp.i
-.PHONY : src/Fixture.i
+src/qt_src/mainwindow.i: src/qt_src/mainwindow.cpp.i
+.PHONY : src/qt_src/mainwindow.i
 
 # target to preprocess a source file
-src/Fixture.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/Fixture.cpp.i
-.PHONY : src/Fixture.cpp.i
+src/qt_src/mainwindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.i
+.PHONY : src/qt_src/mainwindow.cpp.i
 
-src/Fixture.s: src/Fixture.cpp.s
-.PHONY : src/Fixture.s
+src/qt_src/mainwindow.s: src/qt_src/mainwindow.cpp.s
+.PHONY : src/qt_src/mainwindow.s
 
 # target to generate assembly for a file
-src/Fixture.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/Fixture.cpp.s
-.PHONY : src/Fixture.cpp.s
+src/qt_src/mainwindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.s
+.PHONY : src/qt_src/mainwindow.cpp.s
 
 # Help Target
 help:
@@ -310,19 +349,22 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... LiteLighting_autogen"
 	@echo "... LiteLighting_autogen_timestamp_deps"
+	@echo "... lIBR_OLA_autogen"
+	@echo "... lIBR_OLA_autogen_timestamp_deps"
 	@echo "... LiteLighting"
+	@echo "... lIBR_OLA"
 	@echo "... LiteLighting_autogen/mocs_compilation.o"
 	@echo "... LiteLighting_autogen/mocs_compilation.i"
 	@echo "... LiteLighting_autogen/mocs_compilation.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... mainwindow.o"
-	@echo "... mainwindow.i"
-	@echo "... mainwindow.s"
-	@echo "... src/Fixture.o"
-	@echo "... src/Fixture.i"
-	@echo "... src/Fixture.s"
+	@echo "... src/light_src/Fixture.o"
+	@echo "... src/light_src/Fixture.i"
+	@echo "... src/light_src/Fixture.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/qt_src/mainwindow.o"
+	@echo "... src/qt_src/mainwindow.i"
+	@echo "... src/qt_src/mainwindow.s"
 .PHONY : help
 
 

@@ -93,65 +93,96 @@ CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/build/Desktop-Debug/LiteLighting_autogen/mocs_compilation.cpp -o CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.s
 
-CMakeFiles/LiteLighting.dir/main.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
-CMakeFiles/LiteLighting.dir/main.cpp.o: /home/ivan/LiteLighting/main.cpp
-CMakeFiles/LiteLighting.dir/main.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/LiteLighting.dir/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/main.cpp.o -MF CMakeFiles/LiteLighting.dir/main.cpp.o.d -o CMakeFiles/LiteLighting.dir/main.cpp.o -c /home/ivan/LiteLighting/main.cpp
+CMakeFiles/LiteLighting.dir/src/main.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
+CMakeFiles/LiteLighting.dir/src/main.cpp.o: /home/ivan/LiteLighting/src/main.cpp
+CMakeFiles/LiteLighting.dir/src/main.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/LiteLighting.dir/src/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/src/main.cpp.o -MF CMakeFiles/LiteLighting.dir/src/main.cpp.o.d -o CMakeFiles/LiteLighting.dir/src/main.cpp.o -c /home/ivan/LiteLighting/src/main.cpp
 
-CMakeFiles/LiteLighting.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/main.cpp > CMakeFiles/LiteLighting.dir/main.cpp.i
+CMakeFiles/LiteLighting.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/src/main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/src/main.cpp > CMakeFiles/LiteLighting.dir/src/main.cpp.i
 
-CMakeFiles/LiteLighting.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/main.cpp -o CMakeFiles/LiteLighting.dir/main.cpp.s
+CMakeFiles/LiteLighting.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/main.cpp -o CMakeFiles/LiteLighting.dir/src/main.cpp.s
 
-CMakeFiles/LiteLighting.dir/mainwindow.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
-CMakeFiles/LiteLighting.dir/mainwindow.cpp.o: /home/ivan/LiteLighting/mainwindow.cpp
-CMakeFiles/LiteLighting.dir/mainwindow.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/LiteLighting.dir/mainwindow.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/mainwindow.cpp.o -MF CMakeFiles/LiteLighting.dir/mainwindow.cpp.o.d -o CMakeFiles/LiteLighting.dir/mainwindow.cpp.o -c /home/ivan/LiteLighting/mainwindow.cpp
+CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
+CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o: /home/ivan/LiteLighting/src/qt_src/mainwindow.cpp
+CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o -MF CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o.d -o CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o -c /home/ivan/LiteLighting/src/qt_src/mainwindow.cpp
 
-CMakeFiles/LiteLighting.dir/mainwindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/mainwindow.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/mainwindow.cpp > CMakeFiles/LiteLighting.dir/mainwindow.cpp.i
+CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/src/qt_src/mainwindow.cpp > CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.i
 
-CMakeFiles/LiteLighting.dir/mainwindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/mainwindow.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/mainwindow.cpp -o CMakeFiles/LiteLighting.dir/mainwindow.cpp.s
+CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/qt_src/mainwindow.cpp -o CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.s
 
-CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
-CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o: /home/ivan/LiteLighting/src/Fixture.cpp
-CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o -MF CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o.d -o CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o -c /home/ivan/LiteLighting/src/Fixture.cpp
+CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
+CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o: /home/ivan/LiteLighting/src/light_src/Fixture.cpp
+CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o -MF CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o.d -o CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o -c /home/ivan/LiteLighting/src/light_src/Fixture.cpp
 
-CMakeFiles/LiteLighting.dir/src/Fixture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/src/Fixture.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/src/Fixture.cpp > CMakeFiles/LiteLighting.dir/src/Fixture.cpp.i
+CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/src/light_src/Fixture.cpp > CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.i
 
-CMakeFiles/LiteLighting.dir/src/Fixture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/Fixture.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/Fixture.cpp -o CMakeFiles/LiteLighting.dir/src/Fixture.cpp.s
+CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/light_src/Fixture.cpp -o CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s
 
 # Object files for target LiteLighting
 LiteLighting_OBJECTS = \
 "CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o" \
-"CMakeFiles/LiteLighting.dir/main.cpp.o" \
-"CMakeFiles/LiteLighting.dir/mainwindow.cpp.o" \
-"CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o"
+"CMakeFiles/LiteLighting.dir/src/main.cpp.o" \
+"CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o" \
+"CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o"
 
 # External object files for target LiteLighting
 LiteLighting_EXTERNAL_OBJECTS =
 
 LiteLighting: CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o
-LiteLighting: CMakeFiles/LiteLighting.dir/main.cpp.o
-LiteLighting: CMakeFiles/LiteLighting.dir/mainwindow.cpp.o
-LiteLighting: CMakeFiles/LiteLighting.dir/src/Fixture.cpp.o
+LiteLighting: CMakeFiles/LiteLighting.dir/src/main.cpp.o
+LiteLighting: CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o
+LiteLighting: CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o
 LiteLighting: CMakeFiles/LiteLighting.dir/build.make
 LiteLighting: CMakeFiles/LiteLighting.dir/compiler_depend.ts
 LiteLighting: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2
+LiteLighting: /home/ivan/LiteLighting/lib/libola.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaartnet.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaartnetconf.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolacommon.a
+LiteLighting: /home/ivan/LiteLighting/lib/liboladummy.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolae131.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolae131conf.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaespnet.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaftdidmx.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolagpio.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolagpiocore.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolakarate.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolakinet.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolamilinst.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaopendmx.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaopenpixelcontrol.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaosc.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolapathport.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolarenard.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolasandnet.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaserver.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaserverplugininterface.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolashownet.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaspi.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolaspicore.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolastageprofi.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolatrigger.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolauartdmx.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolausbdmx.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolausbpro.a
+LiteLighting: /home/ivan/LiteLighting/lib/libolausbproconf.a
 LiteLighting: /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
 LiteLighting: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 LiteLighting: /usr/lib/x86_64-linux-gnu/libGLX.so

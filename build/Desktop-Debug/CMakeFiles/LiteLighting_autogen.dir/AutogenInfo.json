@@ -214,15 +214,15 @@
 	"HEADERS" : 
 	[
 		[
-			"/home/ivan/LiteLighting/include/Fixture.h",
+			"/home/ivan/LiteLighting/include/light_headers/Fixture.h",
 			"MU",
-			"6YEA5652QU/moc_Fixture.cpp",
+			"MZTRUF5H3J/moc_Fixture.cpp",
 			null
 		],
 		[
-			"/home/ivan/LiteLighting/mainwindow.h",
+			"/home/ivan/LiteLighting/include/qt_headers/mainwindow.h",
 			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
+			"YMAWQYOZEC/moc_mainwindow.cpp",
 			null
 		]
 	],
@@ -239,6 +239,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/home/ivan/LiteLighting/include",
 		"/usr/include/x86_64-linux-gnu/qt6/QtCore",
 		"/usr/include/x86_64-linux-gnu/qt6",
 		"/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++",
@@ -284,9 +285,9 @@
 	"SETTINGS_FILE" : "/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/LiteLighting_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/ivan/LiteLighting/main.cpp", "MU", null ],
-		[ "/home/ivan/LiteLighting/mainwindow.cpp", "MU", null ],
-		[ "/home/ivan/LiteLighting/src/Fixture.cpp", "MU", null ]
+		[ "/home/ivan/LiteLighting/src/light_src/Fixture.cpp", "MU", null ],
+		[ "/home/ivan/LiteLighting/src/main.cpp", "MU", null ],
+		[ "/home/ivan/LiteLighting/src/qt_src/mainwindow.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

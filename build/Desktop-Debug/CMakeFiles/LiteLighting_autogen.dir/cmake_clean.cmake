@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/LiteLighting_autogen"
-  "LiteLighting_autogen/include/ui_mainwindow.h"
+  "LiteLighting_autogen/include/include/forms/ui_mainwindow.h"
   "LiteLighting_autogen/mocs_compilation.cpp"
   "LiteLighting_autogen/timestamp"
 )

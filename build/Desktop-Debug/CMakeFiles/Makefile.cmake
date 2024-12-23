@@ -11,6 +11,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   ".qtc/package-manager/auto-setup.cmake"
   "CMakeFiles/3.31.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.3/CMakeSystem.cmake"
+  "/home/ivan/LiteLighting/lib/CMakeLists.txt"
   "/snap/cmake/1435/share/cmake-3.31/Modules/CMakeCXXInformation.cmake"
   "/snap/cmake/1435/share/cmake-3.31/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "/snap/cmake/1435/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake"
@@ -156,6 +157,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/LiteLighting_autogen.dir/AutogenInfo.json"
   ".qt/QtDeploySupport.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "lib/CMakeFiles/lIBR_OLA_autogen.dir/AutogenInfo.json"
+  "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -163,4 +166,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/LiteLighting.dir/DependInfo.cmake"
   "CMakeFiles/LiteLighting_autogen_timestamp_deps.dir/DependInfo.cmake"
   "CMakeFiles/LiteLighting_autogen.dir/DependInfo.cmake"
+  "lib/CMakeFiles/lIBR_OLA.dir/DependInfo.cmake"
+  "lib/CMakeFiles/lIBR_OLA_autogen_timestamp_deps.dir/DependInfo.cmake"
+  "lib/CMakeFiles/lIBR_OLA_autogen.dir/DependInfo.cmake"
   )

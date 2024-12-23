@@ -4,11 +4,11 @@ LiteLighting_autogen/timestamp: \
 	/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/3.31.3/CMakeCXXCompiler.cmake \
 	/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/3.31.3/CMakeSystem.cmake \
 	/home/ivan/LiteLighting/build/Desktop-Debug/LiteLighting_autogen/moc_predefs.h \
-	/home/ivan/LiteLighting/include/Fixture.h \
-	/home/ivan/LiteLighting/main.cpp \
-	/home/ivan/LiteLighting/mainwindow.cpp \
-	/home/ivan/LiteLighting/mainwindow.h \
-	/home/ivan/LiteLighting/src/Fixture.cpp \
+	/home/ivan/LiteLighting/include/light_headers/Fixture.h \
+	/home/ivan/LiteLighting/include/qt_headers/mainwindow.h \
+	/home/ivan/LiteLighting/src/light_src/Fixture.cpp \
+	/home/ivan/LiteLighting/src/main.cpp \
+	/home/ivan/LiteLighting/src/qt_src/mainwindow.cpp \
 	/snap/cmake/1435/share/cmake-3.31/Modules/CMakeCXXInformation.cmake \
 	/snap/cmake/1435/share/cmake-3.31/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/snap/cmake/1435/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake \
@@ -546,5 +546,5 @@ LiteLighting_autogen/timestamp: \
 	/usr/lib/x86_64-linux-gnu/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-none.cmake \
 	/usr/lib/x86_64-linux-gnu/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/usr/lib/x86_64-linux-gnu/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
-	/home/ivan/LiteLighting/mainwindow.ui \
+	/home/ivan/LiteLighting/include/forms/mainwindow.ui \
 	/snap/cmake/1435/bin/cmake

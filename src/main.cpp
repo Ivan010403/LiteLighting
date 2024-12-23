@@ -5,10 +5,16 @@
 #include <ola/client/StreamingClient.h>
 #include <iostream>
 #include <uuid/uuid.h>
-#include <curses.h>
+//#include <curses.h> // problems with macro scroll
 
-int main(int, char *[]) {
-  
+#include "qt_headers/mainwindow.h"
+#include <QApplication>
+
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
+  MainWindow w;
+  w.show();
+
   unsigned int universe = 1;  // universe to use for sending data
   // turn on OLA logging
   ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
@@ -33,5 +39,6 @@ int main(int, char *[]) {
     }
     usleep(25000);   // sleep for 25ms between frames.
   }
-  return 0;
+
+  return a.exec();
 }
