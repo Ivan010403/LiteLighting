@@ -62,6 +62,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         include/light_headers/Patcher.h
+        include/light_headers/DmxGateway.h
+        include/light_headers/FixtureArray.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

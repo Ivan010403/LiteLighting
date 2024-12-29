@@ -214,9 +214,21 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/ivan/LiteLighting/include/light_headers/DmxGateway.h",
+			"MU",
+			"MZTRUF5H3J/moc_DmxGateway.cpp",
+			null
+		],
+		[
 			"/home/ivan/LiteLighting/include/light_headers/Fixture.h",
 			"MU",
 			"MZTRUF5H3J/moc_Fixture.cpp",
+			null
+		],
+		[
+			"/home/ivan/LiteLighting/include/light_headers/FixtureArray.h",
+			"MU",
+			"MZTRUF5H3J/moc_FixtureArray.cpp",
 			null
 		],
 		[
