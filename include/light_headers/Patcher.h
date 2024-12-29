@@ -22,7 +22,7 @@ public:
     }
 
 
-    void PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name) {
+    void PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name, ) {
         all_fixtures_.createNewFixture(universe_id, dmx_address, channel_amount, name);
 
         for (uint16_t i = dmx_address; i < dmx_address + channel_amount; ++i) {
