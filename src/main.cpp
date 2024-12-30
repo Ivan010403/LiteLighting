@@ -16,13 +16,14 @@
 
 int main(int argc, char *argv[]) {
     FixtureArray arr;
-    arr.createNewFixture(0, 20, 10, "hello world");
-
     std::cout << arr.size() << std::endl;
 
-    std::vector<std::vector<bool>> universe_patching_ (3, std::vector<bool>(512, true));
-    Patcher x(1, arr, universe_patching_);
-    std::cout << "hello world\n";
+    std::vector<std::vector<bool>> universe_patch (3, std::vector<bool>(512, true));
+    Patcher x(1, arr, universe_patch);
+
+    std::unordered_map<ChannelType, unsigned char> test {{ChannelType::Dimmer,20}, {ChannelType::G,21}, {ChannelType::B,22}, {ChannelType::R,23}};
+
+    x.PatchNewFixture(0, 20, 4, "led_wash", test);
 
   // QApplication a(argc, argv);
   // MainWindow w;

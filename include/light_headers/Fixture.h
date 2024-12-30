@@ -17,14 +17,10 @@ class Fixture {
 public:
     Fixture() = delete;
 
-    Fixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name) :
+    Fixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name, std::unordered_map <ChannelType, unsigned char>& channels) :
         universe_id_(universe_id),
-        name_(name)
-    {
-        for (uint16_t i = dmx_address; i < dmx_address + channel_amount; ++i) {
-            // channels_[ChannelType::Dimmer] =
-        }
-    } // TODO: implement me!
+        name_(name),
+        channels_(std::move(channels)) {}
         
 protected:
     unsigned int universe_id_;

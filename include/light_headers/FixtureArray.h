@@ -7,10 +7,9 @@ class FixtureArray {
 public:
     FixtureArray() = default;
 
-    void createNewFixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name) {
+    void createNewFixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name, std::unordered_map <ChannelType, unsigned char>& channels) {
         ++size_;
-        vector_fixture_.push_back(Fixture(universe_id, dmx_address, channel_amount, name));
-        // какой-то алгоритм по патчингу
+        vector_fixture_.push_back(Fixture(universe_id, dmx_address, channel_amount, name, channels));
     }
 
     int size() const {
