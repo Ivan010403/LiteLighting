@@ -304,6 +304,8 @@
 	"SOURCES" : 
 	[
 		[ "/home/ivan/LiteLighting/src/light_src/Fixture.cpp", "MU", null ],
+		[ "/home/ivan/LiteLighting/src/light_src/FixtureArray.cpp", "MU", null ],
+		[ "/home/ivan/LiteLighting/src/light_src/Patcher.cpp", "MU", null ],
 		[ "/home/ivan/LiteLighting/src/main.cpp", "MU", null ],
 		[ "/home/ivan/LiteLighting/src/qt_src/mainwindow.cpp", "MU", null ]
 	],

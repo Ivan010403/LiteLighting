@@ -248,6 +248,54 @@ src/light_src/Fixture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s
 .PHONY : src/light_src/Fixture.cpp.s
 
+src/light_src/FixtureArray.o: src/light_src/FixtureArray.cpp.o
+.PHONY : src/light_src/FixtureArray.o
+
+# target to build an object file
+src/light_src/FixtureArray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o
+.PHONY : src/light_src/FixtureArray.cpp.o
+
+src/light_src/FixtureArray.i: src/light_src/FixtureArray.cpp.i
+.PHONY : src/light_src/FixtureArray.i
+
+# target to preprocess a source file
+src/light_src/FixtureArray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.i
+.PHONY : src/light_src/FixtureArray.cpp.i
+
+src/light_src/FixtureArray.s: src/light_src/FixtureArray.cpp.s
+.PHONY : src/light_src/FixtureArray.s
+
+# target to generate assembly for a file
+src/light_src/FixtureArray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.s
+.PHONY : src/light_src/FixtureArray.cpp.s
+
+src/light_src/Patcher.o: src/light_src/Patcher.cpp.o
+.PHONY : src/light_src/Patcher.o
+
+# target to build an object file
+src/light_src/Patcher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o
+.PHONY : src/light_src/Patcher.cpp.o
+
+src/light_src/Patcher.i: src/light_src/Patcher.cpp.i
+.PHONY : src/light_src/Patcher.i
+
+# target to preprocess a source file
+src/light_src/Patcher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.i
+.PHONY : src/light_src/Patcher.cpp.i
+
+src/light_src/Patcher.s: src/light_src/Patcher.cpp.s
+.PHONY : src/light_src/Patcher.s
+
+# target to generate assembly for a file
+src/light_src/Patcher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.s
+.PHONY : src/light_src/Patcher.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -317,6 +365,12 @@ help:
 	@echo "... src/light_src/Fixture.o"
 	@echo "... src/light_src/Fixture.i"
 	@echo "... src/light_src/Fixture.s"
+	@echo "... src/light_src/FixtureArray.o"
+	@echo "... src/light_src/FixtureArray.i"
+	@echo "... src/light_src/FixtureArray.s"
+	@echo "... src/light_src/Patcher.o"
+	@echo "... src/light_src/Patcher.i"
+	@echo "... src/light_src/Patcher.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

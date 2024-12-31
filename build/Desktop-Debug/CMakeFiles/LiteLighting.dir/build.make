@@ -135,12 +135,42 @@ CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/light_src/Fixture.cpp -o CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.s
 
+CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
+CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o: /home/ivan/LiteLighting/src/light_src/Patcher.cpp
+CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o -MF CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o.d -o CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o -c /home/ivan/LiteLighting/src/light_src/Patcher.cpp
+
+CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/src/light_src/Patcher.cpp > CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.i
+
+CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/light_src/Patcher.cpp -o CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.s
+
+CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o: CMakeFiles/LiteLighting.dir/flags.make
+CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o: /home/ivan/LiteLighting/src/light_src/FixtureArray.cpp
+CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o: CMakeFiles/LiteLighting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o -MF CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o.d -o CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o -c /home/ivan/LiteLighting/src/light_src/FixtureArray.cpp
+
+CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/LiteLighting/src/light_src/FixtureArray.cpp > CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.i
+
+CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/LiteLighting/src/light_src/FixtureArray.cpp -o CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.s
+
 # Object files for target LiteLighting
 LiteLighting_OBJECTS = \
 "CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/LiteLighting.dir/src/main.cpp.o" \
 "CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o" \
-"CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o"
+"CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o" \
+"CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o" \
+"CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o"
 
 # External object files for target LiteLighting
 LiteLighting_EXTERNAL_OBJECTS =
@@ -149,6 +179,8 @@ LiteLighting: CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.
 LiteLighting: CMakeFiles/LiteLighting.dir/src/main.cpp.o
 LiteLighting: CMakeFiles/LiteLighting.dir/src/qt_src/mainwindow.cpp.o
 LiteLighting: CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o
+LiteLighting: CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o
+LiteLighting: CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o
 LiteLighting: CMakeFiles/LiteLighting.dir/build.make
 LiteLighting: CMakeFiles/LiteLighting.dir/compiler_depend.ts
 LiteLighting: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2
@@ -188,7 +220,7 @@ LiteLighting: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 LiteLighting: /usr/lib/x86_64-linux-gnu/libGLX.so
 LiteLighting: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 LiteLighting: CMakeFiles/LiteLighting.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable LiteLighting"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable LiteLighting"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/LiteLighting.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
