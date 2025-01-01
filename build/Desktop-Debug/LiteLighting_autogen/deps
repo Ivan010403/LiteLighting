@@ -9,6 +9,7 @@ LiteLighting_autogen/timestamp: \
 	/home/ivan/LiteLighting/include/light_headers/FixtureArray.h \
 	/home/ivan/LiteLighting/include/light_headers/Patcher.h \
 	/home/ivan/LiteLighting/include/qt_headers/mainwindow.h \
+	/home/ivan/LiteLighting/src/light_src/DmxGateway.cpp \
 	/home/ivan/LiteLighting/src/light_src/Fixture.cpp \
 	/home/ivan/LiteLighting/src/light_src/FixtureArray.cpp \
 	/home/ivan/LiteLighting/src/light_src/Patcher.cpp \
