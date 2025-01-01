@@ -224,6 +224,30 @@ LiteLighting_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.s
 .PHONY : LiteLighting_autogen/mocs_compilation.cpp.s
 
+src/light_src/DmxGateway.o: src/light_src/DmxGateway.cpp.o
+.PHONY : src/light_src/DmxGateway.o
+
+# target to build an object file
+src/light_src/DmxGateway.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.o
+.PHONY : src/light_src/DmxGateway.cpp.o
+
+src/light_src/DmxGateway.i: src/light_src/DmxGateway.cpp.i
+.PHONY : src/light_src/DmxGateway.i
+
+# target to preprocess a source file
+src/light_src/DmxGateway.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.i
+.PHONY : src/light_src/DmxGateway.cpp.i
+
+src/light_src/DmxGateway.s: src/light_src/DmxGateway.cpp.s
+.PHONY : src/light_src/DmxGateway.s
+
+# target to generate assembly for a file
+src/light_src/DmxGateway.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LiteLighting.dir/build.make CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.s
+.PHONY : src/light_src/DmxGateway.cpp.s
+
 src/light_src/Fixture.o: src/light_src/Fixture.cpp.o
 .PHONY : src/light_src/Fixture.o
 
@@ -362,6 +386,9 @@ help:
 	@echo "... LiteLighting_autogen/mocs_compilation.o"
 	@echo "... LiteLighting_autogen/mocs_compilation.i"
 	@echo "... LiteLighting_autogen/mocs_compilation.s"
+	@echo "... src/light_src/DmxGateway.o"
+	@echo "... src/light_src/DmxGateway.i"
+	@echo "... src/light_src/DmxGateway.s"
 	@echo "... src/light_src/Fixture.o"
 	@echo "... src/light_src/Fixture.i"
 	@echo "... src/light_src/Fixture.s"

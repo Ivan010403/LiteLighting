@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "LiteLighting_autogen/timestamp" "custom" "LiteLighting_autogen/deps"
   "/home/ivan/LiteLighting/build/Desktop-Debug/LiteLighting_autogen/mocs_compilation.cpp" "CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o.d"
+  "/home/ivan/LiteLighting/src/light_src/DmxGateway.cpp" "CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.o" "gcc" "CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.o.d"
   "/home/ivan/LiteLighting/src/light_src/Fixture.cpp" "CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o" "gcc" "CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o.d"
   "/home/ivan/LiteLighting/src/light_src/FixtureArray.cpp" "CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o" "gcc" "CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o.d"
   "/home/ivan/LiteLighting/src/light_src/Patcher.cpp" "CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o" "gcc" "CMakeFiles/LiteLighting.dir/src/light_src/Patcher.cpp.o.d"

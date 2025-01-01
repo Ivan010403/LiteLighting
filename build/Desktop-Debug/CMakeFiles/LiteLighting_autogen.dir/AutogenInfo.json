@@ -303,6 +303,7 @@
 	"SETTINGS_FILE" : "/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/LiteLighting_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/ivan/LiteLighting/src/light_src/DmxGateway.cpp", "MU", null ],
 		[ "/home/ivan/LiteLighting/src/light_src/Fixture.cpp", "MU", null ],
 		[ "/home/ivan/LiteLighting/src/light_src/FixtureArray.cpp", "MU", null ],
 		[ "/home/ivan/LiteLighting/src/light_src/Patcher.cpp", "MU", null ],

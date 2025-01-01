@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "LiteLighting_autogen"
   "CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/LiteLighting.dir/LiteLighting_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.o"
+  "CMakeFiles/LiteLighting.dir/src/light_src/DmxGateway.cpp.o.d"
   "CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o"
   "CMakeFiles/LiteLighting.dir/src/light_src/Fixture.cpp.o.d"
   "CMakeFiles/LiteLighting.dir/src/light_src/FixtureArray.cpp.o"
