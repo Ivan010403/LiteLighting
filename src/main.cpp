@@ -12,18 +12,25 @@
 #include "qt_headers/mainwindow.h"
 #include "light_headers/Patcher.h"
 #include "light_headers/FixtureArray.h"
+#include "light_headers/DmxGateway.h"
 
 
 int main(int argc, char *argv[]) {
-    FixtureArray arr;
-    std::cout << arr.size() << std::endl;
 
-    std::vector<std::vector<bool>> universe_patch (3, std::vector<bool>(512, true));
-    Patcher x(1, arr, universe_patch);
+    int a;
+    int b;
+    std::cout << &a << " " << &b << " " << sizeof(int) << std::endl;
+    DmxGateway test(2);
 
-    std::unordered_map<ChannelType, unsigned char> test {{ChannelType::Dimmer,20}, {ChannelType::G,21}, {ChannelType::B,22}, {ChannelType::R,23}};
+    // FixtureArray arr;
+    // std::cout << arr.size() << std::endl;
 
-    x.PatchNewFixture(0, 20, 4, "led_wash", test);
+    // std::vector<std::vector<bool>> universe_patch (3, std::vector<bool>(512, true));
+    // Patcher x(1, arr, universe_patch);
+
+    // std::unordered_map<ChannelType, unsigned char> test {{ChannelType::Dimmer,20}, {ChannelType::G,21}, {ChannelType::B,22}, {ChannelType::R,23}};
+
+    // x.PatchNewFixture(0, 20, 4, "led_wash", test);
 
   // QApplication a(argc, argv);
   // MainWindow w;
