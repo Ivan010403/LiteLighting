@@ -24,7 +24,7 @@ public:
     bool IsFreeAddress(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount) const;
 
 private:
-    std::vector<std::vector<bool>> universe_patching_; // можно ли так делать? // true - свободно, false - занято
+    std::vector<std::vector<bool>> universe_patching_; // true - свободно, false - занято
     unsigned int universe_amount_ = 0;
     FixtureArray& all_fixtures_; // подумать про доступ: нужен ли он на таком уровне? Здесь мне нужен всего один метод! Подумать, как
     // как сделать так, чтобы я пользовался только одним методом и не имел доступ к другим методам?

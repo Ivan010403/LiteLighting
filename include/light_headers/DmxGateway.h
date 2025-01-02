@@ -18,39 +18,45 @@ public:
             exit(1);
         }
 
-        ola_client_ = wrapper_.GetClient();
-        select_server_ = wrapper_.GetSelectServer();
-
-        // ola::Callback0<bool> callback2 = ola::NewCallback(this, &DmxGateway::SendData);
-
-        // Returning false from the callback will cause it to be cancelled.
-        // ola::TimeInterval(1000000)
-        select_server_->RegisterRepeatingTimeout(33, ola::NewCallback(this, &DmxGateway::SendData)); // create a constant for that! // Use the version that takes a TimeInterval instead.
-
-        OLA_INFO << "DmxGateway was succesfully created";
-
-        select_server_->Run();
+        GatewaySetup();
     }
+
 
 
 
 protected:
 
 private:
+    void GatewaySetup() {
+        ola_client_ = wrapper_.GetClient(); // getclient константный метод, а я присваиваю неконстантному указателю
+        select_server_ = wrapper_.GetSelectServer();
+
+        // ola::Callback0<bool> callback2 = ola::NewCallback(this, &DmxGateway::SendData);
+        select_server_->RegisterRepeatingTimeout(ola_30_fps_, ola::NewCallback(this, &DmxGateway::SendData)); // create a constant for that! // Use the version that takes a TimeInterval instead.
+
+        OLA_INFO << "DmxGateway was succesfully created with callback 30 fps";
+
+        select_server_->Run();
+    }
+
+    // Returning false from the callback will cause it to be cancelled.
     bool SendData() {
         for (unsigned int curr_univ = 0; curr_univ < universe_amount_; ++curr_univ) {
-            ola_client_->SendDMX(curr_univ, dmx_data_[curr_univ], ola::client::SendDMXArgs());
+            ola_client_->SendDMX(curr_univ, dmx_data_[curr_univ], casual_dmx_args_);
         }
         return true;
     }
 
-    ola::client::OlaClientWrapper wrapper_;
     std::vector <ola::DmxBuffer> dmx_data_;
-
-    ola::io::SelectServer* select_server_;
-    ola::client::OlaClient* ola_client_;
-
     unsigned int universe_amount_; // нужно ли здесь хранить количество вселенных?
+    const ola::client::SendDMXArgs casual_dmx_args_ = ola::client::SendDMXArgs();
+
+    ola::client::OlaClientWrapper wrapper_;
+    ola::io::SelectServer* select_server_ = nullptr;
+    ola::client::OlaClient* ola_client_ = nullptr;
+
+    const ola::TimeInterval ola_second_ = ola::TimeInterval(1000000);
+    const ola::TimeInterval ola_30_fps_ = ola::TimeInterval(33333); // not 30 fps, but 30.003...
 };
 
 #endif // DMXGATEWAY_H

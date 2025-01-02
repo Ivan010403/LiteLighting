@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+# SET(MYCOMPILE_FLAGS "-Ofast -g -no-pie")
+# SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${MYCOMPILE_FLAGS}")
+
 set(PROJECT_SOURCES
 	src/main.cpp
         src/qt_src/mainwindow.cpp
@@ -87,6 +90,8 @@ else()
 endif()
 
 target_link_libraries(LiteLighting PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${LIB3_SOURCES})
+
+# target_compile_options(LiteLighting PUBLIC ${MYCOMPILE_FLAGS})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
