@@ -19,13 +19,15 @@ public:
 
 
     void PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                        std::string name, std::unordered_map <ChannelType, unsigned char>& channels);
+                        std::string name, std::vector <ChannelType>& channels);
 
     bool IsFreeAddress(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount) const;
 
 private:
     std::vector<std::vector<bool>> universe_patching_; // true - свободно, false - занято
     unsigned int universe_amount_ = 0;
+
+    // что если объект разрушится? ссылка будет указывать на дичь. -- если разрушится массив = сразу выход из программы
     FixtureArray& all_fixtures_; // подумать про доступ: нужен ли он на таком уровне? Здесь мне нужен всего один метод! Подумать, как
     // как сделать так, чтобы я пользовался только одним методом и не имел доступ к другим методам?
 };

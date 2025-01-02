@@ -1,81 +1,30 @@
 #include <stdlib.h>
-#include <unistd.h>
-#include <ola/DmxBuffer.h>
-#include <ola/Logging.h>
-#include <ola/client/StreamingClient.h>
 #include <iostream>
 #include <uuid/uuid.h>
 //#include <curses.h> // problems with macro scroll
 
 #include <QApplication>
-
 #include "qt_headers/mainwindow.h"
+
 #include "light_headers/Patcher.h"
-#include "light_headers/FixtureArray.h"
-#include "light_headers/DmxGateway.h"
-#include <time.h>
-#include <chrono>
 
 int main(int argc, char *argv[]) {
-    ola::DmxBuffer test;
-    test.Blackout();
+    ola::InitLogging(ola::OLA_LOG_INFO, ola::OLA_LOG_STDERR);
 
-    const unsigned int channels = 20;
+    DmxGateway gtw(1);
 
-    const int amount_fixtures = 12;
-    uint8_t* fixtures[amount_fixtures];
-
-    for (int var = 0; var < amount_fixtures; ++var) {
-        fixtures[var] = new uint8_t[channels] {};
-
-        for (int i = 0; i < channels; ++i) {
-            fixtures[var][i] = (var*channels) + i;
-        }
+    std::cout <<"Hello world" << std::endl;
+    if (!gtw.Start()) {
+        OLA_FATAL << "Failed to start OLA thread";
+        exit(1);
     }
 
-    const int measure = 50000;
+    sleep(1000);
 
-    //----------------------FIRST----------------------------
-    auto begin = std::chrono::steady_clock::now();
-    for (int val = 0; val < measure; ++val) {
-        for (int i = 0; i < amount_fixtures; ++i) {
-            test.SetRange(i*channels, fixtures[i], channels);
-        }
-    }
-    auto end = std::chrono::steady_clock::now();
-
-
-    const uint8_t* ptr = test.GetRaw();
-    uint8_t* ptr_my = const_cast<uint8_t*>(ptr);
-
-    // std::wcout <<"test = " << &test << " ptr pure = " << ptr << std::endl;
-    // std::wcout <<"ptrMy = " << ptr_my << std::endl;
-
-    //----------------------SECOND----------------------------
-    // auto begin = std::chrono::steady_clock::now();
-    // for (int val = 0; val < measure; ++val) {
-    //     for (int i = 0; i < amount_fixtures; ++i) {
-    //         for (int j = 0; j < channels; ++j) {
-    //             ptr_my[i*channels + j] = fixtures[i][j];
-    //         }
-    //     }
-    // }
-    // auto end = std::chrono::steady_clock::now();
-
-    // for (int i = 0; i < amount_fixtures; ++i) {
-    //     for (int j = 0; j < channels; ++j) {
-    //         std::wcout << ptr_my[i*channels + j] << " ";
-    //     }
-    //     std::wcout << std::endl;
-    // }
-
-
-    auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-
-    std::cout << "The time: " << elapsed_ms.count() << " ms\n";
-
-
-
+    // When it's time to exit, Stop the OLA thread.
+    gtw.Stop();
+    gtw.Join();
+}
     // DmxGateway test(4);
 
     // FixtureArray arr;
@@ -129,6 +78,4 @@ int main(int argc, char *argv[]) {
   //   //usleep(25000);   // sleep for 25ms between frames.
   // }
 
-  return 0;
   // return a.exec();
-}
