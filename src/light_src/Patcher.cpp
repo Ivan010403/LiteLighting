@@ -22,5 +22,7 @@ bool Patcher::IsFreeAddress(unsigned int universe_id, uint16_t dmx_address, uint
         if (!universe_patching_[universe_id][i]) return false;
     }
 
+
+
     return true;
 }
