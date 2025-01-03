@@ -19,6 +19,18 @@ public:
         }
     }
 
+    DmxGateway(const DmxGateway& dmx_gtw) = delete;
+
+    DmxGateway(DmxGateway&& dmx_gtw) = delete;
+
+    DmxGateway& operator= (const DmxGateway& dmx_gtw) = delete;
+
+    DmxGateway& operator= (DmxGateway&& dmx_gtw) = delete;
+
+    ~DmxGateway() = default;
+
+    //-----------------------------------------------------------------------------------------------------------
+
     bool Start();
 
     void Stop();
@@ -34,8 +46,6 @@ private:
     void ConnectionClosed();
 
     bool SendData();
-
-
 
     std::vector <ola::DmxBuffer> dmx_data_;
     unsigned int universe_amount_;

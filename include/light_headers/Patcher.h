@@ -14,7 +14,17 @@ public:
         all_fixtures_(fixts),
         universe_patching_(std::move(cfg_univ_patching)) {} // стоит ли мувать?
 
+    Patcher(const Patcher& dmx_gtw) = delete;
+
+    Patcher(Patcher&& dmx_gtw) = delete;
+
+    Patcher& operator= (const Patcher& dmx_gtw) = delete;
+
+    Patcher& operator= (Patcher&& dmx_gtw) = delete;
+
     ~Patcher() = default; // вызвать операцию сохранения в файл
+
+    //-----------------------------------------------------------------------------------------------------------
 
     void PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                         std::string name, const ChannelType* channels);

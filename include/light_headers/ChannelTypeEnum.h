@@ -7,8 +7,7 @@ enum class ChannelType: uint8_t {
     G,
     B,
     Pan,
-    Tilt,
-    Last
+    Tilt
 };
 
 #endif // CHANNELTYPEENUM_H

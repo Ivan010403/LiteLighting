@@ -6,20 +6,17 @@
 #include <ola/DmxBuffer.h>
 #include <light_headers/ChannelTypeEnum.h>
 
-
-
-
 class Fixture {
 public:
     Fixture() = delete;
 
     Fixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-            std::string name, const ChannelType* channels, ola::DmxBuffer& buff) :
+            std::string name, const ChannelType* channels, ola::DmxBuffer& dmx_data) :
         universe_id_(universe_id),
         dmx_address_(dmx_address),
         channel_amount_(channel_amount),
         name_(name),
-        dmx_data_(buff),
+        dmx_data_(dmx_data),
         raw_data_(new uint8_t[channel_amount] {})
     {
         for (int i = 0; i < channel_amount_; ++i) {
@@ -27,10 +24,32 @@ public:
         }
     }
 
-    ~Fixture() {
-        delete[] raw_data_;
+    Fixture (const Fixture& fxtr) = delete;
+
+    Fixture (Fixture&& fxtr) :
+        universe_id_(fxtr.universe_id_),
+        dmx_address_(fxtr.dmx_address_),
+        channel_amount_(fxtr.channel_amount_),
+        name_(fxtr.name_),
+        channels_(std::move(fxtr.channels_)),
+        dmx_data_(fxtr.dmx_data_),
+        raw_data_(fxtr.raw_data_)
+    {
+        fxtr.raw_data_ = nullptr;
     }
-        
+
+    Fixture& operator= (const Fixture& fxtr) = delete;
+
+    Fixture& operator= (Fixture&& fxtr) = delete;
+
+    ~Fixture() {
+        if (raw_data_) {
+            delete[] raw_data_;
+        }
+    }
+
+    //-----------------------------------------------------------------------------------------------------------
+
 protected:
     unsigned int universe_id_;
     uint16_t dmx_address_; // пока пусть будет константой

@@ -6,7 +6,6 @@
 #include <QApplication>
 #include "qt_headers/mainwindow.h"
 
-
 #include "light_headers/Patcher.h"
 
 int main(int argc, char *argv[]) {
@@ -14,13 +13,20 @@ int main(int argc, char *argv[]) {
 
     DmxGateway gtw(1);
 
-    std::cout <<"Hello world" << std::endl;
+    FixtureArray test_arr(gtw);
+
+    const ChannelType* test = new ChannelType[6] {ChannelType::Dimmer, ChannelType::R, ChannelType::G, ChannelType::B, ChannelType::Pan, ChannelType::Tilt};
+    test_arr.createNewFixture(0, 0, 6, "hello world", test);
+    delete[] test;
+
     if (!gtw.Start()) {
         OLA_FATAL << "Failed to start OLA thread";
         exit(1);
     }
 
     // When it's time to exit, Stop the OLA thread.
+    sleep(100);
+
     gtw.Stop();
     gtw.Join();
 }
