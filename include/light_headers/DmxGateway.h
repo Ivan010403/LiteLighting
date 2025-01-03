@@ -1,12 +1,12 @@
 #ifndef DMXGATEWAY_H
 #define DMXGATEWAY_H
 #include <ola/io/SelectServer.h>
-#include <ola/Logging.h> // снова перепроверить все заголовочные файлы
 #include <ola/client/ClientWrapper.h>
 #include <ola/thread/Thread.h>
 #include <ola/Callback.h>
-
 #include <ola/DmxBuffer.h>
+#include <ola/Logging.h> // снова перепроверить все заголовочные файлы
+
 #include <vector>
 
 class DmxGateway : public ola::thread::Thread {
@@ -19,62 +19,26 @@ public:
         }
     }
 
-    bool Start() {
-        if (!wrapper_.Setup()) {
-            OLA_FATAL << "DmxGateway::Start() failed";
-            return false;
-        }
+    bool Start();
 
-        GatewaySetup();
+    void Stop();
 
-        return ola::thread::Thread::Start();
-    }
-
-    void Stop() {
-        select_server_->Terminate();
-    }
-
-    ola::DmxBuffer& GetBuffer(unsigned int universe_id) {
-        return dmx_data_[universe_id];
-    }
+    ola::DmxBuffer& GetBuffer(unsigned int universe_id);
 
 protected:
-    void *Run() {
-        OLA_INFO << "DmxGateway::Run() run the thread";
-        select_server_->Run();
-        return NULL;
-    }
+    void* Run();
 
 private:
-    void GatewaySetup() {
-        ola_client_ = wrapper_.GetClient(); // getclient константный метод, а я присваиваю неконстантному указателю
-        select_server_ = wrapper_.GetSelectServer();
+    void GatewaySetup();
 
-        // ola::Callback0<bool> callback2 = ola::NewCallback(this, &DmxGateway::SendData);
-        select_server_->RegisterRepeatingTimeout(ola_30_fps_, ola::NewCallback(this, &DmxGateway::SendData)); // create a constant for that! // Use the version that takes a TimeInterval instead.
+    void ConnectionClosed();
 
-        ola_client_->SetCloseHandler(ola::NewSingleCallback(this, &DmxGateway::ConnectionClosed));
-        OLA_INFO << "DmxGateway was succesfully created with callback 30 fps";
-    }
-
-    void ConnectionClosed() {
-        OLA_FATAL << "Connection to olad was closed";
-        select_server_->Terminate();
-    }
-
-    // Returning false from the callback will cause it to be cancelled.
-    bool SendData() {
-        OLA_FATAL << "send data";
-        for (unsigned int curr_univ = 0; curr_univ < universe_amount_; ++curr_univ) {
-            ola_client_->SendDMX(curr_univ, dmx_data_[curr_univ], casual_dmx_args_);
-        }
-        return true;
-    }
+    bool SendData();
 
 
 
     std::vector <ola::DmxBuffer> dmx_data_;
-    unsigned int universe_amount_; // нужно ли здесь хранить количество вселенных?
+    unsigned int universe_amount_;
     const ola::client::SendDMXArgs casual_dmx_args_ = ola::client::SendDMXArgs();
 
     ola::client::OlaClientWrapper wrapper_;

@@ -6,6 +6,7 @@
 #include <QApplication>
 #include "qt_headers/mainwindow.h"
 
+
 #include "light_headers/Patcher.h"
 
 int main(int argc, char *argv[]) {
@@ -18,8 +19,6 @@ int main(int argc, char *argv[]) {
         OLA_FATAL << "Failed to start OLA thread";
         exit(1);
     }
-
-    sleep(1000);
 
     // When it's time to exit, Stop the OLA thread.
     gtw.Stop();

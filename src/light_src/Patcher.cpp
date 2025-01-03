@@ -1,7 +1,7 @@
 #include "light_headers/Patcher.h"
 
 void Patcher::PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-    std::string name, std::vector<ChannelType>& channels)
+                            std::string name, const ChannelType *channels)
 {
     all_fixtures_.createNewFixture(universe_id, dmx_address, channel_amount, name, channels);
 

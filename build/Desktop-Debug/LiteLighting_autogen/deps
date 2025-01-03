@@ -4,6 +4,7 @@ LiteLighting_autogen/timestamp: \
 	/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/3.31.3/CMakeCXXCompiler.cmake \
 	/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/3.31.3/CMakeSystem.cmake \
 	/home/ivan/LiteLighting/build/Desktop-Debug/LiteLighting_autogen/moc_predefs.h \
+	/home/ivan/LiteLighting/include/light_headers/ChannelTypeEnum.h \
 	/home/ivan/LiteLighting/include/light_headers/DmxGateway.h \
 	/home/ivan/LiteLighting/include/light_headers/Fixture.h \
 	/home/ivan/LiteLighting/include/light_headers/FixtureArray.h \

@@ -12,14 +12,12 @@ public:
     Patcher(unsigned int cfg_univ_amount, FixtureArray& fixts, std::vector<std::vector<bool>>& cfg_univ_patching)
         : universe_amount_(cfg_univ_amount),
         all_fixtures_(fixts),
-        universe_patching_(std::move(cfg_univ_patching)) // стоит ли мувать?
-    {}
+        universe_patching_(std::move(cfg_univ_patching)) {} // стоит ли мувать?
 
     ~Patcher() = default; // вызвать операцию сохранения в файл
 
-
     void PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                        std::string name, std::vector <ChannelType>& channels);
+                        std::string name, const ChannelType* channels);
 
     bool IsFreeAddress(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount) const;
 

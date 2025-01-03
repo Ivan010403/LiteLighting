@@ -5,9 +5,14 @@
 
 class FixtureArray {
 public:
+    FixtureArray() = delete;
+
     FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {}
 
-    void createNewFixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount, std::string name, std::vector<ChannelType>& channels);
+    ~FixtureArray() = default;
+
+    void createNewFixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
+                          std::string name, const ChannelType* channels);
 
     int size() const;
 protected:
