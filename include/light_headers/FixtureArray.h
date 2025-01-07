@@ -7,7 +7,7 @@ class FixtureArray {
 public:
     FixtureArray() = delete;
 
-    FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {}
+    FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {         std::cout << "FixtureArray()" << std::endl;}
 
     FixtureArray(const FixtureArray& dmx_gtw) = delete;
 
@@ -17,7 +17,11 @@ public:
 
     FixtureArray& operator= (FixtureArray&& dmx_gtw) = delete;
 
-    ~FixtureArray() = default;
+    ~FixtureArray() {
+        for (int i = 0; i < size_; ++i) {
+            delete vector_fixture_[i];
+        }
+    }
 
     //-----------------------------------------------------------------------------------------------------------
 
@@ -26,11 +30,11 @@ public:
 
     int size() const;
 
-    std::vector <Fixture> vector_fixture_;
 
 protected:
 
 private:
+    std::vector <Fixture*> vector_fixture_;
     int size_ = 0; // maybe unsigned?
     DmxGateway& dmx_gateway_; // что если объект разрушится? ссылка будет указывать на дичь
 };
