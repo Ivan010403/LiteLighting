@@ -9,11 +9,25 @@
 
 #include <vector>
 
-class DmxGateway : public ola::thread::Thread {
+#include <QtWidgets>
+
+class DmxGateway : public ola::thread::Thread, public QAbstractTableModel {
+    Q_OBJECT
+
 public:
+
+
+
+
+
+    // ------------------------------------------------------
     DmxGateway() = delete;
 
-    DmxGateway(unsigned int universe_amount) : dmx_data_(universe_amount), universe_amount_(universe_amount) {
+    DmxGateway(unsigned int universe_amount, QObject *parent = 0) :
+        dmx_data_(universe_amount),
+        universe_amount_(universe_amount),
+        QAbstractTableModel(parent)
+    {
         for (int i = 0; i < universe_amount_; ++i) {
             dmx_data_[i].Blackout();
         }

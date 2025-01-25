@@ -12,8 +12,6 @@
 
 int main(int argc, char *argv[]) {
 
-    qDebug () << "Licensee:" << QLibraryInfo::version();
-    qDebug () << "Is Debug Build:" << QLibraryInfo::isDebugBuild();
 
     // QApplication app(argc, argv);
 
