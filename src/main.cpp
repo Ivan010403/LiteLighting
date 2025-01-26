@@ -11,7 +11,12 @@
 #include "light_headers/Patcher.h"
 
 int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
 
+    MainWindow mw;
+    mw.showMaximized();
+
+    return app.exec();
 
     // QApplication app(argc, argv);
 
