@@ -10,35 +10,20 @@
 
 #include "light_headers/Patcher.h"
 
+#include "styles/main_style.h"
+
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
+
+    // stylization of qt application
+    app.setPalette(СreateAppPalette());
 
     MainWindow mw;
     mw.showMaximized();
 
+
+
     return app.exec();
-
-    // QApplication app(argc, argv);
-
-    // QLabel lbl("0");
-
-    // QPushButton cmd("ADD");
-
-    // Counter counter;
-
-
-    // // MainWindow w;
-    // lbl.show();
-    // cmd.show();
-
-    // QObject::connect(&cmd, SIGNAL(clicked()), &counter, SLOT(slotInc()));
-
-    // QObject::connect(&counter, SIGNAL(counterChanged(int)), &lbl, SLOT(setNum(int)));
-
-    // QObject::connect(&counter, SIGNAL(goodbye()), &app, SLOT(quit()));
-
-
-    // return app.exec();
 }
 
 
