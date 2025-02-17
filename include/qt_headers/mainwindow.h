@@ -5,7 +5,7 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
+class main_window_;
 }
 QT_END_NAMESPACE
 
@@ -18,8 +18,7 @@ public:
     ~MainWindow();
 
 private:
-
-    Ui::MainWindow *ui_; // указатель на само окно, которое сгенерированно uic
+    Ui::main_window_ *ui_; // указатель на само окно, которое сгенерированно uic
 };
 
 #endif // MAINWINDOW_H

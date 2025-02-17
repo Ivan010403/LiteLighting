@@ -1,0 +1,30 @@
+/* Левая ScrollArea, где располагаются основные настройки!*/
+MainWindow QScrollArea QPushButton {
+  border-width: 100px;
+
+  border-radius: 15px; /* Закруглённые углы */
+  border: 2px solid #fabb33; /* Граница */
+}
+
+MainWindow QScrollArea QPushButton:pressed {
+  color: #18150d;
+  background-color: #b19760;
+}
+
+
+/* Часть посередине, отображение фикстур и свойств над ними*/
+
+MainWindow QWidget#fixtures_layout_ QGroupBox#fixture_display_ {
+  border: 1px solid #fabb33;
+  
+}
+
+MainWindow QWidget#fixtures_layout_ QGroupBox#fixture_display_::title {
+    left: 10px;
+    top: 5px;
+}
+
+MainWindow QWidget#fixtures_layout_  QFrame#fixture_properties_ {
+  border: 1px solid #fabb33;
+}
+

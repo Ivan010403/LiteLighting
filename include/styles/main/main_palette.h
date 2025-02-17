@@ -1,7 +1,7 @@
 #ifndef MAIN_STYLE_H
 #define MAIN_STYLE_H
 
-#include "color_constants.h"
+#include "styles/color_constants.h"
 #include <QPalette>
 
 QPalette СreateAppPalette() {

@@ -71,8 +71,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
         include/light_headers/ChannelTypeEnum.h
-        include/styles/buttonstyle.h include/styles/buttonstyle.cpp
-        include/styles/main_style.h
+        include/styles/main/main_palette.h
+        include/styles/main/main_style.qss
         include/styles/color_constants.h
     )
 # Define target properties for Android with Qt 6 as:
