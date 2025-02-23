@@ -1,16 +1,13 @@
-#include <stdlib.h>
-#include <iostream>
 #include <uuid/uuid.h>
 //#include <curses.h> // problems with macro scroll
 
-#include <QApplication>
 #include <QtWidgets>
-#include <QtCore>
-#include "qt_headers/mainwindow.h"
+#include <QApplication>
 
-#include "light_headers/Patcher.h"
-
+#include "qt_headers/main_window/mainwindow.h"
 #include "styles/main/main_palette.h"
+
+#include "light_headers/DmxGateway.h"
 
 
 int main(int argc, char *argv[]) {
@@ -20,9 +17,14 @@ int main(int argc, char *argv[]) {
     //stylization of qt application
     app.setPalette(СreateAppPalette());
 
-    MainWindow mw;
-    mw.showMaximized();
+    const unsigned int univ_amount = 1;
+    DmxGateway dmx_gtw(univ_amount);
+    if (!dmx_gtw.Start()) {
+        qFatal("Failed to start OLA thread");
+    }
 
+    MainWindow mw(dmx_gtw);
+    mw.showMaximized();
 
     return app.exec();
 }

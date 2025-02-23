@@ -7,9 +7,9 @@
 #include <ola/DmxBuffer.h>
 #include <ola/Logging.h> // снова перепроверить все заголовочные файлы
 
+#include <QtWidgets>
 #include <vector>
 
-#include <QtWidgets>
 
 class DmxGateway : public QAbstractTableModel, public ola::thread::Thread {
     Q_OBJECT
@@ -58,6 +58,10 @@ public:
     void Stop();
 
     ola::DmxBuffer& GetBuffer(unsigned int universe_id);
+
+    unsigned int GetAmountUniv() {
+        return universe_amount_;
+    }
 
     DmxGateway() = delete;
     DmxGateway(const DmxGateway& dmx_gtw) = delete;

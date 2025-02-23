@@ -7,7 +7,7 @@ class FixtureArray {
 public:
     FixtureArray() = delete;
 
-    FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {         std::cout << "FixtureArray()" << std::endl;}
+    FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {}
 
     FixtureArray(const FixtureArray& dmx_gtw) = delete;
 

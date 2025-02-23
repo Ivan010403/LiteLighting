@@ -9,7 +9,7 @@ class Patcher {
 public:
     Patcher() = delete;
 
-    Patcher(unsigned int cfg_univ_amount, FixtureArray& fixts, std::vector<std::vector<bool>>& cfg_univ_patching)
+    Patcher(unsigned int cfg_univ_amount, FixtureArray& fixts, const std::vector<std::vector<bool>>& cfg_univ_patching)
         : universe_amount_(cfg_univ_amount),
         all_fixtures_(fixts),
         universe_patching_(std::move(cfg_univ_patching)) {} // стоит ли мувать?
@@ -30,7 +30,6 @@ public:
                         std::string name, const ChannelType* channels);
 
     bool IsFreeAddress(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount) const;
-
 private:
     std::vector<std::vector<bool>> universe_patching_; // true - свободно, false - занято
     unsigned int universe_amount_ = 0;

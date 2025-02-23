@@ -17,11 +17,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
 	src/main.cpp
-        src/qt_src/mainwindow.cpp
-        src/light_src/Fixture.cpp
-        include/light_headers/Fixture.h
-        include/qt_headers/mainwindow.h
-	include/forms/mainwindow.ui
 )
 
 set(LIB3_SOURCES
@@ -67,13 +62,21 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/light_headers/Patcher.h
         include/light_headers/DmxGateway.h
         include/light_headers/FixtureArray.h
-        src/light_src/Patcher.cpp
-        src/light_src/FixtureArray.cpp
-        src/light_src/DmxGateway.cpp
         include/light_headers/ChannelTypeEnum.h
+        include/light_headers/Fixture.h
+
+        include/qt_headers/main_window/mainwindow.h include/qt_headers/main_window/mainwindow.cpp
+        include/qt_headers/main_window/fixture_display/fixturedisplay.h include/qt_headers/main_window/fixture_display/fixturedisplay.cpp
+        include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.h include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.cpp
         include/styles/main/main_palette.h
         include/styles/main/main_style.qss
         include/styles/color_constants.h
+        include/forms/mainwindow.ui
+        src/light_src/Fixture.cpp
+        src/light_src/Patcher.cpp
+        src/light_src/FixtureArray.cpp
+        src/light_src/DmxGateway.cpp
+        include/qt_headers/main_window/fixture_display/fixtureproperties.h include/qt_headers/main_window/fixture_display/fixtureproperties.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

@@ -37,8 +37,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>144</width>
-         <height>700</height>
+         <width>145</width>
+         <height>686</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1,1,1">
@@ -46,7 +46,7 @@
          <number>40</number>
         </property>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="btn_patching_">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -63,7 +63,7 @@
            </size>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>Patching universe</string>
           </property>
          </widget>
         </item>
@@ -125,19 +125,27 @@
     </item>
     <item>
      <widget class="QWidget" name="fixtures_layout_" native="true">
-      <layout class="QVBoxLayout" name="layout_fixture_window_" stretch="3,1">
+      <layout class="QVBoxLayout" name="layout_fixture_window_" stretch="4,1">
        <property name="spacing">
         <number>15</number>
        </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QGroupBox" name="fixture_display_">
-         <property name="title">
-          <string>Fixtures</string>
-         </property>
-        </widget>
+        <widget class="FixtureDisplay" name="fixture_display_"/>
        </item>
        <item>
-        <widget class="QFrame" name="fixture_properties_">
+        <widget class="FixtureProperties" name="fixture_properties_">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -223,6 +231,20 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FixtureDisplay</class>
+   <extends>QFrame</extends>
+   <header location="global">qt_headers/main_window/fixture_display/fixturedisplay.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FixtureProperties</class>
+   <extends>QFrame</extends>
+   <header location="global">qt_headers/main_window/fixture_display/fixtureproperties.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
