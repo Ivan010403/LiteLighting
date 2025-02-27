@@ -77,6 +77,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
         include/qt_headers/main_window/fixture_display/fixtureproperties.h include/qt_headers/main_window/fixture_display/fixtureproperties.cpp
+        include/qt_headers/main_window/fixture_display/fixture_button/fixturebutton.h include/qt_headers/main_window/fixture_display/fixture_button/fixturebutton.cpp
+        include/qt_headers/main_window/main_settings/patching_window/qdialoghelper.h include/qt_headers/main_window/main_settings/patching_window/qdialoghelper.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

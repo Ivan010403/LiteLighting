@@ -3,26 +3,45 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QPushButton>
-
 
 #include "light_headers/FixtureArray.h"
+#include "qt_headers/main_window/fixture_display/fixture_button/fixturebutton.h"
 
 class FixtureDisplay : public QFrame {
 Q_OBJECT
 
 public:
     explicit FixtureDisplay(QWidget* parent = nullptr) : QFrame(parent) {
-        Setup();
+        SetupUi();
         SetupConnections();
     }
+
     ~FixtureDisplay() {}
 
     void setFixtureArray(FixtureArray* fxt_arr) {
         dmx_fixture_array_ = fxt_arr;
     }
 
-    void Setup() {
+signals:
+    void FixtureChoosen(unsigned int);
+
+private slots:
+    void OnBtnAddClicked() {
+        // REFACTOR THIS!!!!!!!!
+        qvect_fixtures_.push_back(new FixtureButton(btn_move_fixture_, dmx_fixture_array_->getFixtureByIndex(0), qframe_display_));
+        // стрёмно беру индекс, надо нормально. Придумать как!!!
+        connect(qvect_fixtures_[qvect_fixtures_.size()-1], &FixtureButton::sendFixtureId, this, &FixtureDisplay::FixtureChoosen);
+        // REFACTOR THIS!!!!!!!!
+    }
+
+    // void OnBtnMoveClicked() {
+    //     // btn_move_fixture_
+    //     //connect(test, &QPushButton::clicked, this, &FixtureDisplay::FixtureChoosen);
+    // }
+
+
+private:
+    void SetupUi() {
         vlayout_main_ = new QVBoxLayout(this);
         vlayout_main_->setContentsMargins(0, 0, 0, 0);
 
@@ -34,6 +53,7 @@ public:
 
         btn_move_fixture_ = new QPushButton("Move fixture", this);
         btn_move_fixture_->setEnabled(true);
+        btn_move_fixture_->setCheckable(true);
 
         hlayout_btns_->addWidget(btn_add_fixture_);
         hlayout_btns_->addWidget(btn_move_fixture_);
@@ -50,47 +70,16 @@ public:
 
     void SetupConnections() {
         connect(btn_add_fixture_, &QPushButton::clicked, this, &FixtureDisplay::OnBtnAddClicked);
+        // connect(btn_move_fixture_, &QPushButton::clicked, this, &FixtureDisplay::OnBtnMoveClicked);
     }
 
-signals:
-    void FixtureChoosen();
-
-private slots:
-    void OnBtnAddClicked() {
-        qDebug() << "btn added";
-        test = new QPushButton("Test", qframe_display_);
-        test->setGeometry(200,200, 200,200);
-        test->setEnabled(true);
-        test->show();
-
-        connect(test, &QPushButton::clicked, this, &FixtureDisplay::FixtureChoosen);
-    }
-// protected:
-//     void paintEvent(QPaintEvent *event) {
-//         QGroupBox::paintEvent(event);
-
-//         // Создаем объект QPainter для рисования
-//         QPainter painter(this);
-
-//         // Пример: Рисуем рамку вокруг QGroupBox
-//         painter.setPen(Qt::red); // Устанавливаем цвет пера
-//         painter.drawRect(this->rect().adjusted(0, 0, -1, -1)); // Рисуем прямоугольник
-
-//         // Пример: Рисуем текст в центре QGroupBox
-//         painter.setPen(Qt::blue); // Устанавливаем цвет текста
-//         painter.drawText(this->rect(), Qt::AlignCenter, "Custom Paint");
-//     }
-
-
-private:
     QVBoxLayout* vlayout_main_;
     QHBoxLayout* hlayout_btns_;
     QPushButton* btn_add_fixture_;
     QPushButton* btn_move_fixture_;
     QFrame* qframe_display_;
 
-    QPushButton* test;
-
+    QVector<FixtureButton*> qvect_fixtures_;
 
     FixtureArray* dmx_fixture_array_;
 };

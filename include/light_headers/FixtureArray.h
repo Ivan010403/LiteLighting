@@ -5,17 +5,7 @@
 
 class FixtureArray {
 public:
-    FixtureArray() = delete;
-
-    FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {}
-
-    FixtureArray(const FixtureArray& dmx_gtw) = delete;
-
-    FixtureArray(FixtureArray&& dmx_gtw) = delete;
-
-    FixtureArray& operator= (const FixtureArray& dmx_gtw) = delete;
-
-    FixtureArray& operator= (FixtureArray&& dmx_gtw) = delete;
+    explicit FixtureArray(DmxGateway& dmx_gtw) : dmx_gateway_(dmx_gtw) {}
 
     ~FixtureArray() {
         for (int i = 0; i < size_; ++i) {
@@ -23,15 +13,18 @@ public:
         }
     }
 
-    //-----------------------------------------------------------------------------------------------------------
+    Fixture* getFixtureByIndex(int index);
 
-    void createNewFixture (unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
+    void createNewFixture (unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                           std::string name, const ChannelType* channels);
 
     int size() const;
 
-
-protected:
+    FixtureArray() = delete;
+    FixtureArray(const FixtureArray& dmx_gtw) = delete;
+    FixtureArray(FixtureArray&& dmx_gtw) = delete;
+    FixtureArray& operator= (const FixtureArray& dmx_gtw) = delete;
+    FixtureArray& operator= (FixtureArray&& dmx_gtw) = delete;
 
 private:
     std::vector <Fixture*> vector_fixture_;

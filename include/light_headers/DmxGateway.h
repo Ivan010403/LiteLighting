@@ -37,7 +37,7 @@ public:
 
     // ------------------------------------------------------
 
-    DmxGateway(unsigned int universe_amount, QObject *parent = 0) :
+    explicit DmxGateway(unsigned int universe_amount, QObject *parent = 0) :
         dmx_data_(universe_amount),
         universe_amount_(universe_amount),
         QAbstractTableModel(parent)
@@ -59,6 +59,7 @@ public:
 
     ola::DmxBuffer& GetBuffer(unsigned int universe_id);
 
+    // refactor!!!
     unsigned int GetAmountUniv() {
         return universe_amount_;
     }

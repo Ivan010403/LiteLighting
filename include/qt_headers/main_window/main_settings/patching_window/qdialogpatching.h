@@ -1,24 +1,43 @@
 #ifndef QDIALOGPATCHING_H
 #define QDIALOGPATCHING_H
-#include <QDialog>
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
 
-#include "light_headers/Patcher.h"
+#include "qdialoghelper.h"
 
 
 class QDialogPatching : public QDialog {
     Q_OBJECT
 
 public:
-    explicit QDialogPatching(Patcher* dmx_patcher, QWidget* parent = nullptr) : dmx_patcher_(dmx_patcher), QDialog(parent) {}
+    explicit QDialogPatching(Patcher* dmx_patcher, QWidget* parent = nullptr) : dmx_patcher_(dmx_patcher), QDialog(parent) {
+        SetupUi();
+        SetupConnections();
+    }
+
     ~QDialogPatching() {}
 
-    void Setup() {
+private slots:
+    void onBtnAddClicked() {
+
+        //  REFACTOR THIS!!!!
+        // ChannelType* test = new ChannelType[2] {ChannelType::Dimmer, ChannelType::Pan};
+        // dmx_patcher_->PatchNewFixture(10, 0, 0, 2, "test", test);
+        //  REFACTOR THIS!!!!
+        qdial_helper_->show();
+    }
+
+    void onBtnDeleteClicked() {
+        qDebug() << "Кнопка DeleteFixture нажата!";
+    }
+
+private:
+    void SetupUi() {
         this->resize(1280,720);
         this->setMinimumSize(1280,720);
+        this->setWindowTitle("Fixture patching");
 
         vlayout_main_ = new QVBoxLayout();
         vlayout_main_->setSpacing(40);
@@ -50,21 +69,9 @@ public:
 
         this->setLayout(vlayout_main_);
 
-        SetupConnections();
+        qdial_helper_ = new QDialogHelper(dmx_patcher_, this);
     }
 
-private slots:
-    void onBtnAddClicked() {
-        ChannelType* test = new ChannelType[2] {ChannelType::Dimmer, ChannelType::Pan};
-        dmx_patcher_->PatchNewFixture(0, 0, 2, "test", test);
-        qDebug() << "Кнопка AddFixture нажата!";
-    }
-
-    void onBtnDeleteClicked() {
-        qDebug() << "Кнопка DeleteFixture нажата!";
-    }
-
-private:
     void SetupConnections(){
         connect(btn_add_fixture_, &QPushButton::clicked, this, &QDialogPatching::onBtnAddClicked);
         connect(btn_delete_fixture_, &QPushButton::clicked, this, &QDialogPatching::onBtnDeleteClicked);
@@ -76,6 +83,8 @@ private:
     QTableWidget* table_fixtures_;
     QPushButton* btn_add_fixture_;
     QPushButton* btn_delete_fixture_;
+
+    QDialogHelper* qdial_helper_;
 
     Patcher* dmx_patcher_;
 };

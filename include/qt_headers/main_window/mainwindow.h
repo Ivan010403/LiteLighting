@@ -2,11 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QDialog>
 
 #include "qt_headers/main_window/main_settings/patching_window/qdialogpatching.h"
-
-#include "light_headers/Patcher.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,26 +16,23 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(DmxGateway& dmx_gtw, QWidget *parent = nullptr);
+    explicit MainWindow(DmxGateway& dmx_gtw, QWidget* parent = nullptr);
     ~MainWindow();
-
 
 private slots:
     void onButtonClicked() {
         qdial_patching_->show();
-        qDebug() << "Кнопка была нажата!";
     }
 
-
 private:
-    void SetupConnections();
     void SetupModalWindows();
+    void SetupConnections();
 
-    Ui::main_window_ *ui_; // указатель на само окно, которое сгенерированно uic
+    Ui::main_window_ *ui_;
 
     QDialogPatching *qdial_patching_;
 
-    DmxGateway& dmx_gateway_;
+    DmxGateway& dmx_gateway_; // подумать про константность
     FixtureArray* dmx_fixture_array_;
     Patcher* dmx_patcher_;
 };

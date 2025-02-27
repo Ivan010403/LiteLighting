@@ -1,9 +1,9 @@
 #include "light_headers/Patcher.h"
 
-void Patcher::PatchNewFixture(unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
+void Patcher::PatchNewFixture(unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                             std::string name, const ChannelType *channels)
 {
-    all_fixtures_.createNewFixture(universe_id, dmx_address, channel_amount, name, channels);
+    all_fixtures_->createNewFixture(fixture_id, universe_id, dmx_address, channel_amount, name, channels);
 
     for (uint16_t i = dmx_address; i < dmx_address + channel_amount; ++i) {
         universe_patching_[universe_id][i] = false;
