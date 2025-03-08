@@ -59,7 +59,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(LiteLighting
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        include/light_headers/Patcher.h
+
         include/light_headers/DmxGateway.h
         include/light_headers/FixtureArray.h
         include/light_headers/ChannelTypeEnum.h
@@ -73,7 +73,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/styles/color_constants.h
         include/forms/mainwindow.ui
         src/light_src/Fixture.cpp
-        src/light_src/Patcher.cpp
+
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
         include/qt_headers/main_window/fixture_display/fixtureproperties.h include/qt_headers/main_window/fixture_display/fixtureproperties.cpp

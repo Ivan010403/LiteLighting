@@ -33,8 +33,7 @@ private:
     QDialogPatching *qdial_patching_;
 
     DmxGateway& dmx_gateway_; // подумать про константность
-    FixtureArray* dmx_fixture_array_;
-    Patcher* dmx_patcher_;
+    FixtureArrayModel* dmx_fixture_array_;
 };
 
 #endif // MAINWINDOW_H

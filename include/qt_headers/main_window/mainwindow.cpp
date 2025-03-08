@@ -11,13 +11,8 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget *parent) :
 {
 
     // REFACTOR!!!!!!!!!!!!!!!!!!!!!!!!
-    dmx_fixture_array_ = new FixtureArray(dmx_gateway_);
-
-    // GetAmountUniv - стрём! Надо менять
-    dmx_patcher_ = new Patcher(dmx_gateway_.GetAmountUniv(), dmx_fixture_array_, std::vector<std::vector<bool>> (dmx_gateway_.GetAmountUniv(), std::vector<bool>(512, false)));
+    dmx_fixture_array_ = new FixtureArrayModel(dmx_gateway_); // снова new! можно через ссылки
     // ---------------------------------------------------------
-
-    // END REFACTOR!!!
 
 
     ui_->setupUi(this);
@@ -41,11 +36,10 @@ MainWindow::~MainWindow()
 
     delete ui_;
     delete dmx_fixture_array_;
-    delete dmx_patcher_;
 }
 
 void MainWindow::SetupModalWindows() {
-    qdial_patching_ = new QDialogPatching(dmx_patcher_, this);
+    qdial_patching_ = new QDialogPatching(dmx_fixture_array_, this);
 }
 
 void MainWindow::SetupConnections() {

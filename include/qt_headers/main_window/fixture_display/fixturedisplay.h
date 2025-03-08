@@ -18,7 +18,7 @@ public:
 
     ~FixtureDisplay() {}
 
-    void setFixtureArray(FixtureArray* fxt_arr) {
+    void setFixtureArray(FixtureArrayModel* fxt_arr) {
         dmx_fixture_array_ = fxt_arr;
     }
 
@@ -28,7 +28,7 @@ signals:
 private slots:
     void OnBtnAddClicked() {
         // REFACTOR THIS!!!!!!!!
-        qvect_fixtures_.push_back(new FixtureButton(btn_move_fixture_, dmx_fixture_array_->getFixtureByIndex(0), qframe_display_));
+        qvect_fixtures_.push_back(new FixtureButton(btn_move_fixture_, dmx_fixture_array_->GetFixtureByIndex(0), qframe_display_));
         // стрёмно беру индекс, надо нормально. Придумать как!!!
         connect(qvect_fixtures_[qvect_fixtures_.size()-1], &FixtureButton::sendFixtureId, this, &FixtureDisplay::FixtureChoosen);
         // REFACTOR THIS!!!!!!!!
@@ -81,7 +81,7 @@ private:
 
     QVector<FixtureButton*> qvect_fixtures_;
 
-    FixtureArray* dmx_fixture_array_;
+    FixtureArrayModel* dmx_fixture_array_;
 };
 
 #endif // FIXTUREDISPLAY_H

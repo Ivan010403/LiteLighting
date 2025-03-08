@@ -15,29 +15,8 @@ class DmxGateway : public QAbstractTableModel, public ola::thread::Thread {
     Q_OBJECT
 
 public:
-
-    int rowCount(const QModelIndex &parent = QModelIndex()) const {
-        Q_UNUSED(parent); // зачем?
-        return universe_amount_;
-    }
-
-    int columnCount(const QModelIndex &parent) const {
-        Q_UNUSED(parent);
-        return ola::DMX_MAX_SLOT_NUMBER; // convers from uint16_t to int!
-    }
-
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const {
-        if (!index.isValid()) return QVariant();
-
-        return (role == Qt::DisplayRole || role == Qt::EditRole)
-                ? dmx_data_[index.row()].Get(index.column())
-                : QVariant();
-    }
-
-
-    // ------------------------------------------------------
-
-    explicit DmxGateway(unsigned int universe_amount, QObject *parent = 0) :
+    //--------------------constructors and destructor--------------------------------
+    explicit DmxGateway(unsigned int universe_amount, QObject *parent = nullptr) :
         dmx_data_(universe_amount),
         universe_amount_(universe_amount),
         QAbstractTableModel(parent)
@@ -50,34 +29,45 @@ public:
     }
 
     ~DmxGateway() = default;
+    //-------------------------------------------------------------------------------
 
-    //-----------------------------------------------------------------------------------------------------------
 
+    //--------------------function for table model-----------------------------------
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    // дописать функцию по аналогии с fixture array!!!!!!!!!
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    //-------------------------------------------------------------------------------
+
+
+    //---------------------------local functions-------------------------------------
     bool Start();
-
     void Stop();
-
     ola::DmxBuffer& GetBuffer(unsigned int universe_id);
-
     // refactor!!!
     unsigned int GetAmountUniv() {
         return universe_amount_;
     }
+    //-------------------------------------------------------------------------------
 
+
+    //---------------------------deleted functions-----------------------------------
     DmxGateway() = delete;
     DmxGateway(const DmxGateway& dmx_gtw) = delete;
     DmxGateway(DmxGateway&& dmx_gtw) = delete;
     DmxGateway& operator= (const DmxGateway& dmx_gtw) = delete;
     DmxGateway& operator= (DmxGateway&& dmx_gtw) = delete;
+    //-------------------------------------------------------------------------------
 protected:
     void* Run();
 
 private:
+    //---------------------------private functions-----------------------------------
     void GatewaySetup();
-
     void ConnectionClosed();
-
     bool SendData();
+    //-------------------------------------------------------------------------------
+
 
     std::vector <ola::DmxBuffer> dmx_data_;
     unsigned int universe_amount_;

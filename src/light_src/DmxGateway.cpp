@@ -1,5 +1,27 @@
 #include "light_headers/DmxGateway.h"
 
+
+int DmxGateway::rowCount(const QModelIndex &parent) const {
+    Q_UNUSED(parent);
+    return universe_amount_;
+}
+
+int DmxGateway::columnCount(const QModelIndex &parent) const {
+    Q_UNUSED(parent);
+    return ola::DMX_MAX_SLOT_NUMBER;
+}
+
+// дописать функцию по аналогии с fixture array!!!!!!!!!
+QVariant DmxGateway::data(const QModelIndex &index, int role) const {
+    if (!index.isValid()) return QVariant();
+
+    return (role == Qt::DisplayRole || role == Qt::EditRole)
+               ? dmx_data_[index.row()].Get(index.column())
+               : QVariant();
+}
+
+//-------------------------------------------------------------------------------
+
 bool DmxGateway::Start() {
     if (!wrapper_.Setup()) {
         OLA_FATAL << "DmxGateway::Start() failed";
@@ -20,11 +42,15 @@ ola::DmxBuffer& DmxGateway::GetBuffer(unsigned int universe_id) {
     return dmx_data_[universe_id];
 }
 
+//-------------------------------------------------------------------------------
+
 void* DmxGateway::Run() {
     OLA_INFO << "DmxGateway::Run() run the thread";
     select_server_->Run();
     return NULL;
 }
+
+//-------------------------------------------------------------------------------
 
 void DmxGateway::GatewaySetup() {
     ola_client_ = wrapper_.GetClient(); // getclient константный метод, а я присваиваю неконстантному указателю

@@ -8,6 +8,7 @@
 
 class Fixture {
 public:
+    //--------------------constructors and destructor--------------------------------
     explicit Fixture (unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
             std::string name, const ChannelType* channels, ola::DmxBuffer& dmx_data) :
         fixture_id_ (fixture_id),
@@ -23,7 +24,7 @@ public:
         }
     }
 
-    explicit Fixture (Fixture&& fxtr) :
+    explicit Fixture (Fixture&& fxtr) : // ЗДЕСЬ НЕТ FIXTURE ID!
         universe_id_(fxtr.universe_id_),
         dmx_address_(fxtr.dmx_address_),
         channel_amount_(fxtr.channel_amount_),
@@ -40,7 +41,9 @@ public:
             delete[] raw_data_;
         }
     }
+    //-------------------------------------------------------------------------------
 
+    //---------------------------local functions-------------------------------------
     // refactor!!!
     unsigned int getId() const { // maybe const?
         return fixture_id_;
@@ -51,20 +54,24 @@ public:
         SendDmxData();
     }
     // refactor!!!
+    //-------------------------------------------------------------------------------
 
+    //---------------------------deleted functions-----------------------------------
     Fixture() = delete;
     Fixture (const Fixture& fxtr) = delete;
     Fixture& operator= (const Fixture& fxtr) = delete;
     Fixture& operator= (Fixture&& fxtr) = delete;
+    //-------------------------------------------------------------------------------
 
-private:
+public: // ПРИДУМАТЬ ЧТО-ТО С ЭТИМ. МОЖЕТ БЫТЬ FRIEND CLASS?
     void SendDmxData() {
         dmx_data_.SetRange(dmx_address_, raw_data_, channel_amount_);
     }
 
     unsigned int fixture_id_;
     unsigned int universe_id_;
-    uint16_t dmx_address_; // пока пусть будет константой
+    unsigned int group_id_ = 0; // проинициализировать!!!!!!!!!!!!!!!!!!!!!!!
+    uint16_t dmx_address_; // пока пусть будет константой?
     uint16_t channel_amount_;
     std::string name_;
     std::unordered_map <ChannelType, uint8_t*> channels_;

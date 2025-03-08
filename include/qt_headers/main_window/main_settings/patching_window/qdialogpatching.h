@@ -1,8 +1,11 @@
 #ifndef QDIALOGPATCHING_H
 #define QDIALOGPATCHING_H
-#include <QTableWidget>
+#include <QTableView>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+
+#include <QGridLayout>
+
 #include <QPushButton>
 
 #include "qdialoghelper.h"
@@ -12,7 +15,7 @@ class QDialogPatching : public QDialog {
     Q_OBJECT
 
 public:
-    explicit QDialogPatching(Patcher* dmx_patcher, QWidget* parent = nullptr) : dmx_patcher_(dmx_patcher), QDialog(parent) {
+    explicit QDialogPatching(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) : dmx_fixture_array_(dmx_fixture_array), QDialog(parent) {
         SetupUi();
         SetupConnections();
     }
@@ -39,37 +42,57 @@ private:
         this->setMinimumSize(1280,720);
         this->setWindowTitle("Fixture patching");
 
-        vlayout_main_ = new QVBoxLayout();
-        vlayout_main_->setSpacing(40);
 
-        table_fixtures_ = new QTableWidget(2, 3, this);
-        table_fixtures_->setHorizontalHeaderLabels(QStringList() << "Col 1" << "Col 2" << "Col 3");
-        table_fixtures_->setVerticalHeaderLabels(QStringList() << "Row 1" << "Row 2" << "Row 3");
+        gridlayout_main_ = new QGridLayout(this);
 
-        hlayout_btns_ = new QHBoxLayout();
-        hlayout_btns_->setSpacing(40);
-        // hlayout_btns_->setContentsMargins(15,-1.15.-1);
+
+        table_groups_ = new QTableView(this);
+        table_groups_->setModel(dmx_fixture_array_);
+
+        table_fixtures_ = new QTableView(this);
+        table_fixtures_->setModel(dmx_fixture_array_);
+
+
+        gridlayout_main_->addWidget(table_groups_, 0, 0);
+        gridlayout_main_->addWidget(table_fixtures_, 0, 1);
+
+
+        gridlayout_groups_ = new QGridLayout();
+
+        btn_add_group_ = new QPushButton("Add group", this);
+        btn_delete_group_ = new QPushButton("Delete group", this);
+        btn_change_group_ = new QPushButton("Change group", this);
+
+        gridlayout_groups_->addWidget(btn_add_group_, 0, 0);
+        gridlayout_groups_->addWidget(btn_delete_group_, 0, 1);
+        gridlayout_groups_->addWidget(btn_change_group_, 0, 2);
+
+        // затычка и костыль
+        gridlayout_groups_->addWidget(new QPushButton("Test", this), 1, 0);
+        gridlayout_groups_->addWidget(new QPushButton("Test", this), 1, 1);
+        gridlayout_groups_->addWidget(new QPushButton("Test", this), 1, 2);
+        //------------------
+
+        gridlayout_fixtures_ = new QGridLayout();
 
         btn_add_fixture_ = new QPushButton("Add fixture", this);
-        btn_add_fixture_->setEnabled(true);
-
         btn_delete_fixture_ = new QPushButton("Delete fixture", this);
-        btn_delete_fixture_->setEnabled(true);
+        btn_change_fixture_ = new QPushButton("Change fixture", this);
 
-        hlayout_btns_->addWidget(btn_add_fixture_);
-        hlayout_btns_->addWidget(btn_delete_fixture_);
+        gridlayout_fixtures_->addWidget(btn_add_fixture_, 0, 0);
+        gridlayout_fixtures_->addWidget(btn_delete_fixture_, 0, 1);
+        gridlayout_fixtures_->addWidget(btn_change_fixture_, 0, 2);
 
-        hlayout_btns_->setStretch(0, 1);
-        hlayout_btns_->setStretch(1, 1);
+        // затычка и костыль
+        gridlayout_fixtures_->addWidget(new QPushButton("Test", this), 1, 0);
+        gridlayout_fixtures_->addWidget(new QPushButton("Test", this), 1, 1);
+        gridlayout_fixtures_->addWidget(new QPushButton("Test", this), 1, 2);
+        //------------------
 
-        vlayout_main_->addWidget(table_fixtures_);
-        vlayout_main_->addLayout(hlayout_btns_);
-        vlayout_main_->setStretch(0,3);
-        vlayout_main_->setStretch(1,1);
+        gridlayout_main_->addLayout(gridlayout_groups_, 1, 0);
+        gridlayout_main_->addLayout(gridlayout_fixtures_, 1, 1);
 
-        this->setLayout(vlayout_main_);
-
-        qdial_helper_ = new QDialogHelper(dmx_patcher_, this);
+        qdial_helper_ = new QDialogHelper(dmx_fixture_array_, this);
     }
 
     void SetupConnections(){
@@ -78,15 +101,24 @@ private:
     }
 
 
-    QVBoxLayout* vlayout_main_;
-    QHBoxLayout* hlayout_btns_;
-    QTableWidget* table_fixtures_;
+    QGridLayout* gridlayout_main_;
+
+    QTableView* table_groups_;
+    QTableView* table_fixtures_;
+
+    QGridLayout* gridlayout_groups_;
+    QPushButton* btn_add_group_;
+    QPushButton* btn_delete_group_;
+    QPushButton* btn_change_group_;
+
+    QGridLayout* gridlayout_fixtures_;
     QPushButton* btn_add_fixture_;
     QPushButton* btn_delete_fixture_;
+    QPushButton* btn_change_fixture_;
 
     QDialogHelper* qdial_helper_;
 
-    Patcher* dmx_patcher_;
+    FixtureArrayModel* dmx_fixture_array_;
 };
 
 #endif // QDIALOGPATCHING_H

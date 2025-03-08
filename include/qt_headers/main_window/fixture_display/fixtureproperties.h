@@ -17,7 +17,7 @@ public:
 
     ~FixtureProperties() {}
 
-    void setFixtureArray(FixtureArray* fxt_arr) {
+    void setFixtureArray(FixtureArrayModel* fxt_arr) {
         dmx_fixture_array_ = fxt_arr;
     }
 
@@ -49,7 +49,7 @@ private:
 
     unsigned int current_fixture_id_ = 0;
 
-    FixtureArray* dmx_fixture_array_;
+    FixtureArrayModel* dmx_fixture_array_;
 };
 
 #endif // FIXTUREPROPERTIES_H
