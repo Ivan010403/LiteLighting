@@ -45,7 +45,7 @@ public:
 
     //---------------------------local functions-------------------------------------
     // refactor!!!
-    unsigned int getId() const { // maybe const?
+    unsigned int GetFixtureId() const { // maybe const?
         return fixture_id_;
     }
 
@@ -74,7 +74,7 @@ public: // ПРИДУМАТЬ ЧТО-ТО С ЭТИМ. МОЖЕТ БЫТЬ FRIEN
     uint16_t dmx_address_; // пока пусть будет константой?
     uint16_t channel_amount_;
     std::string name_;
-    std::unordered_map <ChannelType, uint8_t*> channels_;
+    std::unordered_map <ChannelType, uint8_t*> channels_; // может константный указатель?
 
     ola::DmxBuffer& dmx_data_;
     uint8_t* raw_data_; // maybe smart pointers?

@@ -10,16 +10,20 @@ class FixtureButton : public QPushButton {
 Q_OBJECT
 
 public:
-    explicit FixtureButton(QPushButton* btn_parent_move, Fixture* fxt, QWidget* parent = nullptr) :
-        QPushButton(parent),
+    explicit FixtureButton(QPushButton* btn_parent_move, unsigned int fixture_id, QWidget* parent = nullptr) :
         hold_timer_(new QTimer(this)),
         btn_parent_move_fixture_(btn_parent_move),
-        fixture_under_btn_ (fxt)
+        fixture_id_ (fixture_id),
+        QPushButton(parent)
     {
-        this->setGeometry(20,20,100,100);
-        this->setIcon(QIcon("/home/ivan/LiteLighting/res/spot.jpg"));
-        this->setIconSize(QSize(100,100));
-        this->show();
+        setText(QString::number(fixture_id_));
+        setGeometry(20,20,100,100);
+        setIcon(QIcon("/home/ivan/LiteLighting/res/spot.jpg"));
+        setIconSize(QSize(80,80));
+
+        show();
+
+
 
         hold_timer_->setInterval(1000);
         hold_timer_->setSingleShot(true);
@@ -36,7 +40,7 @@ protected:
         QPushButton::mousePressEvent(event);
 
         // REFACTOR!!!
-        emit sendFixtureId(fixture_under_btn_->getId());
+        emit sendFixtureId(fixture_id_);
         // REFACTOR!!!
     }
 
@@ -69,7 +73,7 @@ private:
     QTimer* hold_timer_;
 
     const QPushButton* btn_parent_move_fixture_;
-    const Fixture* fixture_under_btn_;
+    unsigned int fixture_id_; // может быть конст?
 };
 
 #endif // FIXTUREBUTTON_H

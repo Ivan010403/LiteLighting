@@ -24,11 +24,6 @@ public:
 
 private slots:
     void onBtnAddClicked() {
-
-        //  REFACTOR THIS!!!!
-        // ChannelType* test = new ChannelType[2] {ChannelType::Dimmer, ChannelType::Pan};
-        // dmx_patcher_->PatchNewFixture(10, 0, 0, 2, "test", test);
-        //  REFACTOR THIS!!!!
         qdial_helper_->show();
     }
 

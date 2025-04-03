@@ -96,8 +96,8 @@ void FixtureArrayModel::CreateNewFixture(unsigned int fixture_id, unsigned int u
 
 
 // refactor!!!
-Fixture* FixtureArrayModel::GetFixtureByIndex(int index) {
-    return vector_fixture_[index];
+unsigned int FixtureArrayModel::GetFixtureIdByIndex(int index) {
+    return vector_fixture_[index]->GetFixtureId();
 }
 
 int FixtureArrayModel::FixtureAmount() const {

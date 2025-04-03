@@ -33,3 +33,20 @@ MainWindow QWidget#fixtures_layout_  QFrame#fixture_properties_ {
   border: 1px solid #fabb33;
 }
 
+MainWindow FixtureProperties FixtureProperty QSlider::groove:vertical {
+    width: 40px;
+    background: #e0e0e0;
+    border-radius: 5px;
+}
+
+MainWindow FixtureProperties FixtureProperty QSlider::sub-page:vertical {
+    background: #2196F3;
+    border-radius: 5px;
+}
+
+MainWindow FixtureProperties FixtureProperty QSlider::handle:vertical {
+    image: url(/home/ivan/LiteLighting/res/spot.jpg);
+    width: 32px;
+    height: 32px;
+    margin: 0 -11px;
+}

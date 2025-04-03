@@ -125,7 +125,7 @@
     </item>
     <item>
      <widget class="QWidget" name="fixtures_layout_" native="true">
-      <layout class="QVBoxLayout" name="layout_fixture_window_" stretch="4,1">
+      <layout class="QVBoxLayout" name="layout_fixture_window_" stretch="2,1">
        <property name="spacing">
         <number>15</number>
        </property>

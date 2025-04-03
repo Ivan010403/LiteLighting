@@ -30,7 +30,7 @@ public:
     //-------------------------------------------------------------------------------
 
     //---------------------------local functions-------------------------------------
-    Fixture* GetFixtureByIndex(int index);
+    unsigned int GetFixtureIdByIndex(int index);
     void CreateNewFixture (unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                           std::string name, const ChannelType* channels);
     int FixtureAmount() const;

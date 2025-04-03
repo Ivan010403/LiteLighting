@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 
 #include "light_headers/FixtureArray.h"
-#include "qt_headers/main_window/fixture_display/fixture_button/fixturebutton.h"
+#include "qt_headers/main_window/fixture_display/fixture_display_button/fixturebutton.h"
 
 class FixtureDisplay : public QFrame {
 Q_OBJECT
@@ -27,10 +27,13 @@ signals:
 
 private slots:
     void OnBtnAddClicked() {
+        if (qvect_fixture_buttons_.size() < dmx_fixture_array_->FixtureAmount()) {
+            qvect_fixture_buttons_.push_back(new FixtureButton(btn_move_fixture_, dmx_fixture_array_->GetFixtureIdByIndex(qvect_fixture_buttons_.size()), qframe_display_));
+
+            connect(qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::sendFixtureId, this, &FixtureDisplay::FixtureChoosen);
+        }
         // REFACTOR THIS!!!!!!!!
-        qvect_fixtures_.push_back(new FixtureButton(btn_move_fixture_, dmx_fixture_array_->GetFixtureByIndex(0), qframe_display_));
         // стрёмно беру индекс, надо нормально. Придумать как!!!
-        connect(qvect_fixtures_[qvect_fixtures_.size()-1], &FixtureButton::sendFixtureId, this, &FixtureDisplay::FixtureChoosen);
         // REFACTOR THIS!!!!!!!!
     }
 
@@ -79,7 +82,10 @@ private:
     QPushButton* btn_move_fixture_;
     QFrame* qframe_display_;
 
-    QVector<FixtureButton*> qvect_fixtures_;
+    // QMenu* menu_btn_add_fixture_;
+    // QListView* listview_add_fixture_;
+
+    QVector<FixtureButton*> qvect_fixture_buttons_;
 
     FixtureArrayModel* dmx_fixture_array_;
 };

@@ -9,6 +9,8 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget *parent) :
     ui_(new Ui::main_window_),
     dmx_gateway_(dmx_gtw)
 {
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    showMaximized();
 
     // REFACTOR!!!!!!!!!!!!!!!!!!!!!!!!
     dmx_fixture_array_ = new FixtureArrayModel(dmx_gateway_); // снова new! можно через ссылки

@@ -23,8 +23,6 @@ int main(int argc, char *argv[]) {
     }
 
     MainWindow mw(dmx_gtw);
-    mw.showMaximized();
-
     return app.exec();
 }
 

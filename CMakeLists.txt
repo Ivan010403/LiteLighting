@@ -65,20 +65,30 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/light_headers/ChannelTypeEnum.h
         include/light_headers/Fixture.h
 
-        include/qt_headers/main_window/mainwindow.h include/qt_headers/main_window/mainwindow.cpp
-        include/qt_headers/main_window/fixture_display/fixturedisplay.h include/qt_headers/main_window/fixture_display/fixturedisplay.cpp
-        include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.h include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.cpp
         include/styles/main/main_palette.h
         include/styles/main/main_style.qss
         include/styles/color_constants.h
         include/forms/mainwindow.ui
-        src/light_src/Fixture.cpp
 
+        src/light_src/Fixture.cpp
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
-        include/qt_headers/main_window/fixture_display/fixtureproperties.h include/qt_headers/main_window/fixture_display/fixtureproperties.cpp
-        include/qt_headers/main_window/fixture_display/fixture_button/fixturebutton.h include/qt_headers/main_window/fixture_display/fixture_button/fixturebutton.cpp
+
+
+        include/qt_headers/main_window/mainwindow.h include/qt_headers/main_window/mainwindow.cpp
+        include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.h include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.cpp
         include/qt_headers/main_window/main_settings/patching_window/qdialoghelper.h include/qt_headers/main_window/main_settings/patching_window/qdialoghelper.cpp
+
+        include/qt_headers/main_window/fixture_display/fixtureproperties.h include/qt_headers/main_window/fixture_display/fixtureproperties.cpp
+        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/positionwidget.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/positionwidget.cpp
+        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionchart.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionchart.cpp
+        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionbutton.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionbutton.cpp
+        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/followmodebutton.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/followmodebutton.cpp
+
+        include/qt_headers/main_window/fixture_display/fixturedisplay.h include/qt_headers/main_window/fixture_display/fixturedisplay.cpp
+        include/qt_headers/main_window/fixture_display/fixture_display_button/fixturebutton.h include/qt_headers/main_window/fixture_display/fixture_display_button/fixturebutton.cpp
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
