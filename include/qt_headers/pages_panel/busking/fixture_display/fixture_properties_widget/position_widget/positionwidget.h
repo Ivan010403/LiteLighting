@@ -30,14 +30,14 @@ private:
         hlayout_btns_->addWidget(tilt_btn_);
         hlayout_btns_->addWidget(main_btn_);
         hlayout_btns_->addWidget(pan_btn_);
+        hlayout_btns_->setContentsMargins(0, 0, 0, 0);
 
         pos_chart_widget_ = new PositionChart(this);
 
-        vlayout_main_->addWidget(flw_mode_btn_);
-        vlayout_main_->addLayout(hlayout_btns_);
-        vlayout_main_->addWidget(pos_chart_widget_);
-
-        vlayout_main_->setAlignment(Qt::AlignHCenter);
+        vlayout_main_->addWidget(flw_mode_btn_, 1, Qt::AlignHCenter);
+        vlayout_main_->addLayout(hlayout_btns_, Qt::AlignHCenter);
+        vlayout_main_->addWidget(pos_chart_widget_, 2, Qt::AlignHCenter);
+        vlayout_main_->setContentsMargins(0, 0, 0, 0);
     }
 
     QVBoxLayout* vlayout_main_;

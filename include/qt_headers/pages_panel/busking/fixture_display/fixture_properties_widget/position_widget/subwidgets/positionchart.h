@@ -11,7 +11,7 @@ class PositionChart : public QWidget
 
 public:
     explicit PositionChart (QWidget *parent = nullptr) : QWidget(parent) {
-
+        setMinimumSize(400, 300);
     }
 
     ~PositionChart() = default;

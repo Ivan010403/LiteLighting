@@ -3,8 +3,7 @@
 
 #include <QtWidgets>
 #include <QApplication>
-
-#include "qt_headers/main_window/mainwindow.h"
+#include "qt_headers/mainwindow.h"
 #include "styles/main/main_palette.h"
 
 #include "light_headers/DmxGateway.h"

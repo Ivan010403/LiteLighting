@@ -4,7 +4,7 @@
 #include <QSlider>
 
 #include "light_headers/FixtureArray.h"
-#include "qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/positionwidget.h"
+// #include "qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/positionwidget.h"
 
 
 class FixtureProperties : public QFrame {
@@ -37,9 +37,9 @@ private slots:
 private:
     void SetupUi() {
         hlayout_sldrs_ = new QHBoxLayout(this);
-        pos_widget_ = new PositionWidget(this);
+        // pos_widget_ = new PositionWidget(this);
 
-        hlayout_sldrs_->addWidget(pos_widget_);
+        // hlayout_sldrs_->addWidget(pos_widget_);
     }
 
     // void ChangeData(int value) {
@@ -49,7 +49,7 @@ private:
     // добавить ещё возможные фигнюшки
 
     QHBoxLayout* hlayout_sldrs_;
-    PositionWidget* pos_widget_;
+    // PositionWidget* pos_widget_;
 
 
     unsigned int current_fixture_id_ = 0;

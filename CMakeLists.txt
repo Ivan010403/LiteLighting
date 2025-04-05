@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(LiteLighting VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
+# set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -68,25 +68,22 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/styles/main/main_palette.h
         include/styles/main/main_style.qss
         include/styles/color_constants.h
-        include/forms/mainwindow.ui
+        # include/forms/mainwindow.ui
 
         src/light_src/Fixture.cpp
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
 
 
-        include/qt_headers/main_window/mainwindow.h include/qt_headers/main_window/mainwindow.cpp
-        include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.h include/qt_headers/main_window/main_settings/patching_window/qdialogpatching.cpp
-        include/qt_headers/main_window/main_settings/patching_window/qdialoghelper.h include/qt_headers/main_window/main_settings/patching_window/qdialoghelper.cpp
+        include/qt_headers/mainwindow.h include/qt_headers/mainwindow.cpp
+        include/qt_headers/pages_panel/pagespanel.h include/qt_headers/pages_panel/pagespanel.cpp
 
-        include/qt_headers/main_window/fixture_display/fixtureproperties.h include/qt_headers/main_window/fixture_display/fixtureproperties.cpp
-        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/positionwidget.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/positionwidget.cpp
-        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionchart.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionchart.cpp
-        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionbutton.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/positionbutton.cpp
-        include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/followmodebutton.h include/qt_headers/main_window/fixture_display/fixture_properties_widget/position_widget/subwidgets/followmodebutton.cpp
+        include/qt_headers/pages_panel/busking/fixture_display/fixtureproperties.h
+        include/qt_headers/settings_panel/settingspanel.h include/qt_headers/settings_panel/settingspanel.cpp
+        include/qt_headers/control_panel/controlpanel.h include/qt_headers/control_panel/controlpanel.cpp
+        include/qt_headers/middle_panel/middlepanel.h include/qt_headers/middle_panel/middlepanel.cpp
 
-        include/qt_headers/main_window/fixture_display/fixturedisplay.h include/qt_headers/main_window/fixture_display/fixturedisplay.cpp
-        include/qt_headers/main_window/fixture_display/fixture_display_button/fixturebutton.h include/qt_headers/main_window/fixture_display/fixture_display_button/fixturebutton.cpp
+
 
 
     )
