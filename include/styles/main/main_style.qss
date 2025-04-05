@@ -1,25 +1,29 @@
-/* Левая ScrollArea, где располагаются основные настройки!*/
-MainWindow QScrollArea QPushButton {
-  border-width: 100px;
+/* Левая панель со всеми настройками и иконками */
+MainWindow SettingsPanel {
+  color: #d9d9d9;
+  background-color: #d9d9d9;
+}
 
-  border-radius: 15px; /* Закруглённые углы */
+MainWindow SettingsPanel QPushButton {
+  background-color: #d37e7e;
+  border-radius: 10px; /* Закруглённые углы */
   border: 2px solid #fabb33; /* Граница */
 }
 
-MainWindow QScrollArea QPushButton:pressed {
+MainWindow SettingsPanel QPushButton:pressed {
   color: #18150d;
   background-color: #b19760;
 }
 
-MainWindow QScrollArea QPushButton#btn_patching_ {
+/* MainWindow QScrollArea QPushButton#btn_patching_ {
   text-align: center;
   padding: 5px;
-}
+} */
 
 
-/* Часть посередине, отображение фикстур и свойств над ними*/
+/* Панель посередине */
 
-MainWindow QWidget#fixtures_layout_ FixtureDisplay#fixture_display_ {
+/* MainWindow QWidget#fixtures_layout_ FixtureDisplay#fixture_display_ {
   border: 1px solid #fabb33;
   
 }
@@ -49,4 +53,20 @@ MainWindow FixtureProperties FixtureProperty QSlider::handle:vertical {
     width: 32px;
     height: 32px;
     margin: 0 -11px;
+} */
+
+/* Правая панель */
+
+MainWindow PagesPanel {
+  background-color: #d9d9d9;
+}
+
+MainWindow PagesPanel QPushButton {
+  background-color: #e58e54;
+  border-radius: 10px; /* Закруглённые углы */
+  border: 2px solid #fabb33; /* Граница */
+}
+
+MainWindow PagesPanel QPushButton:pressed {
+  background-color: #b19760;
 }

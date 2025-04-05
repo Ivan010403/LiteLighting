@@ -8,6 +8,6 @@ enum class ChannelType: uint8_t {
     B,
     Pan,
     Tilt
-};
+}; // добавить
 
 #endif // CHANNELTYPEENUM_H

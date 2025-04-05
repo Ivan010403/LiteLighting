@@ -4,8 +4,8 @@
 #include <QColor>
 
 namespace MainColors {
-    constexpr QColor kWindow = QColor(26,26,26);                // цвет окна
-    constexpr QColor kWindowText = QColor(178,178,178);         // цвет текста окна
+    constexpr QColor kWindow = QColor(92,92,92);                // цвет окна
+    constexpr QColor kWindowText = QColor(0, 0, 0);         // цвет текста окна
 
     constexpr QColor kBase = QColor(80,80,80);                  // задний фон виджетов (например, фон строчки ввода)
     constexpr QColor kText = QColor(178,178,178);               // текст виджетов

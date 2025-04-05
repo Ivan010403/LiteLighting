@@ -8,12 +8,11 @@
 
 #include "light_headers/DmxGateway.h"
 
-
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     app.setStyle(QStyleFactory::create("Fusion"));
 
-    app.setPalette(СreateAppPalette());
+    app.setPalette(СreateAppPalette()); // стилизовать палетку
 
     const unsigned int univ_amount = 1; // сделать нормальный ввод количество юниверсов
     DmxGateway dmx_gtw(univ_amount);

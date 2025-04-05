@@ -1,24 +1,9 @@
 #include "qt_headers/mainwindow.h"
 
-#include <QtCore/QVariant>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
-// #include <qt_headers/main_window/fixturedisplay.h>
-
-#include <QFile>
-#include <QLabel>
-
-MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget *parent) :
+MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     dmx_gateway_(dmx_gtw),
     QMainWindow(parent)
 {
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     SetupUi();
     showMaximized();
 
@@ -31,8 +16,8 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget *parent) :
     styleFile.open(QFile::ReadOnly);
     setStyleSheet(styleFile.readAll());
 
-    SetupModalWindows();
-    SetupConnections();
+    // SetupModalWindows();
+    // SetupConnections();
 }
 
 MainWindow::~MainWindow()
@@ -43,13 +28,13 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::SetupUi() {
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     this->resize(1280, 720);
     this->setMinimumSize(QSize(1280, 720));
 
     central_widget_ = new QWidget(this);
     vlayout_main_ = new QVBoxLayout(central_widget_);
-    // vlayout_main_->setSpacing(40);
-    // vlayout_main_->setContentsMargins(15, -1, 15, -1);
+    vlayout_main_->setContentsMargins(0, 0, 0, 0);
 
     //-----------------------------------------------------------
     hlayout_top_ = new QHBoxLayout();
@@ -64,6 +49,7 @@ void MainWindow::SetupUi() {
     hlayout_top_->setStretch(0, 4);
     hlayout_top_->setStretch(1, 81);
     hlayout_top_->setStretch(2, 11);
+    hlayout_top_->setContentsMargins(0, 0, 0, 0);
 
     vlayout_main_->addLayout(hlayout_top_);
     //-----------------------------------------------------------
@@ -72,18 +58,18 @@ void MainWindow::SetupUi() {
     vlayout_main_->addWidget(control_panel_);
 
     vlayout_main_->setStretch(0,73);
-    vlayout_main_->setStretch(1,35);
+    vlayout_main_->setStretch(1,40);
 
     this->setCentralWidget(central_widget_);
 }
-void MainWindow::SetupModalWindows() {
-    // qdial_patching_ = new QDialogPatching(dmx_fixture_array_, this);
-}
+// void MainWindow::SetupModalWindows() {
+//     // qdial_patching_ = new QDialogPatching(dmx_fixture_array_, this);
+// }
 
-void MainWindow::SetupConnections() {
-    // connect(ui_->btn_patching_, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
-    // connect(ui_->fixture_display_, &FixtureDisplay::FixtureChoosen, ui_->fixture_properties_, &FixtureProperties::FixtureChoosen);
-}
+// void MainWindow::SetupConnections() {
+//     // connect(ui_->btn_patching_, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
+//     // connect(ui_->fixture_display_, &FixtureDisplay::FixtureChoosen, ui_->fixture_properties_, &FixtureProperties::FixtureChoosen);
+// }
 
 
 

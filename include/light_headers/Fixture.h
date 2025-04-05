@@ -25,6 +25,7 @@ public:
     }
 
     explicit Fixture (Fixture&& fxtr) : // ЗДЕСЬ НЕТ FIXTURE ID!
+        fixture_id_ (fxtr.fixture_id_),
         universe_id_(fxtr.universe_id_),
         dmx_address_(fxtr.dmx_address_),
         channel_amount_(fxtr.channel_amount_),

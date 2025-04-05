@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
 
 #include "light_headers/DmxGateway.h"
 #include "light_headers/FixtureArray.h"
@@ -21,9 +22,8 @@ public:
 
 private:
     void SetupUi();
-    void SetupModalWindows();
-    void SetupConnections();
-
+    // void SetupModalWindows();
+    // void SetupConnections();
 
     DmxGateway& dmx_gateway_; // подумать про константность
     FixtureArrayModel* dmx_fixture_array_;
@@ -37,7 +37,6 @@ private:
     PagesPanel* pages_panel_;
 
     ControlPanel* control_panel_;
-
 };
 
 #endif // MAINWINDOW_H

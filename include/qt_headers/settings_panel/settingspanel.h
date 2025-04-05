@@ -16,6 +16,8 @@ public:
 
 private:
     void SetupUi() {
+        setAttribute(Qt::WA_StyledBackground, true); // чтобы можно было красить фон
+
         vlayout_main_ = new QVBoxLayout(this);
         vlayout_main_->setContentsMargins(15, 15, 15, 15);
         btn_1 = new QPushButton(this);
