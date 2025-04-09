@@ -8,11 +8,11 @@
 
 // TODO: сделать нормальну валидацию, чтобы исключить ошибки любого рода
 
-class QDialogHelper : public QDialog {
+class QDialogPatching : public QDialog {
     Q_OBJECT
 
 public:
-    explicit QDialogHelper(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) :
+    explicit QDialogPatching(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) :
         dmx_fixture_array_(dmx_fixture_array),
         QDialog(parent)
     {
@@ -23,7 +23,7 @@ public:
         SetupConnections();
     }
 
-    ~QDialogHelper() {}
+    ~QDialogPatching() = default;
 
     void show() {
         label_patching_->setText("patching");
@@ -96,7 +96,6 @@ private:
         linedit_dmx_address_ = new QLineEdit(this);
         linedit_channel_amount_ = new QLineEdit(this);
 
-
         // сделать юнифицированно и нормально!
         qcmbox_patching_ = new QComboBox(this);
         qcmbox_patching_->addItem("Dimmer");
@@ -130,9 +129,9 @@ private:
     }
 
     void SetupConnections() {
-        connect(btn_enter_fixture_, &QPushButton::clicked, this, &QDialogHelper::OnBtnClicked);
-        connect(linedit_channel_amount_, &QLineEdit::editingFinished, this, &QDialogHelper::OnChannelAmountEntered);
-        connect(qcmbox_patching_, &QComboBox::activated, this, &QDialogHelper::OnIndexChanged);
+        connect(btn_enter_fixture_, &QPushButton::clicked, this, &QDialogPatching::OnBtnClicked);
+        connect(linedit_channel_amount_, &QLineEdit::editingFinished, this, &QDialogPatching::OnChannelAmountEntered);
+        connect(qcmbox_patching_, &QComboBox::activated, this, &QDialogPatching::OnIndexChanged);
     }
 
     QGridLayout* gridlayout_main_;
@@ -149,8 +148,8 @@ private:
     QLineEdit* linedit_universe_id_;
     QLineEdit* linedit_dmx_address_;
     QLineEdit* linedit_channel_amount_;
-
     QComboBox* qcmbox_patching_;
+
     QPushButton* btn_enter_fixture_;
 
     FixtureArrayModel* dmx_fixture_array_;

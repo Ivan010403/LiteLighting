@@ -12,6 +12,7 @@
 #include "qt_headers/pages_panel/pagespanel.h"
 #include "qt_headers/control_panel/controlpanel.h"
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -22,8 +23,8 @@ public:
 
 private:
     void SetupUi();
+    void SetupConnections();
     // void SetupModalWindows();
-    // void SetupConnections();
 
     DmxGateway& dmx_gateway_; // подумать про константность
     FixtureArrayModel* dmx_fixture_array_;

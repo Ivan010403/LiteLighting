@@ -77,14 +77,18 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         include/qt_headers/mainwindow.h include/qt_headers/mainwindow.cpp
         include/qt_headers/pages_panel/pagespanel.h include/qt_headers/pages_panel/pagespanel.cpp
-
-        include/qt_headers/pages_panel/busking/fixture_display/fixtureproperties.h
         include/qt_headers/settings_panel/settingspanel.h include/qt_headers/settings_panel/settingspanel.cpp
         include/qt_headers/control_panel/controlpanel.h include/qt_headers/control_panel/controlpanel.cpp
         include/qt_headers/middle_panel/middlepanel.h include/qt_headers/middle_panel/middlepanel.cpp
 
+        include/qt_headers/middle_panel/patch_sheet/patchsheetwindow.h include/qt_headers/middle_panel/patch_sheet/patchsheetwindow.cpp
+        include/qt_headers/middle_panel/busking/fixture_display/fixtureproperties.h
+        include/qt_headers/middle_panel/busking/buskingwindow.h include/qt_headers/middle_panel/busking/buskingwindow.cpp
+        include/qt_headers/middle_panel/programming/programmingwindow.h include/qt_headers/middle_panel/programming/programmingwindow.cpp
+        include/qt_headers/middle_panel/settings/settingswindow.h include/qt_headers/middle_panel/settings/settingswindow.cpp
+        include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.h include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.cpp
 
-
+        include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.h include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

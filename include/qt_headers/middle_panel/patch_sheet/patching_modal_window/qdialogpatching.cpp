@@ -1,3 +1,3 @@
-#include "qdialoghelper.h"
+#include "qdialogpatching.h"
 
 // QDialogHelper::QDialogHelper() {}

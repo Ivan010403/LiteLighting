@@ -4,11 +4,12 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     dmx_gateway_(dmx_gtw),
     QMainWindow(parent)
 {
+    dmx_fixture_array_ = new FixtureArrayModel(dmx_gateway_); // снова new! можно через ссылки
+
     SetupUi();
     showMaximized();
 
     // REFACTOR!!!!!!!!!!!!!!!!!!!!!!!!
-    dmx_fixture_array_ = new FixtureArrayModel(dmx_gateway_); // снова new! можно через ссылки
     // ---------------------------------------------------------
 
 
@@ -17,7 +18,7 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     setStyleSheet(styleFile.readAll());
 
     // SetupModalWindows();
-    // SetupConnections();
+    SetupConnections();
 }
 
 MainWindow::~MainWindow()
@@ -35,12 +36,15 @@ void MainWindow::SetupUi() {
     central_widget_ = new QWidget(this);
     vlayout_main_ = new QVBoxLayout(central_widget_);
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
+    vlayout_main_->setSpacing(0);
 
     //-----------------------------------------------------------
     hlayout_top_ = new QHBoxLayout();
+    hlayout_top_->setContentsMargins(0, 0, 0, 0);
+    hlayout_top_->setSpacing(0);
 
     settings_panel_ = new SettingsPanel(central_widget_);
-    middle_panel_ = new MiddlePanel(central_widget_);
+    middle_panel_ = new MiddlePanel(dmx_fixture_array_, central_widget_);
     pages_panel_ = new PagesPanel(central_widget_);
     hlayout_top_->addWidget(settings_panel_);
     hlayout_top_->addWidget(middle_panel_);
@@ -49,7 +53,6 @@ void MainWindow::SetupUi() {
     hlayout_top_->setStretch(0, 4);
     hlayout_top_->setStretch(1, 81);
     hlayout_top_->setStretch(2, 11);
-    hlayout_top_->setContentsMargins(0, 0, 0, 0);
 
     vlayout_main_->addLayout(hlayout_top_);
     //-----------------------------------------------------------
@@ -62,14 +65,18 @@ void MainWindow::SetupUi() {
 
     this->setCentralWidget(central_widget_);
 }
+
+void MainWindow::SetupConnections() {
+    connect(pages_panel_, &PagesPanel::showProgramming, middle_panel_, &MiddlePanel::showProgramming);
+    connect(pages_panel_, &PagesPanel::showExecButtons, middle_panel_, &MiddlePanel::showExecButtons);
+    connect(pages_panel_, &PagesPanel::showBusking, middle_panel_, &MiddlePanel::showBusking);
+    connect(pages_panel_, &PagesPanel::showPatchSheet, middle_panel_, &MiddlePanel::showPatchSheet);
+    connect(pages_panel_, &PagesPanel::showSettings, middle_panel_, &MiddlePanel::showSettings);
+    // connect(ui_->btn_patching_, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
+    // connect(ui_->fixture_display_, &FixtureDisplay::FixtureChoosen, ui_->fixture_properties_, &FixtureProperties::FixtureChoosen);
+}
+
 // void MainWindow::SetupModalWindows() {
 //     // qdial_patching_ = new QDialogPatching(dmx_fixture_array_, this);
 // }
-
-// void MainWindow::SetupConnections() {
-//     // connect(ui_->btn_patching_, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
-//     // connect(ui_->fixture_display_, &FixtureDisplay::FixtureChoosen, ui_->fixture_properties_, &FixtureProperties::FixtureChoosen);
-// }
-
-
 
