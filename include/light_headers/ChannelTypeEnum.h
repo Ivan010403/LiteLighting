@@ -10,4 +10,13 @@ enum class ChannelType: uint8_t {
     Tilt
 }; // добавить
 
+enum class ProgrammingType: uint8_t {
+    Group,
+    Default,
+    Position,
+    Color,
+    Beam,
+    Focus,
+};
+
 #endif // CHANNELTYPEENUM_H

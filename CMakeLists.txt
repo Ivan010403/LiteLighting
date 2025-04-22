@@ -68,7 +68,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/styles/main/main_palette.h
         include/styles/main/main_style.qss
         include/styles/color_constants.h
-        # include/forms/mainwindow.ui
+        include/forms/mainwindow.ui
 
         src/light_src/Fixture.cpp
         src/light_src/FixtureArray.cpp
@@ -89,6 +89,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.h include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.cpp
 
         include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.h include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.cpp
+        include/light_headers/fixture_array_delegates/universeaddressdelegate.h include/light_headers/fixture_array_delegates/universeaddressdelegate.cpp
+        include/qt_headers/middle_panel/programming/scroll_area_widget/scrollareawidget.h include/qt_headers/middle_panel/programming/scroll_area_widget/scrollareawidget.cpp
+        include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/programmingbutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/programmingbutton.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
