@@ -22,7 +22,6 @@ signals:
 
 protected:
     void closeEvent(QCloseEvent* event) override {
-        qDebug() <<"close event";
         hide();
         event->ignore();
     }

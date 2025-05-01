@@ -50,7 +50,6 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent* event) override {
         if ((event->button() == Qt::LeftButton) && (group_)) {
             if (group_) {
-                qDebug() << "Double click detected!";
                 (*selected_fixture_) = group_;
             }
         }
@@ -60,20 +59,22 @@ protected:
 
 private slots:
     void OnGroupCreated(const QModelIndexList& selected_indexes) {
-        QSet<int> unique_columns;
+        QSet<int> unique_rows;
         for (const QModelIndex& index : selected_indexes) {
             if (index.isValid()) {
-                unique_columns.insert(index.column());
+                unique_rows.insert(index.row());
             }
         }
 
         std::vector<Fixture*> vect_fxtr;
 
-        for (const int var : unique_columns) {
+        for (const int var : unique_rows) {
             vect_fxtr.push_back(dmx_fixture_array_->GetFixtureByIndex(var));
         }
 
-        group_ = new FixtureGroup(number_, "test group", vect_fxtr);
+        group_ = new FixtureGroup(number_, "test", vect_fxtr);
+
+        setText(QString::number(number_));
     }
 
 private:
