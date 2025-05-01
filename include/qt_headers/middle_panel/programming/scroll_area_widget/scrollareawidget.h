@@ -7,13 +7,17 @@
 
 #include "./buttons/typebutton.h"
 #include "./buttons/programmingbutton.h"
+#include "./buttons/groupbutton.h"
+
 
 class ScrollAreaWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit ScrollAreaWidget(AbstractCommand** main_command, ProgrammingType scrl_area_type, QWidget* parent = nullptr) :
+    explicit ScrollAreaWidget(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, ProgrammingType scrl_area_type, QWidget* parent = nullptr) :
         main_command_(main_command),
+        selected_fixture_(selected_fixture),
+        dmx_fixture_array_(dmx_fixture_array),
         type_channels_(scrl_area_type),
         QWidget(parent)
     {
@@ -25,7 +29,6 @@ public:
         SetupUi();
         SetupConnections();
         AddButtons(batch_size_);
-
     }
 
     ~ScrollAreaWidget() = default;
@@ -47,14 +50,25 @@ private:
         gridlayout_main_->addWidget(button, 0, 0);
 
         for (int i = 1; i < count; ++i) {
-            ProgrammingButton* button = new ProgrammingButton(main_command_, type_channels_, this);
-            button->setFixedSize(button_size_, button_size_);
+            if (type_channels_ == ProgrammingType::Group) {
+                GroupButton* button = new GroupButton(selected_fixture_, dmx_fixture_array_,  current_count_, this);
+                button->setFixedSize(button_size_, button_size_);
 
-            // Рассчитываем позицию в сетке
-            int row = current_count_ / columns_per_row_;
-            int column = current_count_ % columns_per_row_;
+                int row = current_count_ / columns_per_row_;
+                int column = current_count_ % columns_per_row_;
 
-            gridlayout_main_->addWidget(button, row, column);
+                gridlayout_main_->addWidget(button, row, column);
+            }
+            else {
+                ProgrammingButton* button = new ProgrammingButton(main_command_, type_channels_,  current_count_, this);
+                button->setFixedSize(button_size_, button_size_);
+
+                int row = current_count_ / columns_per_row_;
+                int column = current_count_ % columns_per_row_;
+
+                gridlayout_main_->addWidget(button, row, column);
+            }
+
             ++current_count_;
         }
 
@@ -65,7 +79,10 @@ private:
     QGridLayout* gridlayout_main_;
 
     AbstractCommand** main_command_;
+    Fixture** selected_fixture_;
+    FixtureArrayModel* dmx_fixture_array_;
     ProgrammingType type_channels_;
+
     int current_count_ = 1;
     int columns_per_row_;
 

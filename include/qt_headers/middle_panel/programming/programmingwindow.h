@@ -12,40 +12,40 @@ class ProgrammingWindow : public QWidget {
 Q_OBJECT
 
 public:
-    explicit ProgrammingWindow(AbstractCommand** main_command, QWidget* parent = nullptr) : QWidget(parent) {
-        SetupUi(main_command);
+    explicit ProgrammingWindow(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) : QWidget(parent) {
+        SetupUi(main_command, selected_fixture, dmx_fixture_array);
     }
 
     ~ProgrammingWindow() = default;
 
 private:
-    void SetupUi(AbstractCommand** main_command) {
+    void SetupUi(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array) {
         gridlayout_main_ = new QGridLayout(this);
         gridlayout_main_->setContentsMargins(0, 0, 0, 0);
         gridlayout_main_->setSpacing(0);
 
         scrl_groups_ = new QScrollArea(this);
-        cntnt_wdgt_groups_ = new ScrollAreaWidget(main_command, ProgrammingType::Group);
+        cntnt_wdgt_groups_ = new ScrollAreaWidget(main_command, selected_fixture, dmx_fixture_array, ProgrammingType::Group);
         scrl_groups_->setWidget(cntnt_wdgt_groups_);
 
         scrl_default_ = new QScrollArea(this);
-        cntnt_wdgt_default_ = new ScrollAreaWidget(main_command, ProgrammingType::Default);
+        cntnt_wdgt_default_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Default);
         scrl_default_->setWidget(cntnt_wdgt_default_);
 
         scrl_positions_ = new QScrollArea(this);
-        cntnt_wdgt_positions_ = new ScrollAreaWidget(main_command, ProgrammingType::Position);
+        cntnt_wdgt_positions_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Position);
         scrl_positions_->setWidget(cntnt_wdgt_positions_);
 
         scrl_color_ = new QScrollArea(this);
-        cntnt_wdgt_color_ = new ScrollAreaWidget(main_command, ProgrammingType::Color);
+        cntnt_wdgt_color_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Color);
         scrl_color_->setWidget(cntnt_wdgt_color_);
 
         scrl_beam_ = new QScrollArea(this);
-        cntnt_wdgt_beam_ = new ScrollAreaWidget(main_command, ProgrammingType::Beam);
+        cntnt_wdgt_beam_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Beam);
         scrl_beam_->setWidget(cntnt_wdgt_beam_);
 
         scrl_focus_ = new QScrollArea(this);
-        cntnt_wdgt_focus_ = new ScrollAreaWidget(main_command, ProgrammingType::Focus);
+        cntnt_wdgt_focus_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Focus);
         scrl_focus_->setWidget(cntnt_wdgt_focus_);
 
         gridlayout_main_->addWidget(scrl_groups_, 0, 0, 1, 2);

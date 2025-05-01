@@ -100,7 +100,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/light_headers/CustomTypeEnum.cpp
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/typebutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/typebutton.cpp
         include/light_headers/programming_command/abstractcommand.h
-        include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/command_modal_window/qdialogcommand.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/command_modal_window/qdialogcommand.cpp
+        include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogcommand.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogcommand.cpp
+        include/light_headers/FixtureGroup.h
+        include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/groupbutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/groupbutton.cpp
+        include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialoggrouping.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialoggrouping.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

@@ -43,7 +43,7 @@ public:
     //---------------------------local functions-------------------------------------
     bool Start();
     void Stop();
-    ola::DmxBuffer& GetBuffer(unsigned int universe_id);
+    ola::DmxBuffer* GetBuffer(unsigned int universe_id);
     // refactor!!!
     unsigned int GetAmountUniv() {
         return universe_amount_;

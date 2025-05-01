@@ -4,9 +4,10 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     dmx_gateway_(dmx_gtw),
     QMainWindow(parent)
 {
-    dmx_fixture_array_ = new FixtureArrayModel(selected_fixture_, dmx_gateway_); // снова new! можно через ссылки
     *selected_fixture_ = nullptr;
     *main_command_ = new AbstractCommand();
+
+    dmx_fixture_array_ = new FixtureArrayModel(selected_fixture_, dmx_gateway_); // снова new! можно через ссылки
 
     SetupUi();
     showMaximized();
@@ -46,7 +47,7 @@ void MainWindow::SetupUi() {
     hlayout_top_->setSpacing(0);
 
     settings_panel_ = new SettingsPanel(central_widget_);
-    middle_panel_ = new MiddlePanel(main_command_, dmx_fixture_array_, central_widget_);
+    middle_panel_ = new MiddlePanel(main_command_, selected_fixture_, dmx_fixture_array_, central_widget_);
     pages_panel_ = new PagesPanel(central_widget_);
     hlayout_top_->addWidget(settings_panel_);
     hlayout_top_->addWidget(middle_panel_);

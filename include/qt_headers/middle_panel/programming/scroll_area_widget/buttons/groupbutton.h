@@ -1,21 +1,20 @@
-#ifndef PROGRAMMINGBUTTON_H
-#define PROGRAMMINGBUTTON_H
+#ifndef GROUPBUTTON_H
+#define GROUPBUTTON_H
 
-#include <QWidget>
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "./modal_windows/qdialogcommand.h"
-#include "light_headers/programming_command/abstractcommand.h"
+#include "./modal_windows/qdialoggrouping.h"
+#include "light_headers/FixtureGroup.h"
 
-class ProgrammingButton : public QPushButton {
+class GroupButton : public QPushButton {
 Q_OBJECT
 
 public:
-    explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent = nullptr) :
-        main_command_(main_command),
-        type_channels_(type_channels),
+    explicit GroupButton(Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, int number, QWidget* parent = nullptr) :
+        selected_fixture_(selected_fixture),
+        dmx_fixture_array_(dmx_fixture_array),
         number_(number),
         QPushButton(parent)
     {
@@ -23,9 +22,9 @@ public:
         SetupConnections();
     }
 
-    ~ProgrammingButton() {
-        delete current_command_;
-    } // опасно
+    ~GroupButton() {
+        delete group_; // опасно!
+    }
 
 protected:
     void paintEvent(QPaintEvent* event) override {
@@ -39,39 +38,53 @@ protected:
     }
 
     void mousePressEvent(QMouseEvent* event) override {
-        if ((event->button() == Qt::RightButton) && (!current_command_) && ((*main_command_)->Size() != 0)) {
-            qdial_save_command_->show();
+        if ((event->button() == Qt::RightButton) && (!group_)) {
+            if (qdial_grouping_->exec() == QDialog::Accepted) {
+                qDebug() << "конец работы модального окна!!!";
+            }
         } else {
             QPushButton::mousePressEvent(event);
         }
     }
 
     void mouseDoubleClickEvent(QMouseEvent* event) override {
-        if ((event->button() == Qt::LeftButton) && (current_command_)) {
-            qDebug() << "Double click detected!";
-            current_command_->Execute();
+        if ((event->button() == Qt::LeftButton) && (group_)) {
+            if (group_) {
+                qDebug() << "Double click detected!";
+                (*selected_fixture_) = group_;
+            }
         }
         // Вызываем базовую реализацию (если нужно)
         // QPushButton::mouseDoubleClickEvent(event);
     }
 
 private slots:
-    void onSaveClicked(const QString& name) {
-        current_command_ = *main_command_;
-        *main_command_ = new AbstractCommand();
-        qDebug() << "сохранение команды";
-        setText(name);
+    void OnGroupCreated(const QModelIndexList& selected_indexes) {
+        QSet<int> unique_columns;
+        for (const QModelIndex& index : selected_indexes) {
+            if (index.isValid()) {
+                unique_columns.insert(index.column());
+            }
+        }
+
+        std::vector<Fixture*> vect_fxtr;
+
+        for (const int var : unique_columns) {
+            vect_fxtr.push_back(dmx_fixture_array_->GetFixtureByIndex(var));
+        }
+
+        group_ = new FixtureGroup(number_, "test group", vect_fxtr);
     }
 
 private:
     void SetupUi() {
         setFixedSize(60, 60);
 
-        qdial_save_command_ = new QDialogCommand(this);
+        qdial_grouping_ = new QDialogGrouping(dmx_fixture_array_, this);
     }
 
     void SetupConnections() {
-        connect(qdial_save_command_, &QDialogCommand::SaveClicked, this, &ProgrammingButton::onSaveClicked);
+        connect(qdial_grouping_, &QDialogGrouping::GroupCreating, this, &GroupButton::OnGroupCreated);
     }
 
     void drawBackground(QPainter& painter) {
@@ -110,13 +123,15 @@ private:
     }
 
 
-    AbstractCommand** main_command_;
-    AbstractCommand* current_command_ = nullptr;
-
-    ProgrammingType type_channels_;
+private:
+    Fixture** selected_fixture_;
+    FixtureArrayModel* dmx_fixture_array_;
     const int number_;
 
-    QDialogCommand* qdial_save_command_;
+    Fixture* group_ = nullptr;
+
+
+    QDialogGrouping* qdial_grouping_;
 };
 
-#endif // PROGRAMMINGBUTTON_H
+#endif // GROUPBUTTON_H

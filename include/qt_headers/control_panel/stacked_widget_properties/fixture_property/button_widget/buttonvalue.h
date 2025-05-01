@@ -59,7 +59,7 @@ private:
     void SendDmxData() {
         if (*selected_fixture_) {
             (*selected_fixture_)->ChangeData(type_property_, current_value_);
-            (*main_command_)->addAction(*selected_fixture_, type_property_, current_value_);
+            (*main_command_)->AddAction(*selected_fixture_, type_property_, current_value_);
         }
     }
 

@@ -117,6 +117,11 @@ unsigned int FixtureArrayModel::GetFixtureIdByIndex(int index) {
     return vector_fixture_[index]->GetFixtureId();
 }
 
+Fixture* FixtureArrayModel::GetFixtureByIndex(int index) {
+    return vector_fixture_[index];
+}
+
+
 int FixtureArrayModel::FixtureAmount() const {
     return fixtures_amount_;
 }

@@ -35,6 +35,7 @@ public:
                           std::string name, const ChannelType* channels);
     int FixtureAmount() const;
     int GroupAmount() const;
+    Fixture* GetFixtureByIndex(int index);
     //-------------------------------------------------------------------------------
 
     //---------------------------deleted functions-----------------------------------

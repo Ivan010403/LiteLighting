@@ -13,8 +13,8 @@ class MiddlePanel : public QStackedWidget {
 Q_OBJECT
 
 public:
-    explicit MiddlePanel(AbstractCommand** main_command, FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) : QStackedWidget(parent) {
-        SetupUi(main_command, dmx_fixture_array);
+    explicit MiddlePanel(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) : QStackedWidget(parent) {
+        SetupUi(main_command, selected_fixture, dmx_fixture_array);
     }
 
     ~MiddlePanel() = default;
@@ -41,8 +41,8 @@ public slots:
     }
 
 private:
-    void SetupUi(AbstractCommand** main_command, FixtureArrayModel* dmx_fixture_array) {
-        progr_window_ = new ProgrammingWindow(main_command, this);
+    void SetupUi(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array) {
+        progr_window_ = new ProgrammingWindow(main_command, selected_fixture, dmx_fixture_array, this);
         exc_btns_window_ = new ExecButtonsWindow(this);
         bskng_window_ = new BuskingWindow(this);
         ptch_sht_window_ = new PatchSheetWindow(dmx_fixture_array, this);

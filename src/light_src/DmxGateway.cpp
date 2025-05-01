@@ -38,8 +38,8 @@ void DmxGateway::Stop() {
     select_server_->Terminate();
 }
 
-ola::DmxBuffer& DmxGateway::GetBuffer(unsigned int universe_id) {
-    return dmx_data_[universe_id];
+ola::DmxBuffer* DmxGateway::GetBuffer(unsigned int universe_id) {
+    return &dmx_data_[universe_id];
 }
 
 //-------------------------------------------------------------------------------

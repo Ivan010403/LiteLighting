@@ -1,18 +1,30 @@
 #ifndef OPENLIGHTING_INCLUDE_FIXTURE_H_
 #define OPENLIGHTING_INCLUDE_FIXTURE_H_
+
 #include <unordered_map>
 #include <string>
 #include <stdint.h> // проверить мало ли уже где-то заинклудили
 #include <ola/DmxBuffer.h>
 #include <light_headers/CustomTypeEnum.h>
 
-#include <iostream>
+#include <QWidget>
 
 class Fixture {
+    friend class FixtureArrayModel;
 public:
     //--------------------constructors and destructor--------------------------------
+    explicit Fixture(unsigned int group_id, std::string name) :
+        name_(name),
+        group_id_(group_id),
+        fixture_id_(0),
+        universe_id_(0),
+        dmx_address_(0),
+        channel_amount_(0),
+        dmx_data_(nullptr),
+        raw_data_(nullptr) {}
+
     explicit Fixture (unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-            std::string name, const ChannelType* channels, ola::DmxBuffer& dmx_data) :
+            std::string name, const ChannelType* channels, ola::DmxBuffer* dmx_data) :
         fixture_id_ (fixture_id),
         universe_id_(universe_id),
         dmx_address_(dmx_address),
@@ -26,7 +38,7 @@ public:
         }
     }
 
-    explicit Fixture (Fixture&& fxtr) : // ЗДЕСЬ НЕТ FIXTURE ID!
+    explicit Fixture (Fixture&& fxtr) :
         fixture_id_ (fxtr.fixture_id_),
         universe_id_(fxtr.universe_id_),
         dmx_address_(fxtr.dmx_address_),
@@ -36,10 +48,11 @@ public:
         dmx_data_(fxtr.dmx_data_),
         raw_data_(fxtr.raw_data_)
     {
+        qDebug() << "ALARM! MOVE CONSTRUCTOR INTO FIXTURE";
         fxtr.raw_data_ = nullptr;
     }
 
-    ~Fixture() {
+    virtual ~Fixture() {
         if (raw_data_) {
             delete[] raw_data_;
         }
@@ -47,40 +60,39 @@ public:
     //-------------------------------------------------------------------------------
 
     //---------------------------local functions-------------------------------------
-    // refactor!!!
-    unsigned int GetFixtureId() const { // maybe const?
+    unsigned int GetFixtureId() const {
         return fixture_id_;
     }
 
-    void ChangeData(ChannelType channel_type, int value) {
+    virtual void ChangeData(ChannelType channel_type, int value) {
         *channels_[channel_type] = value;
         SendDmxData();
     }
-    // refactor!!!
     //-------------------------------------------------------------------------------
 
     //---------------------------deleted functions-----------------------------------
-    Fixture() = delete;
     Fixture (const Fixture& fxtr) = delete;
     Fixture& operator= (const Fixture& fxtr) = delete;
     Fixture& operator= (Fixture&& fxtr) = delete;
     //-------------------------------------------------------------------------------
 
-public: // ПРИДУМАТЬ ЧТО-ТО С ЭТИМ. МОЖЕТ БЫТЬ FRIEND CLASS?
+public:
     void SendDmxData() {
-        dmx_data_.SetRange(dmx_address_, raw_data_, channel_amount_);
+        dmx_data_->SetRange(dmx_address_, raw_data_, channel_amount_);
     }
 
-    unsigned int fixture_id_;
-    unsigned int universe_id_;
-    unsigned int group_id_ = 0; // проинициализировать!!!!!!!!!!!!!!!!!!!!!!!
-    uint16_t dmx_address_; // пока пусть будет константой?
-    uint16_t channel_amount_;
+    unsigned int group_id_ = 0;
     std::string name_;
     std::unordered_map <ChannelType, uint8_t*> channels_; // может константный указатель?
 
-    ola::DmxBuffer& dmx_data_;
-    uint8_t* raw_data_; // maybe smart pointers?
+private:
+    unsigned int fixture_id_;
+    unsigned int universe_id_;
+    uint16_t dmx_address_; // пока пусть будет константой?
+    uint16_t channel_amount_;
+
+    ola::DmxBuffer* dmx_data_;
+    uint8_t* raw_data_;
 };
 
 
