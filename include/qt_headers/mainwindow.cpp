@@ -4,7 +4,9 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     dmx_gateway_(dmx_gtw),
     QMainWindow(parent)
 {
-    dmx_fixture_array_ = new FixtureArrayModel(dmx_gateway_); // снова new! можно через ссылки
+    dmx_fixture_array_ = new FixtureArrayModel(selected_fixture_, dmx_gateway_); // снова new! можно через ссылки
+    *selected_fixture_ = nullptr;
+    *main_command_ = new AbstractCommand();
 
     SetupUi();
     showMaximized();
@@ -44,24 +46,24 @@ void MainWindow::SetupUi() {
     hlayout_top_->setSpacing(0);
 
     settings_panel_ = new SettingsPanel(central_widget_);
-    middle_panel_ = new MiddlePanel(dmx_fixture_array_, central_widget_);
+    middle_panel_ = new MiddlePanel(main_command_, dmx_fixture_array_, central_widget_);
     pages_panel_ = new PagesPanel(central_widget_);
     hlayout_top_->addWidget(settings_panel_);
     hlayout_top_->addWidget(middle_panel_);
     hlayout_top_->addWidget(pages_panel_);
 
-    hlayout_top_->setStretch(0, 4);
-    hlayout_top_->setStretch(1, 81);
-    hlayout_top_->setStretch(2, 11);
+    hlayout_top_->setStretch(0, 20);
+    hlayout_top_->setStretch(1, 389);
+    hlayout_top_->setStretch(2, 55);
 
     vlayout_main_->addLayout(hlayout_top_);
     //-----------------------------------------------------------
-    control_panel_ = new ControlPanel(central_widget_);
+    control_panel_ = new ControlPanel(main_command_, selected_fixture_, central_widget_);
 
     vlayout_main_->addWidget(control_panel_);
 
-    vlayout_main_->setStretch(0,73);
-    vlayout_main_->setStretch(1,40);
+    vlayout_main_->setStretch(0,75);
+    vlayout_main_->setStretch(1,29);
 
     this->setCentralWidget(central_widget_);
 }

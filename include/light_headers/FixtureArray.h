@@ -11,7 +11,7 @@ class FixtureArrayModel : public QAbstractTableModel {
 
 public:
     //--------------------constructors and destructor--------------------------------
-    explicit FixtureArrayModel(DmxGateway& dmx_gtw, QObject* parent = nullptr) : dmx_gateway_(dmx_gtw), QAbstractTableModel(parent) {}
+    explicit FixtureArrayModel(Fixture** selected_fixture, DmxGateway& dmx_gtw, QObject* parent = nullptr) : selected_fixture_(selected_fixture), dmx_gateway_(dmx_gtw), QAbstractTableModel(parent) {}
 
     ~FixtureArrayModel() {
         for (int i = 0; i < vector_fixture_.size(); ++i) { // вот тут могут быть проблемы если группа появится, ибо группа не в счётчике фикстур
@@ -48,6 +48,8 @@ private:
     QVector <Fixture*> vector_fixture_; // не проинициализировал! 2) зачем через new создавать? МОЖНО СТАТИЧЕСКИ БЕЗ NEW!
     int fixtures_amount_ = 0; // maybe unsigned?
     int groups_anount_ = 0;
+
+    Fixture** selected_fixture_;
 
     DmxGateway& dmx_gateway_; // что если объект разрушится? ссылка будет указывать на дичь
 };

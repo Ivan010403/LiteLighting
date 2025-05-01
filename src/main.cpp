@@ -14,13 +14,14 @@ int main(int argc, char *argv[]) {
 
     app.setPalette(СreateAppPalette()); // стилизовать палетку
 
-    const unsigned int univ_amount = 1; // сделать нормальный ввод количество юниверсов
+    const unsigned int univ_amount = 3; // сделать нормальный ввод количество юниверсов
     DmxGateway dmx_gtw(univ_amount);
     if (!dmx_gtw.Start()) {
         qFatal("Failed to start OLA thread");
     }
 
     MainWindow mw(dmx_gtw);
+
     return app.exec();
 }
 

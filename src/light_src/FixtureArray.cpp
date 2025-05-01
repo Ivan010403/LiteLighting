@@ -47,6 +47,7 @@ QVariant FixtureArrayModel::headerData(int section, Qt::Orientation orientation,
 bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value, int role) {
     if (role == Qt::EditRole && index.isValid()) {
         Fixture* fixture = vector_fixture_[index.row()];
+        *selected_fixture_ = fixture;
         switch (index.column()) {
             // ПРОВЕРИТЬ НА СУЖЕНИЯ ДАННЫХ, У МЕНЯ ТАМ UINT8_T
             case 0:

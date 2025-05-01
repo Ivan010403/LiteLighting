@@ -69,7 +69,7 @@ void DmxGateway::ConnectionClosed() {
 
 // Returning false from the callback will cause it to be cancelled.
 bool DmxGateway::SendData() {
-    // OLA_FATAL << static_cast<int>(dmx_data_[0].Get(0));
+    //OLA_FATAL << static_cast<int>(dmx_data_[0].Get(0));
     for (unsigned int curr_univ = 0; curr_univ < universe_amount_; ++curr_univ) {
         ola_client_->SendDMX(curr_univ, dmx_data_[curr_univ], casual_dmx_args_);
     }

@@ -4,7 +4,9 @@
 #include <string>
 #include <stdint.h> // проверить мало ли уже где-то заинклудили
 #include <ola/DmxBuffer.h>
-#include <light_headers/ChannelTypeEnum.h>
+#include <light_headers/CustomTypeEnum.h>
+
+#include <iostream>
 
 class Fixture {
 public:
@@ -50,8 +52,8 @@ public:
         return fixture_id_;
     }
 
-    void ChangeData(int channel, int value) {
-        raw_data_[channel] = value;
+    void ChangeData(ChannelType channel_type, int value) {
+        *channels_[channel_type] = value;
         SendDmxData();
     }
     // refactor!!!
