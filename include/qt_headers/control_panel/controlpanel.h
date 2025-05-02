@@ -5,6 +5,7 @@
 #include <QStackedWidget>
 
 #include "./stacked_widget_properties/stackedwidgetproperty.h"
+#include "./btn_property_type/buttonpropertytype.h"
 
 class ControlPanel : public QWidget {
 Q_OBJECT
@@ -31,13 +32,13 @@ private:
     QVBoxLayout* vlayout_main_;
 
     QHBoxLayout* hlayout_btns_prpts_;
-    QPushButton* btn_dimmer_;
-    QPushButton* btn_position_;
-    QPushButton* btn_gobo_;
-    QPushButton* btn_color_;
-    QPushButton* btn_beam_;
-    QPushButton* btn_focus_;
-    QPushButton* btn_control_;
+    ButtonPropertyType* btn_dimmer_;
+    ButtonPropertyType* btn_position_;
+    ButtonPropertyType* btn_gobo_;
+    ButtonPropertyType* btn_color_;
+    ButtonPropertyType* btn_beam_;
+    ButtonPropertyType* btn_focus_;
+    ButtonPropertyType* btn_control_;
 
     QStackedWidget* stacked_widget_properties_;
     StackedWidgetProperty* properties_dimmer_;

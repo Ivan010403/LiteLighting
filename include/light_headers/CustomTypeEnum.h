@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <map>
-#include <array>
+#include <vector>
 
 // разобраться с constexpr inline и прочим
 
@@ -37,17 +37,20 @@ enum class ProgrammingType: uint8_t {
     Position,
     Color,
     Beam,
-    Focus
-    // Cue
+    Focus,
+    Cue
 };
 
 QString ChannelTypeToQString(ChannelType type);
+
+QString PropertyTypeToQString(PropertyType type);
+
+QString ProgrammingTypeToQString(ProgrammingType type);
 
 extern std::map<const PropertyType, const std::vector<ChannelType>> map_property_to_channel;
 
 extern std::map<const ProgrammingType, const std::vector<ChannelType>> map_programming_to_channel;
 
-extern std::map<const ProgrammingType, const QString> map_programming_to_qstring;
 
 
 #endif // CUSTOMTYPEENUM_H

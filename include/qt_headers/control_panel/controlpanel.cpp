@@ -36,13 +36,13 @@ void ControlPanel::SetupUi(AbstractCommand** main_command, Fixture** selected_fi
     hlayout_btns_prpts_->setContentsMargins(0, 0, 0, 0);
     hlayout_btns_prpts_->setSpacing(5);
 
-    btn_dimmer_ = new QPushButton("Dimmer", this);
-    btn_position_ = new QPushButton("Position", this);
-    btn_gobo_ = new QPushButton("Gobo", this);
-    btn_color_ = new QPushButton("Color", this);
-    btn_beam_ = new QPushButton("Beam", this);
-    btn_focus_ = new QPushButton("Focus", this);
-    btn_control_ = new QPushButton("Control", this);
+    btn_dimmer_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Dimmer, this);
+    btn_position_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Position, this);
+    btn_gobo_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Gobo, this);
+    btn_color_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Color, this);
+    btn_beam_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Beam, this);
+    btn_focus_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Focus, this);
+    btn_control_ = new ButtonPropertyType(main_command, selected_fixture, PropertyType::Control, this);
     btn_dimmer_->setMinimumHeight(100);
     btn_position_->setMinimumHeight(100);
     btn_gobo_->setMinimumHeight(100);

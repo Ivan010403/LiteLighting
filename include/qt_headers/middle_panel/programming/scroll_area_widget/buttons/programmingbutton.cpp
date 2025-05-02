@@ -42,10 +42,19 @@ void ProgrammingButton::mouseDoubleClickEvent(QMouseEvent* event) {
 
 void ProgrammingButton::onSaveClicked(const QString& name) {
     current_command_ = *main_command_;
-    current_command_->SetProgrammingType(type_channels_);
+    bool result = current_command_->SetProgrammingType(type_channels_);
 
-    *main_command_ = new AbstractCommand();
-    setText(name);
+    if (result) {
+        *main_command_ = new AbstractCommand();
+        setText(name);
+    }
+    else {
+        delete current_command_;
+        current_command_ = nullptr;
+
+        *main_command_ = new AbstractCommand();
+        setText("Empty cue");
+    }
 }
 
 void ProgrammingButton::SetupUi() {

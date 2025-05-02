@@ -3,12 +3,15 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
-// #include <QLabel>
+#include <QLabel>
 #include <QPushButton>
 
 #include "light_headers/CustomTypeEnum.h"
 #include "light_headers/Fixture.h"
 #include "light_headers/programming_command/abstractcommand.h"
+
+#include "./name_property/labelnameproperty.h"
+#include "./value_property/buttonvalueproperty.h"
 
 class ButtonValue : public QWidget {
 Q_OBJECT
@@ -33,11 +36,11 @@ private:
     const ChannelType type_property_;
 
     uint8_t current_value_ = 0;
+    const uint8_t* ptr_value_ = &current_value_;
 
     QVBoxLayout* vlayout_main_;
-    QPushButton* name_property_; // не меняю никогда, можно сделать константой
-    QPushButton* value_property_;
-
+    LabelNameProperty* name_property_; // не меняю никогда, можно сделать константой
+    ButtonValueProperty* value_property_;
 
 };
 

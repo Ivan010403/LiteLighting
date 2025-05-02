@@ -29,6 +29,50 @@ QString ChannelTypeToQString(ChannelType type) {
     }
 }
 
+QString PropertyTypeToQString(PropertyType type) {
+    switch(type) {
+    case PropertyType::Dimmer:
+        return QStringLiteral("Dimmer");
+    case PropertyType::Position:
+        return QStringLiteral("Position");
+    case PropertyType::Gobo:
+        return QStringLiteral("Gobo");
+    case PropertyType::Color:
+        return QStringLiteral("Color");
+    case PropertyType::Beam:
+        return QStringLiteral("Beam");
+    case PropertyType::Focus:
+        return QStringLiteral("Focus");
+    case PropertyType::Control:
+        return QStringLiteral("Control");
+    default:
+        return QStringLiteral("error");
+    }
+}
+
+QString ProgrammingTypeToQString(ProgrammingType type) {
+    switch(type) {
+    case ProgrammingType::Group:
+        return QStringLiteral("Group");
+    case ProgrammingType::Default:
+        return QStringLiteral("Default");
+    case ProgrammingType::Position:
+        return QStringLiteral("Position");
+    case ProgrammingType::Color:
+        return QStringLiteral("Color");
+    case ProgrammingType::Beam:
+        return QStringLiteral("Beam");
+    case ProgrammingType::Focus:
+        return QStringLiteral("Focus");
+    case ProgrammingType::Cue:
+        return QStringLiteral("Focus");
+    default:
+        return QStringLiteral("error");
+    }
+}
+
+
+
 std::map<const PropertyType, const std::vector<ChannelType>> map_property_to_channel = {
     {PropertyType::Dimmer, {ChannelType::Dimmer}},
     {PropertyType::Position, {ChannelType::Pan, ChannelType::Tilt}},
@@ -57,13 +101,3 @@ std::map<const ProgrammingType, const std::vector<ChannelType>> map_programming_
     {ProgrammingType::Beam, create_combined_vector()},
     {ProgrammingType::Focus, map_property_to_channel[PropertyType::Focus]},
 };
-
-std::map<const ProgrammingType, const QString> map_programming_to_qstring = {
-    {ProgrammingType::Group, QStringLiteral("Group")},
-    {ProgrammingType::Default, QStringLiteral("Default")},
-    {ProgrammingType::Position, QStringLiteral("Position")},
-    {ProgrammingType::Color, QStringLiteral("Color")},
-    {ProgrammingType::Beam, QStringLiteral("Beam")},
-    {ProgrammingType::Focus, QStringLiteral("Focus")},
-};
-

@@ -1,6 +1,6 @@
 #include "typebutton.h"
 
-TypeButton::TypeButton(ProgrammingType type, QWidget* parent) : QPushButton(map_programming_to_qstring[type], parent) {
+TypeButton::TypeButton(ProgrammingType type, QWidget* parent) : QPushButton(ProgrammingTypeToQString(type), parent) {
     SetupUi();
 }
 

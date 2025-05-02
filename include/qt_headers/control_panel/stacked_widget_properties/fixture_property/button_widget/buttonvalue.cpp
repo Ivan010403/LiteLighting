@@ -12,7 +12,7 @@ ButtonValue::ButtonValue(AbstractCommand** main_command, Fixture** selected_fixt
 void ButtonValue::onSliderChanged(int value) {
     current_value_ = 255 - value; // заменить 255 на константу
     SendDmxData();
-    value_property_->setText(QString::number(current_value_));
+    value_property_->update();
 }
 
 void ButtonValue::SetupUi() {
@@ -22,9 +22,10 @@ void ButtonValue::SetupUi() {
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
     vlayout_main_->setSpacing(0);
 
-    name_property_ = new QPushButton(ChannelTypeToQString(type_property_), this);
+    name_property_ = new LabelNameProperty(ChannelTypeToQString(type_property_), this);
     name_property_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    value_property_ = new QPushButton("0", this);
+
+    value_property_ = new ButtonValueProperty(ptr_value_, this);
     value_property_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
     vlayout_main_->addWidget(name_property_);

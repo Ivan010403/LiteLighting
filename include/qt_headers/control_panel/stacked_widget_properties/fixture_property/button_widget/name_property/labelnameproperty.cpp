@@ -1,0 +1,1 @@
+#include "labelnameproperty.h"

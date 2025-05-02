@@ -18,19 +18,42 @@ int AbstractCommand::Size() const {
     return actions_.size();
 }
 
-void AbstractCommand::SetProgrammingType(ProgrammingType type_channels) {
+bool AbstractCommand::SetProgrammingType(ProgrammingType type_channels) {
     type_channels_ = type_channels;
 
     ClearUnusedCommands();
+
+    return actions_.size() != 0 ? true : false;
 }
 
 void AbstractCommand::ClearUnusedCommands() {
-    // for (auto& action : actions_) {
-    //     for (auto& change : action.second) {
-    //         if (change.first == )
-    //         (action.first)->ChangeData(change.first, change.second);
-    //     }
-    // }
+    const auto& vec = map_programming_to_channel[type_channels_];
+
+    auto main_it = actions_.begin();
+
+    while (main_it != actions_.end()) {
+        auto& inner_map = main_it->second;
+        auto it = inner_map.begin();
+
+        while (it != inner_map.end()) {
+            if (std::find(vec.begin(), vec.end(), it->first) == vec.end()) {
+                qDebug() << "Удаляю " << ChannelTypeToQString(it->first);
+                it = inner_map.erase(it); // erase() возвращает следующий итератор
+            } else {
+                ++it;
+            }
+        }
+
+        if (inner_map.size() == 0) main_it = actions_.erase(main_it);
+        else ++main_it;
+    }
 }
 
-// std::map<Fixture*, std::map<ChannelType, uint8_t>> actions_;
+bool AbstractCommand::CheckExistingProperty(Fixture* fxtr, PropertyType property) {
+    if (actions_.count(fxtr) > 0) {
+        for (const auto& val : map_property_to_channel[property]) {
+            if (actions_[fxtr].count(val) > 0) return true;
+        }
+    }
+    return false;
+}

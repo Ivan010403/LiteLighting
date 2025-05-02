@@ -1,8 +1,10 @@
 #ifndef ABSTRACTCOMMAND_H
 #define ABSTRACTCOMMAND_H
 
-#include "../Fixture.h"
 #include <map>
+
+#include "../Fixture.h"
+#include "light_headers/CustomTypeEnum.h"
 
 class AbstractCommand {
 public:
@@ -15,11 +17,13 @@ public:
 
     int Size() const;
 
-    void SetProgrammingType(ProgrammingType type_channels_);
+    bool SetProgrammingType(ProgrammingType type_channels_);
 
+    bool CheckExistingProperty(Fixture* fxtr, PropertyType property);
+
+private:
     void ClearUnusedCommands();
 
-protected:
     std::map<Fixture*, std::map<ChannelType, uint8_t>> actions_;
 
     ProgrammingType type_channels_;
