@@ -15,7 +15,9 @@ void ButtonPropertyType::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    QBrush brush = (*main_command_)->CheckExistingProperty(*selected_fixture_, property_type_) ? QBrush(QColor(Qt::red)) : QBrush(QColor(Qt::gray));
+    // QBrush brush = (*main_command_)->CheckExistingProperty(*selected_fixture_, property_type_) ? QBrush(QColor(Qt::red)) : QBrush(QColor(Qt::gray));
+
+    QBrush brush (QColor(Qt::gray));
 
     const int min_dimension = qMin(width(), height());
     int square_size = qBound(10,  min_dimension / 5, 100);

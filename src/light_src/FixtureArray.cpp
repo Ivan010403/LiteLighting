@@ -59,6 +59,8 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
     if (role == Qt::EditRole && index.isValid()) {
         Fixture* fixture = vector_fixture_[index.row()];
         *selected_fixture_ = fixture;
+        emit Mediator::instance().SelectingFixture();
+
         switch (index.column()) {
             // ПРОВЕРИТЬ НА СУЖЕНИЯ ДАННЫХ, У МЕНЯ ТАМ UINT8_T
             case 0:

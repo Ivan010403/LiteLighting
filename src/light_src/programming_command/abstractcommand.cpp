@@ -49,11 +49,7 @@ void AbstractCommand::ClearUnusedCommands() {
     }
 }
 
-bool AbstractCommand::CheckExistingProperty(Fixture* fxtr, PropertyType property) {
-    if (actions_.count(fxtr) > 0) {
-        for (const auto& val : map_property_to_channel[property]) {
-            if (actions_[fxtr].count(val) > 0) return true;
-        }
-    }
+bool AbstractCommand::CheckExistingChannel(Fixture* fxtr, ChannelType channel) {
+    if ((actions_.count(fxtr) > 0) && (actions_[fxtr].count(channel) > 0)) return true;
     return false;
 }

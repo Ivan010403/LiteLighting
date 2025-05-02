@@ -7,9 +7,21 @@
 class ButtonValueProperty : public QPushButton {
 Q_OBJECT
 public:
-    explicit ButtonValueProperty(const uint8_t* ptr_value, QWidget* parent = nullptr) :
+    explicit ButtonValueProperty(const uint8_t* ptr_value, const bool* flag_command, QWidget* parent = nullptr) :
         ptr_value_(ptr_value),
+        flag_command_(flag_command),
         QPushButton(parent) {}
+
+public slots:
+    void onSelectedFixture() {
+        is_fixture_selected_ = true;
+        update();
+    }
+
+    void onUnselectedFixture() {
+        is_fixture_selected_ = false;
+        update();
+    }
 
 protected:
     void paintEvent(QPaintEvent* event) override {
@@ -26,8 +38,8 @@ private:
     void drawBackground(QPainter& painter) {
         QBrush brush (QColor(29, 33, 34));
 
-        if (isDown()) {
-            brush.setColor(QColor(59, 63, 64));
+        if ((is_fixture_selected_) && (*flag_command_)) {
+            brush.setColor(QColor(Qt::red));
         }
 
         painter.setPen(Qt::NoPen);
@@ -54,6 +66,9 @@ private:
     }
 
     const uint8_t* ptr_value_;
+    const bool* flag_command_;
+
+    bool is_fixture_selected_ = false;
 };
 
 #endif // BUTTONVALUEPROPERTY_H

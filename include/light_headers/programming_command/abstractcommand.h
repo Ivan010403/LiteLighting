@@ -19,7 +19,7 @@ public:
 
     bool SetProgrammingType(ProgrammingType type_channels_);
 
-    bool CheckExistingProperty(Fixture* fxtr, PropertyType property);
+    bool CheckExistingChannel(Fixture* fxtr, ChannelType channel);
 
 private:
     void ClearUnusedCommands();
