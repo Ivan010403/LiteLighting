@@ -24,7 +24,7 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private slots:
-    void OnGroupCreated(const QModelIndexList& selected_indexes);
+    void OnGroupCreated(const QModelIndexList& selected_indexes, const QString& name);
 
 private:
     void SetupUi();

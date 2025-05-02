@@ -14,7 +14,7 @@ class QDialogPatching : public QDialog {
 public:
     explicit QDialogPatching(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 
-    ~QDialogPatching() = default;
+    ~QDialogPatching();
 
     void show();
 
@@ -50,7 +50,7 @@ private:
     QPushButton* btn_enter_fixture_;
 
     FixtureArrayModel* dmx_fixture_array_;
-    ChannelType* channels = nullptr;
+    ChannelType* channels = nullptr; // проверить на утечку
     uint16_t channel_amount_ = 0;
     uint16_t current_order_channel_ = 0;
 };

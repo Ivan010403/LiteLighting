@@ -4,6 +4,9 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     dmx_gateway_(dmx_gtw),
     QMainWindow(parent)
 {
+    selected_fixture_ = new Fixture*;
+    main_command_ = new AbstractCommand*;
+
     *selected_fixture_ = nullptr;
     *main_command_ = new AbstractCommand();
 
@@ -24,6 +27,8 @@ MainWindow::~MainWindow()
     dmx_gateway_.Stop();
 
     delete dmx_fixture_array_;
+    delete selected_fixture_;
+    delete main_command_;
 }
 
 void MainWindow::SetupUi() {

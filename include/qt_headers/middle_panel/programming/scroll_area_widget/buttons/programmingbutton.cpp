@@ -35,11 +35,15 @@ void ProgrammingButton::mousePressEvent(QMouseEvent* event) {
 void ProgrammingButton::mouseDoubleClickEvent(QMouseEvent* event) {
     if ((event->button() == Qt::LeftButton) && (current_command_)) {
         current_command_->Execute();
+    } else {
+        QPushButton::mouseDoubleClickEvent(event);
     }
 }
 
 void ProgrammingButton::onSaveClicked(const QString& name) {
     current_command_ = *main_command_;
+    current_command_->SetProgrammingType(type_channels_);
+
     *main_command_ = new AbstractCommand();
     setText(name);
 }

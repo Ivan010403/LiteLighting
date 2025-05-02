@@ -11,6 +11,10 @@ QDialogPatching::QDialogPatching(FixtureArrayModel* dmx_fixture_array, QWidget* 
     SetupConnections();
 }
 
+QDialogPatching::~QDialogPatching() {
+    delete channels; // а что если мувнутся данные и я удалю внутри фикстуры?
+}
+
 void QDialogPatching::show() {
     label_patching_->setText("patching");
     linedit_name_->clear();

@@ -12,7 +12,7 @@ public:
     explicit QDialogGrouping(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 
 signals:
-    void GroupCreating(const QModelIndexList& selected_indexes);
+    void GroupCreating(const QModelIndexList& selected_indexes, const QString& name);
 
 protected:
     void closeEvent(QCloseEvent* event) override;
@@ -27,6 +27,7 @@ private:
 
     QVBoxLayout* vlayout_main_;
     QTableView* table_fixtures_;
+    QLineEdit* line_edit_name_;
     QPushButton* btn_create_group_;
 
     QItemSelectionModel* selection_model_;

@@ -6,8 +6,8 @@ FixtureArrayModel::FixtureArrayModel(Fixture** selected_fixture, DmxGateway& dmx
     QAbstractTableModel(parent) {}
 
 FixtureArrayModel::~FixtureArrayModel() {
-    for (int i = 0; i < vector_fixture_.size(); ++i) { // вот тут могут быть проблемы если группа появится, ибо группа не в счётчике фикстур
-        delete vector_fixture_[i]; // аккуратнее
+    for (int i = 0; i < vector_fixture_.size(); ++i) {
+        delete vector_fixture_[i];
     }
 }
 

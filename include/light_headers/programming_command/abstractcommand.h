@@ -15,8 +15,14 @@ public:
 
     int Size() const;
 
+    void SetProgrammingType(ProgrammingType type_channels_);
+
+    void ClearUnusedCommands();
+
 protected:
     std::map<Fixture*, std::map<ChannelType, uint8_t>> actions_;
+
+    ProgrammingType type_channels_;
 };
 
 #endif // ABSTRACTCOMMAND_H

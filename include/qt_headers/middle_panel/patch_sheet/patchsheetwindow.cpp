@@ -24,7 +24,7 @@ void PatchSheetWindow::SetupUi() {
     table_fixtures_->setModel(dmx_fixture_array_);
     // table_fixtures_->setItemDelegateForColumn(0, new FixtureArrayModelDelegate());
     // table_fixtures_->setItemDelegateForColumn(1, new FixtureArrayModelDelegate());
-    table_fixtures_->setItemDelegateForColumn(2, new UniverseAddressDelegate());
+    table_fixtures_->setItemDelegateForColumn(2, new UniverseAddressDelegate(table_fixtures_));
 
 
 

@@ -13,7 +13,9 @@ void QDialogGrouping::closeEvent(QCloseEvent* event) {
 }
 
 void QDialogGrouping::onBtnClicked() {
-    emit GroupCreating(selection_model_->selectedIndexes());
+    if ((selection_model_->selectedIndexes().size() != 0) && (line_edit_name_->text().size() != 0)) {
+        emit GroupCreating(selection_model_->selectedIndexes(), line_edit_name_->text());
+    }
 }
 
 void QDialogGrouping::SetupUi(FixtureArrayModel* dmx_fixture_array) {
@@ -27,10 +29,12 @@ void QDialogGrouping::SetupUi(FixtureArrayModel* dmx_fixture_array) {
 
     selection_model_ = table_fixtures_->selectionModel();
 
+    line_edit_name_ = new QLineEdit(this);
 
     btn_create_group_ = new QPushButton("Create group", this);
 
     vlayout_main_->addWidget(table_fixtures_, 3);
+    vlayout_main_->addWidget(line_edit_name_, 1);
     vlayout_main_->addWidget(btn_create_group_, 1);
 
 }

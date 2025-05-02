@@ -29,7 +29,8 @@ void GroupButton::mousePressEvent(QMouseEvent* event) {
         if (qdial_grouping_->exec() == QDialog::Accepted) {
             qDebug() << "конец работы модального окна!!!";
         }
-    } else {
+    }
+    else {
         QPushButton::mousePressEvent(event);
     }
 }
@@ -37,10 +38,13 @@ void GroupButton::mousePressEvent(QMouseEvent* event) {
 void GroupButton::mouseDoubleClickEvent(QMouseEvent* event) {
     if ((event->button() == Qt::LeftButton) && (group_)) {
         (*selected_fixture_) = group_;
+        QPushButton::mouseDoubleClickEvent(event); // чтобы был визуал. может быть update()?
+    } else {
+        QPushButton::mouseDoubleClickEvent(event);
     }
 }
 
-void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes) {
+void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes, const QString& name) {
     QSet<int> unique_rows;
     for (const QModelIndex& index : selected_indexes) {
         if (index.isValid()) {
@@ -54,9 +58,9 @@ void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes) {
         vect_fxtr.push_back(dmx_fixture_array_->GetFixtureByIndex(var));
     }
 
-    group_ = new FixtureGroup(number_, "test", vect_fxtr);
+    group_ = new FixtureGroup(number_, name.toStdString(), vect_fxtr);
 
-    setText(QString::number(number_));
+    setText(name);
 }
 
 void GroupButton::SetupUi() {
