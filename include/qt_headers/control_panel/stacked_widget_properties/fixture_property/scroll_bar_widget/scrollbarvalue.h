@@ -7,19 +7,12 @@ class ScrollBarValue : public QScrollBar {
 Q_OBJECT
 
 public:
-    explicit ScrollBarValue(QWidget* parent = nullptr) : QScrollBar(Qt::Vertical, parent) {
-        SetupUi();
-    }
+    explicit ScrollBarValue(QWidget* parent = nullptr);
 
     ~ScrollBarValue() = default;
 
 private:
-    void SetupUi() {
-        setFixedSize(65, 160);
-        setMinimum(0);
-        setMaximum(255);
-        setValue(maximum());
-    }
+    void SetupUi();
 };
 
 #endif // SCROLLBARVALUE_H

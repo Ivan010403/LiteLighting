@@ -9,54 +9,21 @@ class QDialogGrouping : public QDialog {
 Q_OBJECT
 
 public:
-    explicit QDialogGrouping(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) :
-        dmx_fixture_array_(dmx_fixture_array),
-        QDialog(parent)
-    {
-        SetupUi();
-        SetupConnections();
-    }
+    explicit QDialogGrouping(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 
 signals:
     void GroupCreating(const QModelIndexList& selected_indexes);
 
 protected:
-    void closeEvent(QCloseEvent* event) override {
-        hide();
-        event->ignore();
-    }
+    void closeEvent(QCloseEvent* event) override;
 
 private slots:
-    void onBtnClicked() {
-        emit GroupCreating(selection_model_->selectedIndexes());
-    }
+    void onBtnClicked();
 
 private:
-    void SetupUi() {
-        setFixedSize(500, 300);
+    void SetupUi(FixtureArrayModel* dmx_fixture_array);
 
-        vlayout_main_ = new QVBoxLayout(this);
-
-        table_fixtures_ = new QTableView(this);
-        table_fixtures_->setModel(dmx_fixture_array_);
-        table_fixtures_->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-        selection_model_ = table_fixtures_->selectionModel();
-
-
-        btn_create_group_ = new QPushButton("Create group", this);
-
-        vlayout_main_->addWidget(table_fixtures_, 3);
-        vlayout_main_->addWidget(btn_create_group_, 1);
-
-    }
-
-    void SetupConnections() {
-        connect(btn_create_group_, &QPushButton::clicked, this, &QDialogGrouping::onBtnClicked);
-        connect(btn_create_group_, &QPushButton::clicked, this, &QDialogGrouping::accept); // что вызовется быстрее?
-    }
-
-    FixtureArrayModel* dmx_fixture_array_;
+    void SetupConnections();
 
     QVBoxLayout* vlayout_main_;
     QTableView* table_fixtures_;

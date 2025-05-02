@@ -13,107 +13,35 @@ class ProgrammingButton : public QPushButton {
 Q_OBJECT
 
 public:
-    explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent = nullptr) :
-        main_command_(main_command),
-        type_channels_(type_channels),
-        number_(number),
-        QPushButton(parent)
-    {
-        SetupUi();
-        SetupConnections();
-    }
+    explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent = nullptr);
 
-    ~ProgrammingButton() {
-        delete current_command_;
-    } // опасно
-
+    ~ProgrammingButton();
 protected:
-    void paintEvent(QPaintEvent* event) override {
-        Q_UNUSED(event);
-        QPainter painter(this);
-        painter.setRenderHint(QPainter::Antialiasing);
+    void paintEvent(QPaintEvent* event) override;
 
-        drawBackground(painter);
-        drawBorder(painter);
-        drawText(painter);
-    }
+    void mousePressEvent(QMouseEvent* event) override;
 
-    void mousePressEvent(QMouseEvent* event) override {
-        if ((event->button() == Qt::RightButton) && (!current_command_) && ((*main_command_)->Size() != 0)) {
-            qdial_save_command_->show();
-        } else {
-            QPushButton::mousePressEvent(event);
-        }
-    }
-
-    void mouseDoubleClickEvent(QMouseEvent* event) override {
-        if ((event->button() == Qt::LeftButton) && (current_command_)) {
-            qDebug() << "Double click detected!";
-            current_command_->Execute();
-        }
-        // Вызываем базовую реализацию (если нужно)
-        // QPushButton::mouseDoubleClickEvent(event);
-    }
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private slots:
-    void onSaveClicked(const QString& name) {
-        current_command_ = *main_command_;
-        *main_command_ = new AbstractCommand();
-        qDebug() << "сохранение команды";
-        setText(name);
-    }
+    void onSaveClicked(const QString& name);
 
 private:
-    void SetupUi() {
-        setFixedSize(60, 60);
+    void SetupUi();
 
-        qdial_save_command_ = new QDialogCommand(this);
-    }
+    void SetupConnections();
 
-    void SetupConnections() {
-        connect(qdial_save_command_, &QDialogCommand::SaveClicked, this, &ProgrammingButton::onSaveClicked);
-    }
+    void drawBackground(QPainter& painter);
 
-    void drawBackground(QPainter& painter) {
-        QBrush brush (QColor(29, 33, 34));
+    void drawBorder(QPainter& painter);
 
-        if (isDown()) {
-            brush.setColor(QColor(59, 63, 64));
-        }
-
-        painter.setPen(Qt::NoPen);
-        painter.setBrush(brush);
-        painter.drawRoundedRect(this->rect().adjusted(1, 1, -1, -1), 10, 10);
-    }
-
-    void drawBorder(QPainter& painter) {
-        QPen pen(QColor(96, 102, 104));
-
-        if (isDown()) {
-            pen.setColor(QColor(118, 156, 227));
-        }
-
-        pen.setWidth(2);
-        painter.setPen(pen);
-        painter.setBrush(Qt::NoBrush);
-        painter.drawRoundedRect(rect().adjusted(1, 1, -1, -1), 10, 10);
-    }
-
-    void drawText(QPainter& painter) {
-        QFont new_font = font();
-        new_font.setPointSize(8);
-
-        painter.setPen(Qt::white);
-        painter.setFont(new_font);
-        painter.drawText(rect().adjusted(20, 10, 0, 0), Qt::AlignLeft, QString::number(number_));
-        painter.drawText(rect().adjusted(0, 25, 0, 0), Qt::TextWordWrap | Qt::AlignCenter, text());
-    }
+    void drawText(QPainter& painter);
 
 
     AbstractCommand** main_command_;
     AbstractCommand* current_command_ = nullptr;
 
-    ProgrammingType type_channels_;
+    ProgrammingType type_channels_; // нигде не использую пока что!
     const int number_;
 
     QDialogCommand* qdial_save_command_;

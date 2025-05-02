@@ -11,13 +11,9 @@ class FixtureArrayModel : public QAbstractTableModel {
 
 public:
     //--------------------constructors and destructor--------------------------------
-    explicit FixtureArrayModel(Fixture** selected_fixture, DmxGateway& dmx_gtw, QObject* parent = nullptr) : selected_fixture_(selected_fixture), dmx_gateway_(dmx_gtw), QAbstractTableModel(parent) {}
+    explicit FixtureArrayModel(Fixture** selected_fixture, DmxGateway& dmx_gtw, QObject* parent = nullptr);
 
-    ~FixtureArrayModel() {
-        for (int i = 0; i < vector_fixture_.size(); ++i) { // вот тут могут быть проблемы если группа появится, ибо группа не в счётчике фикстур
-            delete vector_fixture_[i]; // аккуратнее
-        }
-    }
+    ~FixtureArrayModel();
     //-------------------------------------------------------------------------------
 
     //--------------------function for table model-----------------------------------
@@ -30,12 +26,12 @@ public:
     //-------------------------------------------------------------------------------
 
     //---------------------------local functions-------------------------------------
-    unsigned int GetFixtureIdByIndex(int index);
     void CreateNewFixture (unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                           std::string name, const ChannelType* channels);
+    unsigned int GetFixtureIdByIndex(int index);
+    Fixture* GetFixtureByIndex(int index);
     int FixtureAmount() const;
     int GroupAmount() const;
-    Fixture* GetFixtureByIndex(int index);
     //-------------------------------------------------------------------------------
 
     //---------------------------deleted functions-----------------------------------
@@ -48,7 +44,7 @@ public:
 private:
     QVector <Fixture*> vector_fixture_; // не проинициализировал! 2) зачем через new создавать? МОЖНО СТАТИЧЕСКИ БЕЗ NEW!
     int fixtures_amount_ = 0; // maybe unsigned?
-    int groups_anount_ = 0;
+    int groups_anount_ = 0; // может убрать?
 
     Fixture** selected_fixture_;
 

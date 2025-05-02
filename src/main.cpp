@@ -22,6 +22,8 @@ int main(int argc, char *argv[]) {
 
     MainWindow mw(dmx_gtw);
 
+    TypeButton* test = new TypeButton(ProgrammingType::Group);
+
     return app.exec();
 }
 

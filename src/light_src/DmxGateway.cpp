@@ -1,5 +1,16 @@
 #include "light_headers/DmxGateway.h"
 
+DmxGateway::DmxGateway(unsigned int universe_amount, QObject *parent) :
+    dmx_data_(universe_amount),
+    universe_amount_(universe_amount),
+    QAbstractTableModel(parent)
+{
+    ola::InitLogging(ola::OLA_LOG_INFO, ola::OLA_LOG_STDERR);
+
+    for (int i = 0; i < universe_amount_; ++i) {
+        dmx_data_[i].Blackout();
+    }
+}
 
 int DmxGateway::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
@@ -40,6 +51,10 @@ void DmxGateway::Stop() {
 
 ola::DmxBuffer* DmxGateway::GetBuffer(unsigned int universe_id) {
     return &dmx_data_[universe_id];
+}
+
+unsigned int DmxGateway::GetAmountUniv() {
+    return universe_amount_;
 }
 
 //-------------------------------------------------------------------------------

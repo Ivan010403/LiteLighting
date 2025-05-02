@@ -9,22 +9,11 @@ public:
     AbstractCommand() = default;
     ~AbstractCommand() = default;
 
-    void AddAction(Fixture* fxtr, ChannelType channel, uint8_t value) {
-        actions_[fxtr][channel] = value;
-    }
+    void AddAction(Fixture* fxtr, ChannelType channel, uint8_t value);
 
-    void Execute() {
-        for (auto& action : actions_) {
-            for (auto& change : action.second) {
-                qDebug() << "Отправка данных по " << (action.first)->GetFixtureId() << ChannelTypeToQString(change.first) << change.second;
-                (action.first)->ChangeData(change.first, change.second);
-            }
-        }
-    }
+    void Execute();
 
-    int Size() const {
-        return actions_.size();
-    }
+    int Size() const;
 
 protected:
     std::map<Fixture*, std::map<ChannelType, uint8_t>> actions_;

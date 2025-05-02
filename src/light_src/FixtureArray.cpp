@@ -1,5 +1,16 @@
 #include "light_headers/FixtureArray.h"
 
+FixtureArrayModel::FixtureArrayModel(Fixture** selected_fixture, DmxGateway& dmx_gtw, QObject* parent) :
+    selected_fixture_(selected_fixture),
+    dmx_gateway_(dmx_gtw),
+    QAbstractTableModel(parent) {}
+
+FixtureArrayModel::~FixtureArrayModel() {
+    for (int i = 0; i < vector_fixture_.size(); ++i) { // вот тут могут быть проблемы если группа появится, ибо группа не в счётчике фикстур
+        delete vector_fixture_[i]; // аккуратнее
+    }
+}
+
 int FixtureArrayModel::rowCount(const QModelIndex& parent) const {
     Q_UNUSED(parent);
     return fixtures_amount_;

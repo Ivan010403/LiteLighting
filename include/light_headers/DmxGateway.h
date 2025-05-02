@@ -16,17 +16,7 @@ class DmxGateway : public QAbstractTableModel, public ola::thread::Thread {
 
 public:
     //--------------------constructors and destructor--------------------------------
-    explicit DmxGateway(unsigned int universe_amount, QObject *parent = nullptr) :
-        dmx_data_(universe_amount),
-        universe_amount_(universe_amount),
-        QAbstractTableModel(parent)
-    {
-        ola::InitLogging(ola::OLA_LOG_INFO, ola::OLA_LOG_STDERR);
-
-        for (int i = 0; i < universe_amount_; ++i) {
-            dmx_data_[i].Blackout();
-        }
-    }
+    explicit DmxGateway(unsigned int universe_amount, QObject *parent = nullptr);
 
     ~DmxGateway() = default;
     //-------------------------------------------------------------------------------
@@ -45,9 +35,7 @@ public:
     void Stop();
     ola::DmxBuffer* GetBuffer(unsigned int universe_id);
     // refactor!!!
-    unsigned int GetAmountUniv() {
-        return universe_amount_;
-    }
+    unsigned int GetAmountUniv();
     //-------------------------------------------------------------------------------
 
 

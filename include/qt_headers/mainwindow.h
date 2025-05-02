@@ -23,8 +23,6 @@ public:
 private:
     void SetupUi();
     void SetupConnections();
-    // void SetupModalWindows();
-
 
     DmxGateway& dmx_gateway_; // подумать про константность // возможно убрать? есть уже ссылка на фикстуру текущую
     FixtureArrayModel* dmx_fixture_array_;

@@ -73,7 +73,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/light_src/Fixture.cpp
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
-
+        src/light_src/CustomTypeEnum.cpp
+        src/light_src/programming_command/abstractcommand.cpp
+        src/light_src/FixtureGroup.cpp
 
         include/qt_headers/mainwindow.h include/qt_headers/mainwindow.cpp
         include/qt_headers/pages_panel/pagespanel.h include/qt_headers/pages_panel/pagespanel.cpp
@@ -89,7 +91,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.h include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.cpp
 
         include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.h include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.cpp
-        include/light_headers/fixture_array_delegates/universeaddressdelegate.h include/light_headers/fixture_array_delegates/universeaddressdelegate.cpp
+        include/light_headers/fixture_array_delegates/universeaddressdelegate.h src/light_src/fixture_array_delegates/universeaddressdelegate.cpp
         include/qt_headers/middle_panel/programming/scroll_area_widget/scrollareawidget.h include/qt_headers/middle_panel/programming/scroll_area_widget/scrollareawidget.cpp
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/programmingbutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/programmingbutton.cpp
 
@@ -97,7 +99,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/buttonvalue.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/buttonvalue.cpp
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/scroll_bar_widget/scrollbarvalue.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/scroll_bar_widget/scrollbarvalue.cpp
         include/qt_headers/control_panel/stacked_widget_properties/stackedwidgetproperty.h include/qt_headers/control_panel/stacked_widget_properties/stackedwidgetproperty.cpp
-        include/light_headers/CustomTypeEnum.cpp
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/typebutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/typebutton.cpp
         include/light_headers/programming_command/abstractcommand.h
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogcommand.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogcommand.cpp

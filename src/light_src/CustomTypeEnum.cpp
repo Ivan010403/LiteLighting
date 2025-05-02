@@ -1,4 +1,4 @@
-#include "CustomTypeEnum.h"
+#include "light_headers/CustomTypeEnum.h"
 
 QString ChannelTypeToQString(ChannelType type) {
     switch(type) {

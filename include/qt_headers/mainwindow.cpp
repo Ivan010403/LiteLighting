@@ -7,20 +7,15 @@ MainWindow::MainWindow(DmxGateway& dmx_gtw, QWidget* parent) :
     *selected_fixture_ = nullptr;
     *main_command_ = new AbstractCommand();
 
-    dmx_fixture_array_ = new FixtureArrayModel(selected_fixture_, dmx_gateway_); // снова new! можно через ссылки
+    dmx_fixture_array_ = new FixtureArrayModel(selected_fixture_, dmx_gateway_);
 
     SetupUi();
     showMaximized();
-
-    // REFACTOR!!!!!!!!!!!!!!!!!!!!!!!!
-    // ---------------------------------------------------------
-
 
     QFile styleFile("../../include/styles/main/main_style.qss"); // разообраться с этим стрёмным путём до файла
     styleFile.open(QFile::ReadOnly);
     setStyleSheet(styleFile.readAll());
 
-    // SetupModalWindows();
     SetupConnections();
 }
 
@@ -78,8 +73,4 @@ void MainWindow::SetupConnections() {
     // connect(ui_->btn_patching_, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
     // connect(ui_->fixture_display_, &FixtureDisplay::FixtureChoosen, ui_->fixture_properties_, &FixtureProperties::FixtureChoosen);
 }
-
-// void MainWindow::SetupModalWindows() {
-//     // qdial_patching_ = new QDialogPatching(dmx_fixture_array_, this);
-// }
 
