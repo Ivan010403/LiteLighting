@@ -7,8 +7,7 @@
 #include "light_headers/CustomTypeEnum.h"
 
 class TypeButton : public QPushButton {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit TypeButton(ProgrammingType type, QWidget* parent = nullptr);
 

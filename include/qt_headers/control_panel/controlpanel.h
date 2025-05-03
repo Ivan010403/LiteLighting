@@ -1,15 +1,13 @@
 #ifndef CONTROLPANEL_H
 #define CONTROLPANEL_H
 
-#include <QPushButton>
 #include <QStackedWidget>
 
 #include "./stacked_widget_properties/stackedwidgetproperty.h"
 #include "./btn_property_type/buttonpropertytype.h"
 
 class ControlPanel : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit ControlPanel(AbstractCommand** main_command, Fixture** selected_fixture, QWidget* parent = nullptr);
 
@@ -48,8 +46,6 @@ private:
     StackedWidgetProperty* properties_beam_;
     StackedWidgetProperty* properties_focus_;
     StackedWidgetProperty* properties_control_;
-
-
 };
 
 #endif // CONTROLPANEL_H

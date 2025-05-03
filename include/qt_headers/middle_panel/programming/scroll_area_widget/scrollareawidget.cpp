@@ -13,7 +13,6 @@ ScrollAreaWidget::ScrollAreaWidget(AbstractCommand** main_command, Fixture** sel
                    scrl_area_type == ProgrammingType::Focus || scrl_area_type == ProgrammingType::Beam ) ? 40 : 50;
 
     SetupUi();
-    SetupConnections();
     AddButtons(batch_size_);
 }
 
@@ -21,10 +20,6 @@ void ScrollAreaWidget::SetupUi() {
     gridlayout_main_ = new QGridLayout(this);
     gridlayout_main_->setContentsMargins(16, 16, 10, 16);
     gridlayout_main_->setSpacing(15);
-}
-
-void ScrollAreaWidget::SetupConnections() {
-
 }
 
 void ScrollAreaWidget::AddButtons(int count) {

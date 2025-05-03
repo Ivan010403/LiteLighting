@@ -1,5 +1,6 @@
 #ifndef QDIALOGHELPER_H
 #define QDIALOGHELPER_H
+
 #include <QDialog>
 #include <QLabel>
 #include <QLineEdit>
@@ -10,7 +11,6 @@
 
 class QDialogPatching : public QDialog {
     Q_OBJECT
-
 public:
     explicit QDialogPatching(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 

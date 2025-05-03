@@ -1,6 +1,5 @@
 #include "light_headers/programming_command/abstractcommand.h"
 
-
 void AbstractCommand::AddAction(Fixture* fxtr, ChannelType channel, uint8_t value) {
     actions_[fxtr][channel] = value;
 }
@@ -18,13 +17,19 @@ int AbstractCommand::Size() const {
     return actions_.size();
 }
 
-bool AbstractCommand::SetProgrammingType(ProgrammingType type_channels) {
+bool AbstractCommand::SetProgrammingType(ProgrammingType type_channels, int number) {
+    number_ = number;
     type_channels_ = type_channels;
 
     ClearUnusedCommands();
 
     return actions_.size() != 0 ? true : false;
 }
+
+bool AbstractCommand::CheckExistingChannel(Fixture* fxtr, ChannelType channel) {
+    if ((actions_.count(fxtr) > 0) && (actions_[fxtr].count(channel) > 0)) return true;
+    return false;
+} // зачем?
 
 void AbstractCommand::ClearUnusedCommands() {
     const auto& vec = map_programming_to_channel[type_channels_];
@@ -49,7 +54,31 @@ void AbstractCommand::ClearUnusedCommands() {
     }
 }
 
-bool AbstractCommand::CheckExistingChannel(Fixture* fxtr, ChannelType channel) {
-    if ((actions_.count(fxtr) > 0) && (actions_[fxtr].count(channel) > 0)) return true;
-    return false;
+QJsonObject AbstractCommand::SaveDataToShow() {
+    QJsonObject json;
+    json["progr_type"] = static_cast<int>(type_channels_);
+    json["number"] =  number_;
+
+    QJsonArray actions;
+
+    for (const auto& var : actions_) {
+        QJsonObject act;
+        act["fix_id"] = (var.first)->GetFixtureId();
+
+        QJsonArray com;
+
+        for (const auto& val : var.second) {
+            QJsonObject temp;
+            temp["channel"] = static_cast<int>(val.first);
+            temp["value"] = static_cast<int>(val.second);
+            com.append(temp);
+        }
+        act["maps"] = com;
+
+        actions.append(act);
+    }
+
+    json["command"] = actions;
+
+    return json;
 }

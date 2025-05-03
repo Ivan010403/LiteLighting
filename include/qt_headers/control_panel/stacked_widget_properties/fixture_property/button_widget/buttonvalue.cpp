@@ -29,6 +29,16 @@ void ButtonValue::onUnselectedCommand() {
     value_property_->update();
 }
 
+void ButtonValue::onSelectedFixture() {
+    flag_fixture = true;
+    value_property_->update();
+}
+
+void ButtonValue::onUnselectedFixture() {
+    flag_fixture = false;
+    value_property_->update();
+}
+
 void ButtonValue::SetupUi() {
     setFixedSize(300, 90);
 
@@ -39,7 +49,7 @@ void ButtonValue::SetupUi() {
     name_property_ = new LabelNameProperty(ChannelTypeToQString(type_property_), this);
     name_property_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-    value_property_ = new ButtonValueProperty(ptr_value_, ptr_command_, this);
+    value_property_ = new ButtonValueProperty(ptr_value_, ptr_command_, ptr_fixture_, this);
     value_property_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
     vlayout_main_->addWidget(name_property_);
@@ -52,8 +62,8 @@ void ButtonValue::SendDmxData() {
 }
 
 void ButtonValue::SetupConnections() {
-    connect(&Mediator::instance(), &Mediator::SelectingFixture, value_property_, &ButtonValueProperty::onSelectedFixture);
-    connect(&Mediator::instance(), &Mediator::UnselectingFixture, value_property_, &ButtonValueProperty::onUnselectedFixture);
+    connect(&Mediator::instance(), &Mediator::SelectingFixture, this, &ButtonValue::onSelectedFixture);
+    connect(&Mediator::instance(), &Mediator::UnselectingFixture, this, &ButtonValue::onUnselectedFixture);
 
     connect(&Mediator::instance(), &Mediator::SelectingCommand, this, &ButtonValue::onSelectedCommand);
     connect(&Mediator::instance(), &Mediator::UnselectingCommand, this, &ButtonValue::onUnselectedCommand);

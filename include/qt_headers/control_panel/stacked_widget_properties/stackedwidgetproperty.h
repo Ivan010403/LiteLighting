@@ -4,8 +4,6 @@
 #include "./fixture_property/fixtureproperty.h"
 
 class StackedWidgetProperty : public QWidget {
-Q_OBJECT
-
 public:
     explicit StackedWidgetProperty(AbstractCommand** main_command, Fixture** selected_fixture, PropertyType prop_type, QWidget* parent = nullptr);
 

@@ -1,16 +1,13 @@
 #ifndef PROGRAMMINGWINDOW_H
 #define PROGRAMMINGWINDOW_H
 
-#include <QWidget>
-#include <QPushButton>
 #include <QGridLayout>
 #include <QScrollArea>
 
 #include "./scroll_area_widget/scrollareawidget.h"
 
 class ProgrammingWindow : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit ProgrammingWindow(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 

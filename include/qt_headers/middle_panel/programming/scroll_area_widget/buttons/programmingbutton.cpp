@@ -42,9 +42,11 @@ void ProgrammingButton::mouseDoubleClickEvent(QMouseEvent* event) {
 
 void ProgrammingButton::onSaveClicked(const QString& name) {
     current_command_ = *main_command_;
-    bool result = current_command_->SetProgrammingType(type_channels_);
+    bool result = current_command_->SetProgrammingType(type_channels_, number_);
 
     if (result) {
+        CommandArray::instance().AddCommand(current_command_);
+
         *main_command_ = new AbstractCommand();
         setText(name);
     }

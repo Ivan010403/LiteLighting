@@ -2,7 +2,6 @@
 #define PATCHSHEETWINDOW_H
 
 #include <QWidget>
-#include <QGridLayout>
 #include <QPushButton>
 #include <QTableView>
 #include <QVBoxLayout>
@@ -12,8 +11,7 @@
 #include "light_headers/fixture_array_delegates/universeaddressdelegate.h"
 
 class PatchSheetWindow : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit PatchSheetWindow(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 

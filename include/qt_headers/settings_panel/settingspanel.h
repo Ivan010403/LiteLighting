@@ -5,8 +5,7 @@
 #include <QPushButton>
 
 class SettingsPanel : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit SettingsPanel(QWidget* parent = nullptr);
 

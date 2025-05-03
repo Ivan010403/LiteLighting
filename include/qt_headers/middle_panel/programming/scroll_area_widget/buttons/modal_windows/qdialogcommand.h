@@ -8,8 +8,7 @@
 #include <QCloseEvent>
 
 class QDialogCommand : public QDialog {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit QDialogCommand(QWidget* parent = nullptr);
 

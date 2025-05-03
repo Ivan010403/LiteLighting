@@ -1,13 +1,7 @@
 #include "buttonpropertytype.h"
 
-ButtonPropertyType::ButtonPropertyType(AbstractCommand** main_command, Fixture** selected_fixture, PropertyType prop_type, QWidget* parent) :
-    main_command_(main_command),
-    selected_fixture_(selected_fixture),
-    property_type_(prop_type),
-    QPushButton(parent)
-{
-    SetupUi();
-}
+ButtonPropertyType::ButtonPropertyType(PropertyType prop_type, QWidget* parent) :
+    QPushButton(PropertyTypeToQString(prop_type), parent) {}
 
 void ButtonPropertyType::paintEvent(QPaintEvent* event) {
     QPushButton::paintEvent(event);
@@ -27,8 +21,4 @@ void ButtonPropertyType::paintEvent(QPaintEvent* event) {
     painter.setPen(Qt::NoPen);
     painter.setBrush(brush);
     painter.drawRoundedRect(square_rect, 10, 10);
-}
-
-void ButtonPropertyType::SetupUi() {
-    setText(PropertyTypeToQString(property_type_));
 }

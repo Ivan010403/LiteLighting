@@ -35,7 +35,7 @@ public:
     void Stop();
     ola::DmxBuffer* GetBuffer(unsigned int universe_id);
     // refactor!!!
-    unsigned int GetAmountUniv();
+    unsigned int GetAmountUniv() const;
     //-------------------------------------------------------------------------------
 
 
@@ -66,7 +66,7 @@ private:
     ola::io::SelectServer* select_server_ = nullptr;
     ola::client::OlaClient* ola_client_ = nullptr;
 
-    const ola::TimeInterval ola_second_ = ola::TimeInterval(1000000);
+    // const ola::TimeInterval ola_second_ = ola::TimeInterval(1000000);
     const ola::TimeInterval ola_30_fps_ = ola::TimeInterval(33333); // not 30 fps, but 30.003...
 };
 

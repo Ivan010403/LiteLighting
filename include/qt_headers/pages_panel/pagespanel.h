@@ -5,8 +5,7 @@
 #include <QPushButton>
 
 class PagesPanel : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit PagesPanel(QWidget* parent = nullptr);
 

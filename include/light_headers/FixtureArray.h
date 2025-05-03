@@ -1,10 +1,14 @@
 #ifndef FIXTUREARRAY_H
 #define FIXTUREARRAY_H
+
 #include <QAbstractTableModel>
 #include <QVector>
+#include <QFile>
+#include <QJsonDocument>
 
 #include "light_headers/Fixture.h"
 #include "light_headers/DmxGateway.h"
+#include "light_headers/Mediator.h"
 
 class FixtureArrayModel : public QAbstractTableModel {
     Q_OBJECT
@@ -26,14 +30,18 @@ public:
     //-------------------------------------------------------------------------------
 
     //---------------------------local functions-------------------------------------
-    void CreateNewFixture (unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
+    void CreateNewFixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                           std::string name, const ChannelType* channels);
-    unsigned int GetFixtureIdByIndex(int index);
+
+    int GetFixtureIdByIndex(int index);
     Fixture* GetFixtureByIndex(int index);
+
     int FixtureAmount() const;
-    int GroupAmount() const;
+
+    void Clear(); // maybe private?
+
     void LoadDataFromShow();
-    void SaveDataToShow() const;
+    void SaveDataToShow(QJsonObject& root) const;
     //-------------------------------------------------------------------------------
 
     //---------------------------deleted functions-----------------------------------
@@ -44,13 +52,11 @@ public:
     FixtureArrayModel& operator= (FixtureArrayModel&& dmx_gtw) = delete;
     //-------------------------------------------------------------------------------
 private:
+    Fixture** selected_fixture_;
+    DmxGateway& dmx_gateway_; // что если объект разрушится? ссылка будет указывать на дичь
+
     QVector <Fixture*> vector_fixture_; // не проинициализировал! 2) зачем через new создавать? МОЖНО СТАТИЧЕСКИ БЕЗ NEW!
     int fixtures_amount_ = 0; // maybe unsigned?
-    int groups_anount_ = 0; // может убрать?
-
-    Fixture** selected_fixture_;
-
-    DmxGateway& dmx_gateway_; // что если объект разрушится? ссылка будет указывать на дичь
 };
 
 #endif // FIXTUREARRAY_H

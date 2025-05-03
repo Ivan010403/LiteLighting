@@ -14,8 +14,7 @@
 
 
 class MainWindow : public QMainWindow {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit MainWindow(DmxGateway& dmx_gtw, QWidget* parent = nullptr);
     ~MainWindow();

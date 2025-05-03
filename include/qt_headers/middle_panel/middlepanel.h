@@ -1,5 +1,6 @@
 #ifndef MIDDLEPANEL_H
 #define MIDDLEPANEL_H
+
 #include <QStackedWidget>
 
 #include "./programming/programmingwindow.h"

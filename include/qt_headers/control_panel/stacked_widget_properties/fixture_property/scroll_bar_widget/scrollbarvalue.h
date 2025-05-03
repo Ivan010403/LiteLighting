@@ -4,8 +4,6 @@
 #include <QScrollBar>
 
 class ScrollBarValue : public QScrollBar {
-Q_OBJECT
-
 public:
     explicit ScrollBarValue(QWidget* parent = nullptr);
 

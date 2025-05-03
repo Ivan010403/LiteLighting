@@ -2,16 +2,15 @@
 #define PROGRAMMINGBUTTON_H
 
 #include <QWidget>
-#include <QPushButton>
 #include <QMouseEvent>
 #include <QPainter>
 
 #include "./modal_windows/qdialogcommand.h"
 #include "light_headers/programming_command/abstractcommand.h"
+#include "light_headers/programming_command/CommandArray.h"
 
 class ProgrammingButton : public QPushButton {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent = nullptr);
 
@@ -41,7 +40,7 @@ private:
     AbstractCommand** main_command_;
     AbstractCommand* current_command_ = nullptr;
 
-    ProgrammingType type_channels_; // нигде не использую пока что!
+    ProgrammingType type_channels_;
     const int number_;
 
     QDialogCommand* qdial_save_command_;

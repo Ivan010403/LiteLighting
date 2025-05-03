@@ -9,8 +9,7 @@
 #include "light_headers/FixtureGroup.h"
 
 class GroupButton : public QPushButton {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit GroupButton(Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, int number, QWidget* parent = nullptr);
 
@@ -44,7 +43,6 @@ private:
     const int number_;
 
     Fixture* group_ = nullptr;
-
 
     QDialogGrouping* qdial_grouping_;
 };

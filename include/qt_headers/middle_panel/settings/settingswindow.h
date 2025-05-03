@@ -6,10 +6,10 @@
 #include <QHBoxLayout>
 
 #include "light_headers/FixtureArray.h"
+#include "light_headers/programming_command/CommandArray.h"
 
 class SettingsWindow : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit SettingsWindow(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr) :
         dmx_fixture_array_(dmx_fixture_array),
@@ -27,7 +27,21 @@ private slots:
     }
 
     void onSaveClicked() {
-        dmx_fixture_array_->SaveDataToShow();
+        QJsonObject root;
+
+        dmx_fixture_array_->SaveDataToShow(root);
+
+        CommandArray::instance().SaveDataToShow(root);
+
+
+        QFile file("test3.json");
+        if (!file.open(QIODevice::WriteOnly)) {
+            qDebug() << "Ошибка открытия файла для записи";
+        }
+
+        QJsonDocument doc(root);
+        file.write(doc.toJson());
+        file.close();
     }
 
 private:

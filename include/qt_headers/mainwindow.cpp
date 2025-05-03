@@ -41,7 +41,7 @@ void MainWindow::SetupUi() {
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
     vlayout_main_->setSpacing(0);
 
-    //-----------------------------------------------------------
+
     hlayout_top_ = new QHBoxLayout();
     hlayout_top_->setContentsMargins(0, 0, 0, 0);
     hlayout_top_->setSpacing(0);
@@ -58,7 +58,8 @@ void MainWindow::SetupUi() {
     hlayout_top_->setStretch(2, 55);
 
     vlayout_main_->addLayout(hlayout_top_);
-    //-----------------------------------------------------------
+
+
     control_panel_ = new ControlPanel(main_command_, selected_fixture_, central_widget_);
 
     vlayout_main_->addWidget(control_panel_);
@@ -75,7 +76,5 @@ void MainWindow::SetupConnections() {
     connect(pages_panel_, &PagesPanel::showBusking, middle_panel_, &MiddlePanel::showBusking);
     connect(pages_panel_, &PagesPanel::showPatchSheet, middle_panel_, &MiddlePanel::showPatchSheet);
     connect(pages_panel_, &PagesPanel::showSettings, middle_panel_, &MiddlePanel::showSettings);
-    // connect(ui_->btn_patching_, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
-    // connect(ui_->fixture_display_, &FixtureDisplay::FixtureChoosen, ui_->fixture_properties_, &FixtureProperties::FixtureChoosen);
 }
 

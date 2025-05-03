@@ -114,7 +114,7 @@ Qt::ItemFlags FixtureArrayModel::flags(const QModelIndex& index) const {
 }
 
 
-void FixtureArrayModel::CreateNewFixture(unsigned int fixture_id, unsigned int universe_id, uint16_t dmx_address, uint16_t channel_amount,
+void FixtureArrayModel::CreateNewFixture(int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                                         std::string name, const ChannelType* channels)
 {
     ++fixtures_amount_;
@@ -126,7 +126,7 @@ void FixtureArrayModel::CreateNewFixture(unsigned int fixture_id, unsigned int u
 
 
 // refactor!!!
-unsigned int FixtureArrayModel::GetFixtureIdByIndex(int index) {
+int FixtureArrayModel::GetFixtureIdByIndex(int index) {
     return vector_fixture_[index]->GetFixtureId();
 }
 
@@ -134,21 +134,60 @@ Fixture* FixtureArrayModel::GetFixtureByIndex(int index) {
     return vector_fixture_[index];
 }
 
-
 int FixtureArrayModel::FixtureAmount() const {
     return fixtures_amount_;
 }
 
-int FixtureArrayModel::GroupAmount() const {
-    return groups_anount_;
+void FixtureArrayModel::Clear() {
+    for (int i = 0; i < vector_fixture_.size(); ++i) {
+        delete vector_fixture_[i];
+    }
 }
 
 void FixtureArrayModel::LoadDataFromShow() {
+    Clear();
 
+    QFile file("test2.json");
+    if (!file.open(QIODevice::ReadOnly)) return; // обработать нормально
+
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    QJsonObject root = doc.object();
+
+    QJsonArray fixtures_array = root["fixtures"].toArray();
+
+    for (const QJsonValue& val : fixtures_array) {
+        QJsonObject fixture = val.toObject();
+
+        // Извлекаем данные
+        int fix_id = fixture["fix_id"].toInt();
+        int univ_id = fixture["univ_id"].toInt();
+        uint16_t dmx_addr = fixture["dmx_addr"].toInt();
+        uint16_t chan_amount = fixture["chan_amount"].toInt();
+        QString name = fixture["name"].toString();
+
+        ChannelType channel_types[chan_amount];
+
+        QJsonArray channel_types_json = fixture["channels_type"].toArray();
+        QJsonArray channel_values_json = fixture["channels_value"].toArray();
+
+        for (int i = 0; i < channel_types_json.size(); ++i) {
+            channel_types[i] = static_cast<ChannelType>(channel_types_json[i].toInt());
+        }
+
+        CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name.toStdString(), channel_types);
+
+        for (int i = 0; i < channel_values_json.size(); ++i) {
+            vector_fixture_[fixtures_amount_-1]->ChangeData(channel_types[i], channel_values_json[i].toInt());
+        }
+    }
 }
 
-void FixtureArrayModel::SaveDataToShow() const {
+void FixtureArrayModel::SaveDataToShow(QJsonObject& root) const {
+    QJsonArray json_array;
+
     for (const auto& var : vector_fixture_) {
-        var->SaveDataToShow();
+        json_array.append(var->SaveDataToShow());
     }
+
+    root["fixtures"] = json_array;
 }

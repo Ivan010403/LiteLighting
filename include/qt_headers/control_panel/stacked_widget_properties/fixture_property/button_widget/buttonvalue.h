@@ -3,17 +3,17 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
-#include <QPushButton>
 
 #include "light_headers/CustomTypeEnum.h"
 #include "light_headers/Fixture.h"
 #include "light_headers/programming_command/abstractcommand.h"
+#include "light_headers/Mediator.h"
 
 #include "./name_property/labelnameproperty.h"
 #include "./value_property/buttonvalueproperty.h"
 
 class ButtonValue : public QWidget {
-Q_OBJECT
+    Q_OBJECT
 public:
     explicit ButtonValue(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, QWidget* parent = nullptr);
 
@@ -28,6 +28,9 @@ public slots:
 private slots:
     void onSelectedCommand();
     void onUnselectedCommand();
+
+    void onSelectedFixture();
+    void onUnselectedFixture();
 
 private:
     void SetupUi();
@@ -46,10 +49,12 @@ private:
     bool flag_command_ = false;
     const bool* ptr_command_ = &flag_command_;
 
+    bool flag_fixture = false;
+    const bool* ptr_fixture_ = &flag_fixture;
+
     QVBoxLayout* vlayout_main_;
     LabelNameProperty* name_property_; // не меняю никогда, можно сделать константой
     ButtonValueProperty* value_property_;
-
 };
 
 #endif // BUTTONVALUE_H

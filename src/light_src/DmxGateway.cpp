@@ -12,9 +12,11 @@ DmxGateway::DmxGateway(unsigned int universe_amount, QObject *parent) :
     }
 }
 
+//-------------------------------------------------------------------------------
+
 int DmxGateway::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    return universe_amount_;
+    return universe_amount_; // uint to int!
 }
 
 int DmxGateway::columnCount(const QModelIndex &parent) const {
@@ -53,7 +55,7 @@ ola::DmxBuffer* DmxGateway::GetBuffer(unsigned int universe_id) {
     return &dmx_data_[universe_id];
 }
 
-unsigned int DmxGateway::GetAmountUniv() {
+unsigned int DmxGateway::GetAmountUniv() const {
     return universe_amount_;
 }
 

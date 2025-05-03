@@ -1,18 +1,12 @@
 #ifndef SCROLLAREAWIDGET_H
 #define SCROLLAREAWIDGET_H
 
-#include <QGridLayout>
-#include <QLabel>
-#include <QScrollBar>
-
 #include "./buttons/typebutton.h"
 #include "./buttons/programmingbutton.h"
 #include "./buttons/groupbutton.h"
 
-
 class ScrollAreaWidget : public QWidget {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit ScrollAreaWidget(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, ProgrammingType scrl_area_type, QWidget* parent = nullptr);
 
@@ -21,11 +15,7 @@ public:
 private:
     void SetupUi();
 
-    void SetupConnections();
-
     void AddButtons(int count);
-
-    QGridLayout* gridlayout_main_;
 
     AbstractCommand** main_command_;
     Fixture** selected_fixture_;
@@ -37,6 +27,8 @@ private:
 
     const int button_size_ = 60;
     int batch_size_;
+
+    QGridLayout* gridlayout_main_;
 };
 
 #endif // SCROLLAREAWIDGET_H

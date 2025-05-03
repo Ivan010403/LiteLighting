@@ -5,8 +5,6 @@
 #include <QPushButton>
 
 class ExecButtonsWindow : public QWidget {
-Q_OBJECT
-
 public:
     explicit ExecButtonsWindow(QWidget* parent = nullptr) : QWidget(parent) {
         test = new QPushButton("exec", this);

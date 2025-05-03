@@ -6,42 +6,16 @@
 
 class LabelNameProperty : public QLabel {
 public:
-    explicit LabelNameProperty(QString name, QWidget* parent = nullptr) :
-        name_(name),
-        QLabel(parent) {}
+    explicit LabelNameProperty(QString name, QWidget* parent = nullptr);
 
 protected:
-    void paintEvent(QPaintEvent* event) override {
-        Q_UNUSED(event);
-        QPainter painter(this);
-        painter.setRenderHint(QPainter::Antialiasing);
+    void paintEvent(QPaintEvent* event) override;
 
-        drawBackground(painter);
-        drawBorder(painter);
-        drawText(painter);
-    }
+    void drawBackground(QPainter& painter);
 
-    void drawBackground(QPainter& painter) {
-        QBrush brush (QColor(29, 33, 34, 180));
+    void drawBorder(QPainter& painter);
 
-        painter.setPen(Qt::NoPen);
-        painter.setBrush(brush);
-        painter.drawRoundedRect(this->rect().adjusted(1, 1, -1, -1), 5, 5);
-    }
-
-    void drawBorder(QPainter& painter) {
-        QPen pen(QColor(96, 102, 104));
-
-        pen.setWidth(2);
-        painter.setPen(pen);
-        painter.setBrush(Qt::NoBrush);
-        painter.drawRoundedRect(rect().adjusted(1, 1, -1, -1), 5, 5);
-    }
-
-    void drawText(QPainter& painter) {
-        painter.setPen(Qt::white);
-        painter.drawText(rect(), Qt::AlignCenter, name_);
-    }
+    void drawText(QPainter& painter);
 
 private:
     const QString name_;

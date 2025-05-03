@@ -12,7 +12,7 @@ PatchSheetWindow::PatchSheetWindow(FixtureArrayModel* dmx_fixture_array, QWidget
 
 
 void PatchSheetWindow::OnBtnAddFxtrClicked() {
-    qdial_patching_->show();
+    qdial_patching_->exec();
 }
 
 void PatchSheetWindow::SetupUi() {

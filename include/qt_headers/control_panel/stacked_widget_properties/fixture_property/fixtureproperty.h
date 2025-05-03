@@ -7,7 +7,6 @@
 #include "./scroll_bar_widget/scrollbarvalue.h"
 
 class FixtureProperty : public QWidget {
-Q_OBJECT
 public:
     explicit FixtureProperty(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, QWidget* parent = nullptr);
 

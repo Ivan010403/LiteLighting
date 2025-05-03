@@ -6,8 +6,7 @@
 #include "light_headers/FixtureArray.h"
 
 class QDialogGrouping : public QDialog {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     explicit QDialogGrouping(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
 
