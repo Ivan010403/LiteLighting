@@ -1,4 +1,4 @@
-#include "light_headers/programming_command/abstractcommand.h"
+#include "light_headers/programming_command/AbstractCommand.h"
 
 void AbstractCommand::AddAction(Fixture* fxtr, ChannelType channel, uint8_t value) {
     actions_[fxtr][channel] = value;
@@ -23,15 +23,15 @@ bool AbstractCommand::SetProgrammingType(ProgrammingType type_channels, int numb
 
     ClearUnusedCommands();
 
-    return actions_.size() != 0 ? true : false;
+    return actions_.size() != 0 ? true : false; // точно ли произойдет это? проверить, если вообще не проходит комманда под этот тип
 }
 
 bool AbstractCommand::CheckExistingChannel(Fixture* fxtr, ChannelType channel) {
     if ((actions_.count(fxtr) > 0) && (actions_[fxtr].count(channel) > 0)) return true;
     return false;
-} // зачем?
+} // нужна для перерисовки контента баттонов в control panel
 
-void AbstractCommand::ClearUnusedCommands() {
+void AbstractCommand::ClearUnusedCommands() { // вроде норм, но протестить
     const auto& vec = map_programming_to_channel[type_channels_];
 
     auto main_it = actions_.begin();
@@ -54,7 +54,7 @@ void AbstractCommand::ClearUnusedCommands() {
     }
 }
 
-QJsonObject AbstractCommand::SaveDataToShow() {
+QJsonObject AbstractCommand::SaveDataToShow() { // подумать над неймингом и добавить имя самой команды!!!
     QJsonObject json;
     json["progr_type"] = static_cast<int>(type_channels_);
     json["number"] =  number_;
@@ -73,7 +73,7 @@ QJsonObject AbstractCommand::SaveDataToShow() {
             temp["value"] = static_cast<int>(val.second);
             com.append(temp);
         }
-        act["maps"] = com;
+        act["actions"] = com;
 
         actions.append(act);
     }

@@ -9,9 +9,7 @@ class AbstractCommand {
 public:
     AbstractCommand() = default;
 
-    ~AbstractCommand() {
-        // CommandArray::instance().DeleteCommand(type_channels_, number_);
-    }
+    ~AbstractCommand() = default;
 
     void AddAction(Fixture* fxtr, ChannelType channel, uint8_t value);
 
@@ -21,12 +19,12 @@ public:
 
     bool SetProgrammingType(ProgrammingType type_channels_, int number);
 
-    bool CheckExistingChannel(Fixture* fxtr, ChannelType channel); // зачем?
+    bool CheckExistingChannel(Fixture* fxtr, ChannelType channel);
 
 private:
-    QJsonObject SaveDataToShow();
-
     void ClearUnusedCommands();
+
+    QJsonObject SaveDataToShow();
 
     std::map<Fixture*, std::map<ChannelType, uint8_t>> actions_;
 

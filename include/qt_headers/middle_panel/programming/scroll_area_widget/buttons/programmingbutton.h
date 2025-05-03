@@ -6,7 +6,7 @@
 #include <QPainter>
 
 #include "./modal_windows/qdialogcommand.h"
-#include "light_headers/programming_command/abstractcommand.h"
+#include "light_headers/programming_command/AbstractCommand.h"
 #include "light_headers/programming_command/CommandArray.h"
 
 class ProgrammingButton : public QPushButton {

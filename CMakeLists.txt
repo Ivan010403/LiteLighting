@@ -75,7 +75,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/light_src/FixtureArray.cpp
         src/light_src/DmxGateway.cpp
         src/light_src/CustomTypeEnum.cpp
-        src/light_src/programming_command/abstractcommand.cpp
+        src/light_src/programming_command/AbstractCommand.cpp
         src/light_src/FixtureGroup.cpp
 
         include/qt_headers/mainwindow.h include/qt_headers/mainwindow.cpp
@@ -101,7 +101,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/scroll_bar_widget/scrollbarvalue.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/scroll_bar_widget/scrollbarvalue.cpp
         include/qt_headers/control_panel/stacked_widget_properties/stackedwidgetproperty.h include/qt_headers/control_panel/stacked_widget_properties/stackedwidgetproperty.cpp
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/typebutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/typebutton.cpp
-        include/light_headers/programming_command/abstractcommand.h
+        include/light_headers/programming_command/AbstractCommand.h
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogcommand.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogcommand.cpp
         include/light_headers/FixtureGroup.h
         include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/groupbutton.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/groupbutton.cpp
@@ -111,6 +111,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/value_property/buttonvalueproperty.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/value_property/buttonvalueproperty.cpp
         include/light_headers/Mediator.h
         include/light_headers/programming_command/CommandArray.h
+        src/light_src/programming_command/CommandArray.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

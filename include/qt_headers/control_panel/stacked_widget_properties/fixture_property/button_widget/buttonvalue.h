@@ -6,7 +6,7 @@
 
 #include "light_headers/CustomTypeEnum.h"
 #include "light_headers/Fixture.h"
-#include "light_headers/programming_command/abstractcommand.h"
+#include "light_headers/programming_command/AbstractCommand.h"
 #include "light_headers/Mediator.h"
 
 #include "./name_property/labelnameproperty.h"

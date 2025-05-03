@@ -35,12 +35,13 @@ public:
 
     int GetFixtureIdByIndex(int index);
     Fixture* GetFixtureByIndex(int index);
+    Fixture* GetFixtureByFixtureId(int fix_id);
 
     int FixtureAmount() const;
 
     void Clear(); // maybe private?
 
-    void LoadDataFromShow();
+    void LoadDataFromShow(QJsonObject& root);
     void SaveDataToShow(QJsonObject& root) const;
     //-------------------------------------------------------------------------------
 
@@ -56,6 +57,8 @@ private:
     DmxGateway& dmx_gateway_; // что если объект разрушится? ссылка будет указывать на дичь
 
     QVector <Fixture*> vector_fixture_; // не проинициализировал! 2) зачем через new создавать? МОЖНО СТАТИЧЕСКИ БЕЗ NEW!
+
+    std::map <int, Fixture*> map_fixture_;
     int fixtures_amount_ = 0; // maybe unsigned?
 };
 

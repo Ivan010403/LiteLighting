@@ -119,8 +119,12 @@ void FixtureArrayModel::CreateNewFixture(int fixture_id, int universe_id, uint16
 {
     ++fixtures_amount_;
     beginInsertRows(QModelIndex(), vector_fixture_.size(), vector_fixture_.size());
-    vector_fixture_.append(new Fixture(fixture_id, universe_id, dmx_address, channel_amount, name,
-                                       channels, dmx_gateway_.GetBuffer(universe_id)));
+
+    Fixture* fxtr = new Fixture(fixture_id, universe_id, dmx_address, channel_amount, name,
+                                channels, dmx_gateway_.GetBuffer(universe_id));
+    vector_fixture_.append(fxtr);
+    map_fixture_[fixture_id] = fxtr;
+
     endInsertRows();
 }
 
@@ -134,6 +138,10 @@ Fixture* FixtureArrayModel::GetFixtureByIndex(int index) {
     return vector_fixture_[index];
 }
 
+Fixture* FixtureArrayModel::GetFixtureByFixtureId(int fix_id) {
+    return map_fixture_[fix_id];
+}
+
 int FixtureArrayModel::FixtureAmount() const {
     return fixtures_amount_;
 }
@@ -142,16 +150,13 @@ void FixtureArrayModel::Clear() {
     for (int i = 0; i < vector_fixture_.size(); ++i) {
         delete vector_fixture_[i];
     }
+    vector_fixture_.clear();
+    map_fixture_.clear();
+    fixtures_amount_ = 0;
 }
 
-void FixtureArrayModel::LoadDataFromShow() {
+void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
     Clear();
-
-    QFile file("test2.json");
-    if (!file.open(QIODevice::ReadOnly)) return; // обработать нормально
-
-    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-    QJsonObject root = doc.object();
 
     QJsonArray fixtures_array = root["fixtures"].toArray();
 

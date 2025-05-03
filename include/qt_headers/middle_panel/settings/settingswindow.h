@@ -23,7 +23,16 @@ public:
 
 private slots:
     void onLoadClicked() {
-        dmx_fixture_array_->LoadDataFromShow();
+        QFile file("test3.json");
+        if (!file.open(QIODevice::ReadOnly)) return; // обработать нормально
+
+        QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+        QJsonObject root = doc.object();
+
+
+        dmx_fixture_array_->LoadDataFromShow(root);
+
+        CommandArray::instance().LoadDataFromShow(root, dmx_fixture_array_);
     }
 
     void onSaveClicked() {
