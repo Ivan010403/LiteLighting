@@ -109,6 +109,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/control_panel/btn_property_type/buttonpropertytype.h include/qt_headers/control_panel/btn_property_type/buttonpropertytype.cpp
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/name_property/labelnameproperty.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/name_property/labelnameproperty.cpp
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/value_property/buttonvalueproperty.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/value_property/buttonvalueproperty.cpp
+        include/light_headers/Mediator.h
+        include/light_headers/Uploader.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

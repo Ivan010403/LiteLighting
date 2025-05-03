@@ -10,3 +10,10 @@ void FixtureGroup::ChangeData(ChannelType channel_type, int value) {
         fxtr->SendDmxData();
     }
 }
+
+bool FixtureGroup::SaveDataToShow() const {
+    for (const auto& fxtr : group_fxtrs_) {
+        fxtr->SaveDataToShow();
+    }
+    return true;
+}

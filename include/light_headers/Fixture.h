@@ -9,23 +9,7 @@
 #include <QWidget> // для qdebug
 
 #include <light_headers/CustomTypeEnum.h>
-
-class Mediator : public QObject {
-    Q_OBJECT
-public:
-    static Mediator& instance() { static Mediator m; return m; }
-
-signals:
-    void SelectingFixture();
-    void UnselectingFixture();
-
-    void SelectingCommand();
-    void UnselectingCommand();
-
-private:
-    Mediator() = default;
-};
-
+#include "./Mediator.h"
 
 class Fixture {
     friend class FixtureArrayModel;
@@ -45,6 +29,8 @@ public:
     unsigned int GetFixtureId() const;
 
     virtual void ChangeData(ChannelType channel_type, int value);
+
+    virtual bool SaveDataToShow() const;
     //-------------------------------------------------------------------------------
 
     //---------------------------deleted functions-----------------------------------

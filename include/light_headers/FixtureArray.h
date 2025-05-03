@@ -32,6 +32,8 @@ public:
     Fixture* GetFixtureByIndex(int index);
     int FixtureAmount() const;
     int GroupAmount() const;
+    void LoadDataFromShow();
+    void SaveDataToShow() const;
     //-------------------------------------------------------------------------------
 
     //---------------------------deleted functions-----------------------------------

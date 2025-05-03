@@ -54,6 +54,45 @@ void Fixture::ChangeData(ChannelType channel_type, int value) {
     SendDmxData();
 }
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QFile>
+
+bool Fixture::SaveDataToShow() const {
+    QJsonObject json;
+    json["fix_id"] = static_cast<int>(fixture_id_); // неприятно!
+    json["univ_id"] =  static_cast<int>(universe_id_);
+    json["dmx_addr"] = dmx_address_;
+    json["chan_amount"] = channel_amount_;
+    json["name"] = QString::fromStdString(name_); // сделать так чтобы name был QString!
+
+    QJsonArray channels_array;
+    for (const auto& tag : channels_) {
+        channels_array.append(static_cast<int>(tag.first));
+    }
+    json["channels_type"] = channels_array;
+
+    QJsonArray channels_value;
+    for (const auto& tag : channels_) {
+        channels_value.append(*tag.second);
+    }
+    json["channels_value"] = channels_value;
+
+
+    QFile file("test.json");
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "Ошибка открытия файла для записи";
+        return false;
+    }
+
+    QJsonDocument doc(json);
+    file.write(doc.toJson());
+    file.close();
+
+    return true;
+}
+
 void Fixture::SendDmxData() {
     dmx_data_->SetRange(dmx_address_, raw_data_, channel_amount_);
 }

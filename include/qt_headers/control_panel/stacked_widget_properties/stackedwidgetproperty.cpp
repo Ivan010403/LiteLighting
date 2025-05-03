@@ -12,7 +12,7 @@ void StackedWidgetProperty::SetupUi(AbstractCommand** main_command, Fixture** se
     hlayout_main_->setContentsMargins(0, 0, 0, 0);
     hlayout_main_->setSpacing(85);
 
-    for (auto var : map_property_to_channel[prop_type_]) {
+    for (auto var : map_property_to_channel[prop_type_]) { // вот здесь очко если много каналов (не хватит 4 редакторов)
         hlayout_main_->addWidget(new FixtureProperty(main_command, selected_fixture, var, this));
     }
 

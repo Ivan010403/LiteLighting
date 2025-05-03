@@ -11,6 +11,7 @@ public:
 
     void ChangeData(ChannelType channel_type, int value) override;
 
+    bool SaveDataToShow() const override;
 private:
     std::vector<Fixture*> group_fxtrs_;
 };

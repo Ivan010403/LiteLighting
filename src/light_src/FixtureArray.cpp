@@ -142,3 +142,13 @@ int FixtureArrayModel::FixtureAmount() const {
 int FixtureArrayModel::GroupAmount() const {
     return groups_anount_;
 }
+
+void FixtureArrayModel::LoadDataFromShow() {
+
+}
+
+void FixtureArrayModel::SaveDataToShow() const {
+    for (const auto& var : vector_fixture_) {
+        var->SaveDataToShow();
+    }
+}

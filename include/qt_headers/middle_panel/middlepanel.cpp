@@ -29,7 +29,7 @@ void MiddlePanel::SetupUi(AbstractCommand** main_command, Fixture** selected_fix
     exc_btns_window_ = new ExecButtonsWindow(this);
     bskng_window_ = new BuskingWindow(this);
     ptch_sht_window_ = new PatchSheetWindow(dmx_fixture_array, this);
-    stngs_window_ = new SettingsWindow(this);
+    stngs_window_ = new SettingsWindow(dmx_fixture_array, this);
 
     addWidget(progr_window_);
     addWidget(exc_btns_window_);
