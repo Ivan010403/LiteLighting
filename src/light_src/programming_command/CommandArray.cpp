@@ -40,12 +40,13 @@ void CommandArray::LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fi
     for (const QJsonValue& val : commands_array) {
         QJsonObject command = val.toObject();
 
+        QString name = command["name"].toString();
         ProgrammingType type = static_cast<ProgrammingType>(command["progr_type"].toInt());
         int number = command["number"].toInt();
 
 
         AbstractCommand* abstract_command = new AbstractCommand();
-        abstract_command->SetProgrammingType(type, number);
+        abstract_command->SetData(type, number, name);
 
 
         QJsonArray fixtures = command["command"].toArray();
@@ -68,6 +69,7 @@ void CommandArray::LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fi
                 abstract_command->AddAction(curr_fxtr, ch_type, value);
             }
         }
+        emit AddingCommand(type, number, abstract_command);
         AddCommand(abstract_command);
     }
 }

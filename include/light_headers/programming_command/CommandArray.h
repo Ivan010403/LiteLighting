@@ -21,14 +21,14 @@ public:
     void LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fixture_array);
 
 signals:
-    void CommandAdded(ProgrammingType, int);
+    void AddingCommand(ProgrammingType, int, AbstractCommand*);
 
 private:
     void Clear();
 
     CommandArray() = default;
 
-    std::map <ProgrammingType, std::map<int, AbstractCommand*>> map_commands_;
+    std::map <ProgrammingType, std::map<int, AbstractCommand*>> map_commands_; // а зачем мне мапа? я же буду сигналами докидываться до элементов
 };
 
 #endif // COMMANDARRAY_H

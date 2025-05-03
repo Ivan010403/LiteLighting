@@ -2,6 +2,30 @@
 
 ProgrammingWindow::ProgrammingWindow(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, QWidget* parent) : QWidget(parent) {
     SetupUi(main_command, selected_fixture, dmx_fixture_array);
+    SetupConnections();
+}
+
+void ProgrammingWindow::onAddedCommand(ProgrammingType type, int number, AbstractCommand* command) {
+    switch (type) {
+    case ProgrammingType::Position:
+        cntnt_wdgt_positions_->GetProgrammButton(number)->SetCommand(command);
+        break;
+    case ProgrammingType::Color:
+        cntnt_wdgt_color_->GetProgrammButton(number)->SetCommand(command);
+        break;
+    case ProgrammingType::Beam:
+        cntnt_wdgt_beam_->GetProgrammButton(number)->SetCommand(command);
+        break;
+    case ProgrammingType::Focus:
+        cntnt_wdgt_focus_->GetProgrammButton(number)->SetCommand(command);
+        break;
+    default:
+        break;
+    }
+}
+
+void ProgrammingWindow::SetupConnections() {
+    connect(&CommandArray::instance(), &CommandArray::AddingCommand, this, &ProgrammingWindow::onAddedCommand);
 }
 
 void ProgrammingWindow::SetupUi(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array) {

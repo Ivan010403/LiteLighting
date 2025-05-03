@@ -17,9 +17,11 @@ public:
 
     int Size() const;
 
-    bool SetProgrammingType(ProgrammingType type_channels_, int number);
+    bool SetData(ProgrammingType type_channels_, int number, QString name);
 
     bool CheckExistingChannel(Fixture* fxtr, ChannelType channel);
+
+    QString name_;
 
 private:
     void ClearUnusedCommands();

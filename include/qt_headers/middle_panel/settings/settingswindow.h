@@ -24,7 +24,7 @@ public:
 private slots:
     void onLoadClicked() {
         QFile file("test3.json");
-        if (!file.open(QIODevice::ReadOnly)) return; // обработать нормально
+        if (!file.open(QIODevice::ReadOnly)) return; // обработать нормально - а что если не открылось?
 
         QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
         QJsonObject root = doc.object();
@@ -44,7 +44,7 @@ private slots:
 
 
         QFile file("test3.json");
-        if (!file.open(QIODevice::WriteOnly)) {
+        if (!file.open(QIODevice::WriteOnly)) { // а что если не открылось?
             qDebug() << "Ошибка открытия файла для записи";
         }
 

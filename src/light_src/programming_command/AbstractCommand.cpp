@@ -17,9 +17,10 @@ int AbstractCommand::Size() const {
     return actions_.size();
 }
 
-bool AbstractCommand::SetProgrammingType(ProgrammingType type_channels, int number) {
+bool AbstractCommand::SetData(ProgrammingType type_channels, int number, QString name) {
     number_ = number;
     type_channels_ = type_channels;
+    name_ = name;
 
     ClearUnusedCommands();
 
@@ -56,6 +57,7 @@ void AbstractCommand::ClearUnusedCommands() { // вроде норм, но пр�
 
 QJsonObject AbstractCommand::SaveDataToShow() { // подумать над неймингом и добавить имя самой команды!!!
     QJsonObject json;
+    json["name"] = name_;
     json["progr_type"] = static_cast<int>(type_channels_);
     json["number"] =  number_;
 

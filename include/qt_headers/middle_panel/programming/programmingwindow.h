@@ -13,7 +13,11 @@ public:
 
     ~ProgrammingWindow() = default;
 
+private slots:
+    void onAddedCommand(ProgrammingType type, int number, AbstractCommand* command);
+
 private:
+    void SetupConnections();
     void SetupUi(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array);
 
     QGridLayout* gridlayout_main_;

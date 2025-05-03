@@ -15,6 +15,8 @@ public:
     explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent = nullptr);
 
     ~ProgrammingButton();
+
+    void SetCommand(AbstractCommand* command);
 protected:
     void paintEvent(QPaintEvent* event) override;
 

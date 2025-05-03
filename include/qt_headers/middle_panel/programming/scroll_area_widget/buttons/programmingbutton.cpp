@@ -14,6 +14,12 @@ ProgrammingButton::~ProgrammingButton() {
     delete current_command_;
 } // опасно
 
+void ProgrammingButton::SetCommand(AbstractCommand* command) {
+    current_command_ = command; // а если уже была команда?
+    setText(current_command_->name_);
+}
+
+
 void ProgrammingButton::paintEvent(QPaintEvent* event) {
     Q_UNUSED(event);
     QPainter painter(this);
@@ -42,7 +48,7 @@ void ProgrammingButton::mouseDoubleClickEvent(QMouseEvent* event) {
 
 void ProgrammingButton::onSaveClicked(const QString& name) {
     current_command_ = *main_command_;
-    bool result = current_command_->SetProgrammingType(type_channels_, number_);
+    bool result = current_command_->SetData(type_channels_, number_, name);
 
     if (result) {
         CommandArray::instance().AddCommand(current_command_);

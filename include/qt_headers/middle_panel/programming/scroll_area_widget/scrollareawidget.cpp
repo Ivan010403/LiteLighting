@@ -16,6 +16,11 @@ ScrollAreaWidget::ScrollAreaWidget(AbstractCommand** main_command, Fixture** sel
     AddButtons(batch_size_);
 }
 
+ProgrammingButton* ScrollAreaWidget::GetProgrammButton(int number) {
+    return qobject_cast<ProgrammingButton*>(gridlayout_main_->itemAt(number)->widget());
+}
+
+
 void ScrollAreaWidget::SetupUi() {
     gridlayout_main_ = new QGridLayout(this);
     gridlayout_main_->setContentsMargins(16, 16, 10, 16);

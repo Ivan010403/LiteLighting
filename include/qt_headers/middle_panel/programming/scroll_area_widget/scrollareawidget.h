@@ -12,6 +12,7 @@ public:
 
     ~ScrollAreaWidget() = default;
 
+    ProgrammingButton* GetProgrammButton(int number);
 private:
     void SetupUi();
 
