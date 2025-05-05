@@ -17,6 +17,8 @@ public:
     ~ProgrammingButton();
 
     void SetCommand(AbstractCommand* command);
+    void DeleteCurrentCommand();
+
 protected:
     void paintEvent(QPaintEvent* event) override;
 

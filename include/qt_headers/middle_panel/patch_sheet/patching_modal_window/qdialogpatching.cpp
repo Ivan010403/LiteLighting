@@ -35,6 +35,7 @@ void QDialogPatching::OnBtnClicked() {
     dmx_fixture_array_->CreateNewFixture(linedit_fixture_id_->text().toInt(), linedit_universe_id_->text().toInt(),
                                          linedit_dmx_address_->text().toInt(), channel_amount_, linedit_name_->text().toStdString(),
                                          channels);
+    qDebug() << "QDialogPatching::OnBtnClicked() --> создание фикстуры с fix_id = " << linedit_fixture_id_->text().toInt();
     hide();
 }
 

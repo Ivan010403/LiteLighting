@@ -24,8 +24,29 @@ void ProgrammingWindow::onAddedCommand(ProgrammingType type, int number, Abstrac
     }
 }
 
+void ProgrammingWindow::onDeletingCommand(ProgrammingType type, int number) {
+    switch (type) {
+    case ProgrammingType::Position:
+        cntnt_wdgt_positions_->GetProgrammButton(number)->DeleteCurrentCommand();
+        break;
+    case ProgrammingType::Color:
+        cntnt_wdgt_color_->GetProgrammButton(number)->DeleteCurrentCommand();
+        break;
+    case ProgrammingType::Beam:
+        cntnt_wdgt_beam_->GetProgrammButton(number)->DeleteCurrentCommand();
+        break;
+    case ProgrammingType::Focus:
+        cntnt_wdgt_focus_->GetProgrammButton(number)->DeleteCurrentCommand();
+        break;
+    default:
+        break;
+    }
+}
+
+
 void ProgrammingWindow::SetupConnections() {
     connect(&CommandArray::instance(), &CommandArray::AddingCommand, this, &ProgrammingWindow::onAddedCommand);
+    connect(&CommandArray::instance(), &CommandArray::DeletingCommands, this, &ProgrammingWindow::onDeletingCommand);
 }
 
 void ProgrammingWindow::SetupUi(AbstractCommand** main_command, Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array) {

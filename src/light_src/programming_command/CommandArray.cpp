@@ -25,7 +25,8 @@ void CommandArray::SaveDataToShow(QJsonObject& root) {
 void CommandArray::Clear() {
     for (auto& var : map_commands_) {
         for (const auto& val : var.second) {
-            if (val.second) delete val.second;
+            delete val.second;
+            emit DeletingCommands(var.first, val.first);
         }
         var.second.clear();
     }

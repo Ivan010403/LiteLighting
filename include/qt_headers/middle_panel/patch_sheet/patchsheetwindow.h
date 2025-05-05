@@ -19,6 +19,7 @@ public:
 
 private slots:
     void OnBtnAddFxtrClicked();
+    void OnBtnDeleteFxtrClicked();
 
 private:
     void SetupUi();
@@ -36,6 +37,8 @@ private:
     QDialogPatching* qdial_patching_;
 
     FixtureArrayModel* dmx_fixture_array_;
+
+    QItemSelectionModel* selection_model_;
 };
 
 #endif // PATCHSHEETWINDOW_H

@@ -61,6 +61,8 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
         *selected_fixture_ = fixture;
         emit Mediator::instance().SelectingFixture();
 
+        qDebug() << "FixtureArrayModel --> selected fixture id = " << (*selected_fixture_)->GetFixtureId();
+
         switch (index.column()) {
             // ПРОВЕРИТЬ НА СУЖЕНИЯ ДАННЫХ, У МЕНЯ ТАМ UINT8_T
             case 0:
@@ -126,6 +128,27 @@ void FixtureArrayModel::CreateNewFixture(int fixture_id, int universe_id, uint16
     map_fixture_[fixture_id] = fxtr;
 
     endInsertRows();
+
+    qDebug() << "FixtureArrayModel::CreateNewFixture() --> создалась новая фикстура с id = " << fixture_id << " всего фикстур " << fixtures_amount_;
+}
+
+void FixtureArrayModel::DeleteFixture(int index) {
+    emit Mediator::instance().DeletingFixture(vector_fixture_[index]);
+
+    int for_debug = GetFixtureIdByIndex(index); // удалить
+
+    beginRemoveRows(QModelIndex(), index, index);
+    map_fixture_.erase(GetFixtureIdByIndex(index));
+
+    delete vector_fixture_[index];
+    vector_fixture_.removeAt(index);
+
+    endRemoveRows();
+
+    --fixtures_amount_;
+
+    qDebug() << "FixtureArrayModel::DeleteFixture() --> удалилась фикстура с index = " << index << "и id = " << for_debug << " всего фикстур = " << fixtures_amount_;
+
 }
 
 
@@ -142,6 +165,10 @@ Fixture* FixtureArrayModel::GetFixtureByFixtureId(int fix_id) {
     return map_fixture_[fix_id];
 }
 
+void FixtureArrayModel::AddFixtureToMap(Fixture* fxtr) {
+    map_fixture_[fxtr->GetFixtureId()] = fxtr;
+}
+
 int FixtureArrayModel::FixtureAmount() const {
     return fixtures_amount_;
 }
@@ -153,10 +180,14 @@ void FixtureArrayModel::Clear() {
     vector_fixture_.clear();
     map_fixture_.clear();
     fixtures_amount_ = 0;
+
+    qDebug() << "FixtureArrayModel::Clear() --> все фикстуры удалены. vec.size() = " << vector_fixture_.size() << "map.size() = " <<  map_fixture_.size();
 }
 
 void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
     Clear();
+
+    emit Mediator::instance().CreationGroup(-1, nullptr);
 
     QJsonArray fixtures_array = root["fixtures"].toArray();
 
@@ -169,6 +200,7 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
         uint16_t dmx_addr = fixture["dmx_addr"].toInt();
         uint16_t chan_amount = fixture["chan_amount"].toInt();
         QString name = fixture["name"].toString();
+        int group_id = fixture["group_id"].toInt();
 
         ChannelType channel_types[chan_amount];
 
@@ -181,10 +213,14 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
 
         CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name.toStdString(), channel_types);
 
+        if (group_id != 0) emit Mediator::instance().CreationGroup(group_id, vector_fixture_[fixtures_amount_-1]);
+
         for (int i = 0; i < channel_values_json.size(); ++i) {
             vector_fixture_[fixtures_amount_-1]->ChangeData(channel_types[i], channel_values_json[i].toInt());
         }
     }
+
+    qDebug() << "FixtureArrayModel::LoadDataFromShow() --> Данные загружены. Amount = " << fixtures_amount_ << "vec.size() = " << vector_fixture_.size() << "map.size() = " <<  map_fixture_.size();
 }
 
 void FixtureArrayModel::SaveDataToShow(QJsonObject& root) const {
@@ -195,4 +231,6 @@ void FixtureArrayModel::SaveDataToShow(QJsonObject& root) const {
     }
 
     root["fixtures"] = json_array;
+
+    qDebug() << "FixtureArrayModel::SaveDataToShow()";
 }

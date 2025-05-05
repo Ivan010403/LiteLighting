@@ -15,10 +15,17 @@ ProgrammingButton::~ProgrammingButton() {
 } // опасно
 
 void ProgrammingButton::SetCommand(AbstractCommand* command) {
-    current_command_ = command; // а если уже была команда?
+    current_command_ = command; // а если уже была команда?!!!!!!
     setText(current_command_->name_);
+    qDebug() << "ProgrammingButton::SetCommand() --> команда установлена в " << ProgrammingTypeToQString(type_channels_) << number_;
 }
 
+void ProgrammingButton::DeleteCurrentCommand() {
+    delete current_command_;
+    current_command_ = nullptr;
+
+    qDebug() << "ProgrammingButton::DeleteCurrentCommand() --> команда удалена (если она была)" << ProgrammingTypeToQString(type_channels_) << number_;
+}
 
 void ProgrammingButton::paintEvent(QPaintEvent* event) {
     Q_UNUSED(event);
@@ -50,11 +57,15 @@ void ProgrammingButton::onSaveClicked(const QString& name) {
     current_command_ = *main_command_;
     bool result = current_command_->SetData(type_channels_, number_, name);
 
+    qDebug() << "ProgrammingButton::onSaveClicked() --> попытка сохранения command";
+
     if (result) {
         CommandArray::instance().AddCommand(current_command_);
 
         *main_command_ = new AbstractCommand();
         setText(name);
+
+        qDebug() << "ProgrammingButton::onSaveClicked() --> командна сохранена успешно";
     }
     else {
         delete current_command_;
@@ -62,6 +73,7 @@ void ProgrammingButton::onSaveClicked(const QString& name) {
 
         *main_command_ = new AbstractCommand();
         setText("Empty cue");
+        qDebug() << "ProgrammingButton::onSaveClicked() --> командна не сохранена. Нет подходящих каналов";
     }
 }
 

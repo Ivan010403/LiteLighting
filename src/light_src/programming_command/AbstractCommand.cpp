@@ -1,5 +1,9 @@
 #include "light_headers/programming_command/AbstractCommand.h"
 
+AbstractCommand::AbstractCommand() {
+    connect(&Mediator::instance(), &Mediator::DeletingFixture, this, &AbstractCommand::onDeletedFixture);
+}
+
 void AbstractCommand::AddAction(Fixture* fxtr, ChannelType channel, uint8_t value) {
     actions_[fxtr][channel] = value;
 }
@@ -31,6 +35,16 @@ bool AbstractCommand::CheckExistingChannel(Fixture* fxtr, ChannelType channel) {
     if ((actions_.count(fxtr) > 0) && (actions_[fxtr].count(channel) > 0)) return true;
     return false;
 } // нужна для перерисовки контента баттонов в control panel
+
+void AbstractCommand::onDeletedFixture(Fixture* fxtr) {
+    for (const auto& var : actions_) {
+        if (*var.first == *fxtr) {
+            actions_.erase(var.first);
+            qDebug() << "AbstractCommand::onDeletedFixture --> удалил фикстуру из команды " << ProgrammingTypeToQString(type_channels_) << number_;
+            break;
+        }
+    }
+}
 
 void AbstractCommand::ClearUnusedCommands() { // вроде норм, но протестить
     const auto& vec = map_programming_to_channel[type_channels_];

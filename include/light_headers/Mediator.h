@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+#include "Fixture.h"
+
 class Mediator : public QObject {
     Q_OBJECT
 public:
@@ -14,6 +16,9 @@ signals:
 
     void SelectingCommand();
     void UnselectingCommand();
+
+    void DeletingFixture(Fixture*);
+    void CreationGroup(int, Fixture*);
 
 private:
     Mediator() = default;

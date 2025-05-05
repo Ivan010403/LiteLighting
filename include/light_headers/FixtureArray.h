@@ -32,10 +32,13 @@ public:
     //---------------------------local functions-------------------------------------
     void CreateNewFixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                           std::string name, const ChannelType* channels);
+    void DeleteFixture(int index);
 
     int GetFixtureIdByIndex(int index);
     Fixture* GetFixtureByIndex(int index);
     Fixture* GetFixtureByFixtureId(int fix_id);
+
+    void AddFixtureToMap(Fixture*);
 
     int FixtureAmount() const;
 
@@ -57,8 +60,8 @@ private:
     DmxGateway& dmx_gateway_; // что если объект разрушится? ссылка будет указывать на дичь
 
     QVector <Fixture*> vector_fixture_; // не проинициализировал! 2) зачем через new создавать? МОЖНО СТАТИЧЕСКИ БЕЗ NEW!
-
     std::map <int, Fixture*> map_fixture_;
+
     int fixtures_amount_ = 0; // maybe unsigned?
 };
 

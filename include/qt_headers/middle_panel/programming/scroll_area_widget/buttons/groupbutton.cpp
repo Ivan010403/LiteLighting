@@ -38,9 +38,33 @@ void GroupButton::mousePressEvent(QMouseEvent* event) {
 void GroupButton::mouseDoubleClickEvent(QMouseEvent* event) {
     if ((event->button() == Qt::LeftButton) && (group_)) {
         (*selected_fixture_) = group_;
-        QPushButton::mouseDoubleClickEvent(event); // чтобы был визуал. может быть update()?
+        qDebug() << "GroupButton::mouseDoubleClickEvent() --> выбор группы как selected_fixture";
+
+        QPushButton::mouseDoubleClickEvent(event);
     } else {
         QPushButton::mouseDoubleClickEvent(event);
+    }
+}
+
+void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr) {
+    if ((group_id == -1) && (group_)) {
+        delete group_;
+        group_ = nullptr;
+        qDebug() << "OnGroupCreatedMediator() --> удаление уже существующей группы";
+        return;
+    }
+
+    if (number_ == group_id) {
+        if (group_) {
+            group_->AddFixture(fxtr);
+            qDebug() << "OnGroupCreatedMediator() --> добавление фикстуры в группу с group id " << group_id << " fix id = " << fxtr->GetFixtureId();
+        }
+        else {
+            group_ = new FixtureGroup(group_id);
+            dmx_fixture_array_->AddFixtureToMap(group_);
+            qDebug() << "OnGroupCreatedMediator() --> добавление фикстуры в группу с group id " << group_id << " fix id = " << fxtr->GetFixtureId();
+            group_->AddFixture(fxtr);
+        }
     }
 }
 
@@ -60,6 +84,8 @@ void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes, const 
 
     group_ = new FixtureGroup(number_, name.toStdString(), vect_fxtr);
 
+    qDebug() << "GroupButton::OnGroupCreated() --> создание группы";
+
     setText(name);
 }
 
@@ -71,6 +97,7 @@ void GroupButton::SetupUi() {
 
 void GroupButton::SetupConnections() {
     connect(qdial_grouping_, &QDialogGrouping::GroupCreating, this, &GroupButton::OnGroupCreated);
+    connect(&Mediator::instance(), &Mediator::CreationGroup, this, &GroupButton::OnGroupCreatedMediator);
 }
 
 void GroupButton::drawBackground(QPainter& painter) {

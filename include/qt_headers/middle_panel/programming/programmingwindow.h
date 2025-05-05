@@ -15,6 +15,7 @@ public:
 
 private slots:
     void onAddedCommand(ProgrammingType type, int number, AbstractCommand* command);
+    void onDeletingCommand(ProgrammingType type, int number);
 
 private:
     void SetupConnections();

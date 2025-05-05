@@ -15,6 +15,23 @@ void PatchSheetWindow::OnBtnAddFxtrClicked() {
     qdial_patching_->exec();
 }
 
+void PatchSheetWindow::OnBtnDeleteFxtrClicked() {
+    if (selection_model_->selectedIndexes().size() != 0) {
+        QSet<int> unique_rows;
+        for (const QModelIndex& index : selection_model_->selectedIndexes()) {
+            if (index.isValid()) {
+                unique_rows.insert(index.row());
+            }
+        }
+
+        for (const int var : unique_rows) {
+            qDebug() << "PatchSheetWindow::OnBtnDeleteFxtrClicked() --> удаление фикстуры с index = " << var;
+            dmx_fixture_array_->DeleteFixture(var);
+        }
+    }
+}
+
+
 void PatchSheetWindow::SetupUi() {
     vlayout_main_ = new QVBoxLayout(this);
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
@@ -25,7 +42,9 @@ void PatchSheetWindow::SetupUi() {
     // table_fixtures_->setItemDelegateForColumn(0, new FixtureArrayModelDelegate());
     // table_fixtures_->setItemDelegateForColumn(1, new FixtureArrayModelDelegate());
     table_fixtures_->setItemDelegateForColumn(2, new UniverseAddressDelegate(table_fixtures_));
+    table_fixtures_->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
+    selection_model_ = table_fixtures_->selectionModel();
 
 
     hlayout_btns_ = new QHBoxLayout();
@@ -43,4 +62,5 @@ void PatchSheetWindow::SetupUi() {
 
 void PatchSheetWindow::SetupConnections() {
     connect(btn_add_fixture_, &QPushButton::clicked, this, &PatchSheetWindow::OnBtnAddFxtrClicked);
+    connect(btn_delete_fixture_, &QPushButton::clicked, this, &PatchSheetWindow::OnBtnDeleteFxtrClicked);
 }

@@ -22,13 +22,14 @@ public:
 
 signals:
     void AddingCommand(ProgrammingType, int, AbstractCommand*);
+    void DeletingCommands(ProgrammingType, int);
 
 private:
     void Clear();
 
     CommandArray() = default;
 
-    std::map <ProgrammingType, std::map<int, AbstractCommand*>> map_commands_; // а зачем мне мапа? я же буду сигналами докидываться до элементов
+    std::map <ProgrammingType, std::map<int, AbstractCommand*>> map_commands_;
 };
 
 #endif // COMMANDARRAY_H

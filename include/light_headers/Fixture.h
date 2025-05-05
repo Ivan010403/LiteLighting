@@ -24,12 +24,15 @@ public:
     explicit Fixture (Fixture&& fxtr);
 
     virtual ~Fixture();
+
+    bool operator== (const Fixture& fxtr) const;
     //-------------------------------------------------------------------------------
 
     //---------------------------local functions-------------------------------------
     int GetFixtureId() const;
 
     virtual void ChangeData(ChannelType channel_type, int value);
+    virtual void AddFixture(Fixture*);
 
     QJsonObject SaveDataToShow();
     //-------------------------------------------------------------------------------
@@ -43,6 +46,7 @@ public:
 public: // надо заменить как-то
     void SendDmxData();
     std::unordered_map <ChannelType, uint8_t*> channels_; // может заменить на map?
+    int group_id_ = 0;
 
 private:
 
@@ -56,8 +60,6 @@ private:
 
     ola::DmxBuffer* dmx_data_;
     uint8_t* raw_data_;
-
-    int group_id_ = 0;
 };
 
 

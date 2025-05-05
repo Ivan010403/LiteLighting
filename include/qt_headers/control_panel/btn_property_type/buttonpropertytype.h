@@ -5,8 +5,6 @@
 #include <QPainter>
 
 #include "light_headers/CustomTypeEnum.h"
-#include "light_headers/Fixture.h"
-#include "light_headers/programming_command/AbstractCommand.h"
 
 class ButtonPropertyType : public QPushButton {
     Q_OBJECT

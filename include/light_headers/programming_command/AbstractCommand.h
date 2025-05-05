@@ -1,13 +1,16 @@
 #ifndef ABSTRACTCOMMAND_H
 #define ABSTRACTCOMMAND_H
 
-#include "../Fixture.h"
+#include <QObject>
+
+#include "../Mediator.h"
 #include "light_headers/CustomTypeEnum.h"
 
-class AbstractCommand {
+class AbstractCommand : public QObject {
+Q_OBJECT
     friend class CommandArray;
 public:
-    AbstractCommand() = default;
+    AbstractCommand();
 
     ~AbstractCommand() = default;
 
@@ -22,6 +25,9 @@ public:
     bool CheckExistingChannel(Fixture* fxtr, ChannelType channel);
 
     QString name_;
+
+private slots:
+    void onDeletedFixture(Fixture* fxtr);
 
 private:
     void ClearUnusedCommands();

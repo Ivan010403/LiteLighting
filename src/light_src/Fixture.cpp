@@ -1,7 +1,7 @@
 #include "light_headers/Fixture.h"
 
 Fixture::Fixture(int group_id, std::string name) :
-    fixture_id_(0),
+    fixture_id_(group_id),
     universe_id_(0),
     dmx_address_(0),
     channel_amount_(0),
@@ -51,6 +51,10 @@ Fixture::~Fixture() {
     }
 }
 
+bool Fixture::operator== (const Fixture& fxtr) const {
+    return this->fixture_id_ == fxtr.fixture_id_;
+}
+
 int Fixture::GetFixtureId() const {
     return fixture_id_;
 }
@@ -60,6 +64,8 @@ void Fixture::ChangeData(ChannelType channel_type, int value) {
     SendDmxData();
 }
 
+void Fixture::AddFixture(Fixture*) {}
+
 QJsonObject Fixture::SaveDataToShow() {
     QJsonObject json;
     json["fix_id"] = fixture_id_;
@@ -67,6 +73,7 @@ QJsonObject Fixture::SaveDataToShow() {
     json["dmx_addr"] = dmx_address_;
     json["chan_amount"] = channel_amount_;
     json["name"] = QString::fromStdString(name_); // сделать так чтобы name был QString!
+    json["group_id"] = group_id_;
 
     QJsonArray channels_array;
     QJsonArray channels_value;
