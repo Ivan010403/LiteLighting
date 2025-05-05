@@ -16,7 +16,7 @@ public:
 
     ~QDialogPatching();
 
-    void show();
+    int exec() override;
 
 protected:
     void closeEvent(QCloseEvent* event) override;

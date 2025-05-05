@@ -13,7 +13,6 @@ public:
 
 signals:
     void showProgramming();
-    void showExecButtons();
     void showBusking();
     void showPatchSheet();
     void showSettings();
@@ -25,7 +24,6 @@ private:
 
     QVBoxLayout* vlayout_main_;
     QPushButton* btn_programming_;
-    QPushButton* btn_exec_btns_;
     QPushButton* btn_busking_;
     QPushButton* btn_patching_;
     QPushButton* btn_settings_;

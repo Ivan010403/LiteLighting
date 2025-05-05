@@ -72,7 +72,6 @@ void MainWindow::SetupUi() {
 
 void MainWindow::SetupConnections() {
     connect(pages_panel_, &PagesPanel::showProgramming, middle_panel_, &MiddlePanel::showProgramming);
-    connect(pages_panel_, &PagesPanel::showExecButtons, middle_panel_, &MiddlePanel::showExecButtons);
     connect(pages_panel_, &PagesPanel::showBusking, middle_panel_, &MiddlePanel::showBusking);
     connect(pages_panel_, &PagesPanel::showPatchSheet, middle_panel_, &MiddlePanel::showPatchSheet);
     connect(pages_panel_, &PagesPanel::showSettings, middle_panel_, &MiddlePanel::showSettings);

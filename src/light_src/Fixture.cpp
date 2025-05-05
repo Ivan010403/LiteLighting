@@ -66,6 +66,8 @@ void Fixture::ChangeData(ChannelType channel_type, int value) {
 
 void Fixture::AddFixture(Fixture*) {}
 
+void Fixture::DeleteFixture(Fixture*) {}
+
 QJsonObject Fixture::SaveDataToShow() {
     QJsonObject json;
     json["fix_id"] = fixture_id_;

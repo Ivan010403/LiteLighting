@@ -46,6 +46,12 @@ void GroupButton::mouseDoubleClickEvent(QMouseEvent* event) {
     }
 }
 
+void GroupButton::OnDeleteFixture(Fixture* fxtr) {
+    if (group_) {
+        group_->DeleteFixture(fxtr);
+    }
+}
+
 void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr) {
     if ((group_id == -1) && (group_)) {
         delete group_;
@@ -98,6 +104,7 @@ void GroupButton::SetupUi() {
 void GroupButton::SetupConnections() {
     connect(qdial_grouping_, &QDialogGrouping::GroupCreating, this, &GroupButton::OnGroupCreated);
     connect(&Mediator::instance(), &Mediator::CreationGroup, this, &GroupButton::OnGroupCreatedMediator);
+    connect(&Mediator::instance(), &Mediator::DeletingFixture, this, &GroupButton::OnDeleteFixture);
 }
 
 void GroupButton::drawBackground(QPainter& painter) {

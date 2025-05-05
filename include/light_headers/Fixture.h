@@ -33,6 +33,7 @@ public:
 
     virtual void ChangeData(ChannelType channel_type, int value);
     virtual void AddFixture(Fixture*);
+    virtual void DeleteFixture(Fixture*);
 
     QJsonObject SaveDataToShow();
     //-------------------------------------------------------------------------------

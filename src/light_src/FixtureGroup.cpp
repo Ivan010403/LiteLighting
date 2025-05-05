@@ -14,11 +14,11 @@ FixtureGroup::FixtureGroup(int fixture_id) : Fixture(fixture_id * 100, "unnamed"
     qDebug() << "FixtureGroup::FixtureGroup(int fixture_id) --> группа создалась";
 }
 
-void FixtureGroup::onDeletedFixture(Fixture* fxtr) {
+void FixtureGroup::DeleteFixture(Fixture* fxtr) {
     for (int i = 0; i < group_fxtrs_.size(); ++i) {
         if (*group_fxtrs_[i] == *fxtr) {
             group_fxtrs_.erase(group_fxtrs_.begin() + i);
-            qDebug() << "AbstractCommand::onDeletedFixture --> удалил фикстуру из группы ";
+            qDebug() << "FixtureGroup::onDeletedFixture --> удалил фикстуру из группы ";
             break;
         }
     }

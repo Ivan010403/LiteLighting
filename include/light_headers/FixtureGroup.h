@@ -15,8 +15,7 @@ public:
 
     void AddFixture(Fixture*) override;
 
-private:
-    void onDeletedFixture(Fixture* fxtr);
+    void DeleteFixture(Fixture* fxtr) override;
 
 private:
     std::vector<Fixture*> group_fxtrs_;

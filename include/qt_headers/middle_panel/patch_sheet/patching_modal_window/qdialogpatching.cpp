@@ -15,7 +15,7 @@ QDialogPatching::~QDialogPatching() {
     delete channels; // а что если мувнутся данные и я удалю внутри фикстуры?
 }
 
-void QDialogPatching::show() {
+int QDialogPatching::exec() {
     label_patching_->setText("patching");
     linedit_name_->clear();
     linedit_fixture_id_->clear();
@@ -23,7 +23,7 @@ void QDialogPatching::show() {
     linedit_dmx_address_->clear();
     linedit_channel_amount_->clear();
 
-    QDialog::show();
+    return QDialog::exec();
 }
 
 void QDialogPatching::closeEvent(QCloseEvent* event) {
@@ -36,7 +36,7 @@ void QDialogPatching::OnBtnClicked() {
                                          linedit_dmx_address_->text().toInt(), channel_amount_, linedit_name_->text().toStdString(),
                                          channels);
     qDebug() << "QDialogPatching::OnBtnClicked() --> создание фикстуры с fix_id = " << linedit_fixture_id_->text().toInt();
-    hide();
+    emit accept();
 }
 
 void QDialogPatching::OnChannelAmountEntered() {

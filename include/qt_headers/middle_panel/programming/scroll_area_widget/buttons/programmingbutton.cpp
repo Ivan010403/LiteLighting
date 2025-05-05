@@ -12,7 +12,7 @@ ProgrammingButton::ProgrammingButton(AbstractCommand** main_command, Programming
 
 ProgrammingButton::~ProgrammingButton() {
     delete current_command_;
-} // опасно
+}
 
 void ProgrammingButton::SetCommand(AbstractCommand* command) {
     current_command_ = command; // а если уже была команда?!!!!!!
@@ -21,7 +21,6 @@ void ProgrammingButton::SetCommand(AbstractCommand* command) {
 }
 
 void ProgrammingButton::DeleteCurrentCommand() {
-    delete current_command_;
     current_command_ = nullptr;
 
     qDebug() << "ProgrammingButton::DeleteCurrentCommand() --> команда удалена (если она была)" << ProgrammingTypeToQString(type_channels_) << number_;

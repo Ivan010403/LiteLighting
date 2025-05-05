@@ -89,7 +89,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/middle_panel/busking/buskingwindow.h include/qt_headers/middle_panel/busking/buskingwindow.cpp
         include/qt_headers/middle_panel/programming/programmingwindow.h include/qt_headers/middle_panel/programming/programmingwindow.cpp
         include/qt_headers/middle_panel/settings/settingswindow.h include/qt_headers/middle_panel/settings/settingswindow.cpp
-        include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.h include/qt_headers/middle_panel/executors&buttons/execbuttonswindow.cpp
+
 
         include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.h include/qt_headers/middle_panel/patch_sheet/patching_modal_window/qdialogpatching.cpp
         include/light_headers/fixture_array_delegates/universeaddressdelegate.h src/light_src/fixture_array_delegates/universeaddressdelegate.cpp

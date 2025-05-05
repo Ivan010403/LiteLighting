@@ -25,6 +25,7 @@ protected:
 private slots:
     void OnGroupCreated(const QModelIndexList& selected_indexes, const QString& name);
     void OnGroupCreatedMediator(int, Fixture*);
+    void OnDeleteFixture(Fixture*);
 
 private:
     void SetupUi();
@@ -36,7 +37,6 @@ private:
     void drawBorder(QPainter& painter);
 
     void drawText(QPainter& painter);
-
 
 private:
     Fixture** selected_fixture_;
