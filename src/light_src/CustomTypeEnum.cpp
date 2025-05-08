@@ -22,8 +22,8 @@ QString ChannelTypeToQString(ChannelType type) {
         return QStringLiteral("Focus");
     case ChannelType::Control:
         return QStringLiteral("Control");
-    case ChannelType::Empty:
-        return QStringLiteral("Empty");
+    case ChannelType::Flex:
+        return QStringLiteral("Flex");
     default:
         return QStringLiteral("error");
     }
@@ -54,8 +54,6 @@ QString ProgrammingTypeToQString(ProgrammingType type) {
     switch(type) {
     case ProgrammingType::Group:
         return QStringLiteral("Group");
-    case ProgrammingType::Default:
-        return QStringLiteral("Default");
     case ProgrammingType::Position:
         return QStringLiteral("Position");
     case ProgrammingType::Color:
@@ -65,7 +63,7 @@ QString ProgrammingTypeToQString(ProgrammingType type) {
     case ProgrammingType::Focus:
         return QStringLiteral("Focus");
     case ProgrammingType::Cue:
-        return QStringLiteral("Focus");
+        return QStringLiteral("Cue");
     default:
         return QStringLiteral("error");
     }

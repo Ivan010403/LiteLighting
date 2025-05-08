@@ -12,11 +12,20 @@ void StackedWidgetProperty::SetupUi(AbstractCommand** main_command, Fixture** se
     hlayout_main_->setContentsMargins(0, 0, 0, 0);
     hlayout_main_->setSpacing(85);
 
-    for (auto var : map_property_to_channel[prop_type_]) { // вот здесь очко если много каналов (не хватит 4 редакторов)
-        hlayout_main_->addWidget(new FixtureProperty(main_command, selected_fixture, var, this));
+    int x = 0;
+    for (auto var : map_property_to_channel[prop_type_]) {
+        if (x < 4) {
+            FixtureProperty* temp = new FixtureProperty(main_command, selected_fixture, var, this);
+            connect(temp->btn_value_, &ButtonValue::ChangingChannel, this, &StackedWidgetProperty::ChangingChannel);
+            hlayout_main_->addWidget(temp);
+            ++x;
+        }
+        else {
+            break;
+        }
     }
 
     for (int i = map_property_to_channel[prop_type_].size(); i < 4; ++i) {
-        hlayout_main_->addWidget(new FixtureProperty(nullptr, nullptr, ChannelType::Empty, this));
+        hlayout_main_->addWidget(new FixtureProperty(nullptr, nullptr, ChannelType::Flex, this));
     }
 }

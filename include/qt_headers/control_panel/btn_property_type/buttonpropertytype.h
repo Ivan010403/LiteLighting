@@ -13,8 +13,13 @@ public:
 
     ~ButtonPropertyType() = default;
 
+public slots:
+    void onChangedChannel(bool flag);
+
 protected:
     void paintEvent(QPaintEvent* event) override;
+
+    bool flag_ = false;
 };
 
 #endif // BUTTONPROPERTYTYPE_H

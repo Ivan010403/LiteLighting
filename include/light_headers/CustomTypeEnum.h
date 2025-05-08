@@ -18,7 +18,7 @@ enum class ChannelType: uint8_t {
     Beam,
     Focus,
     Control,
-    Empty // сделать лучше!!
+    Flex
 }; // добавить
 
 enum class PropertyType: uint8_t {
@@ -33,12 +33,11 @@ enum class PropertyType: uint8_t {
 
 enum class ProgrammingType: uint8_t {
     Group,
-    Default,
+    Cue,
     Position,
     Color,
     Beam,
-    Focus,
-    Cue
+    Focus
 };
 
 QString ChannelTypeToQString(ChannelType type);
@@ -50,7 +49,5 @@ QString ProgrammingTypeToQString(ProgrammingType type);
 extern std::map<const PropertyType, const std::vector<ChannelType>> map_property_to_channel;
 
 extern std::map<const ProgrammingType, const std::vector<ChannelType>> map_programming_to_channel;
-
-
 
 #endif // CUSTOMTYPEENUM_H

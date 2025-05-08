@@ -18,7 +18,7 @@ signals:
     void UnselectingCommand();
 
     void DeletingFixture(Fixture*);
-    void CreationGroup(int, Fixture*);
+    void CreationGroup(int, Fixture*, const QString&);
 
 private:
     Mediator() = default;

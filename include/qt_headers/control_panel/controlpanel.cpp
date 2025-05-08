@@ -92,4 +92,12 @@ void ControlPanel::SetupConnections() {
     connect(btn_beam_, &QPushButton::clicked, this, &ControlPanel::showBeam);
     connect(btn_focus_, &QPushButton::clicked, this, &ControlPanel::showFocus);
     connect(btn_control_, &QPushButton::clicked, this, &ControlPanel::showControl);
+
+    connect(properties_dimmer_, &StackedWidgetProperty::ChangingChannel, btn_dimmer_, &ButtonPropertyType::onChangedChannel);
+    connect(properties_position_, &StackedWidgetProperty::ChangingChannel, btn_position_, &ButtonPropertyType::onChangedChannel);
+    connect(properties_gobo_, &StackedWidgetProperty::ChangingChannel, btn_gobo_, &ButtonPropertyType::onChangedChannel);
+    connect(properties_color_, &StackedWidgetProperty::ChangingChannel, btn_color_, &ButtonPropertyType::onChangedChannel);
+    connect(properties_beam_, &StackedWidgetProperty::ChangingChannel, btn_beam_, &ButtonPropertyType::onChangedChannel);
+    connect(properties_focus_, &StackedWidgetProperty::ChangingChannel, btn_focus_, &ButtonPropertyType::onChangedChannel);
+    connect(properties_control_, &StackedWidgetProperty::ChangingChannel, btn_control_, &ButtonPropertyType::onChangedChannel);
 }

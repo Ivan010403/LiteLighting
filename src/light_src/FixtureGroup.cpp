@@ -1,16 +1,18 @@
 #include "light_headers/FixtureGroup.h"
 
-FixtureGroup::FixtureGroup(int fixture_id, std::string name, const std::vector<Fixture*>& group_fxtrs) :
+FixtureGroup::FixtureGroup(int fixture_id, const std::vector<Fixture*>& group_fxtrs, const QString& group_name) :
     group_fxtrs_(std::move(group_fxtrs)),
-    Fixture(fixture_id * 100, name)
+    group_name_(group_name),
+    Fixture(fixture_id * 100)
 {
     for (auto& var : group_fxtrs_) {
         var->group_id_ = fixture_id;
+        var->group_name_ = group_name_;
     }
     qDebug() << "FixtureGroup::FixtureGroup() --> группа создалась";
 }
 
-FixtureGroup::FixtureGroup(int fixture_id) : Fixture(fixture_id * 100, "unnamed") {
+FixtureGroup::FixtureGroup(int fixture_id, const QString& group_name) : group_name_(group_name), Fixture(fixture_id * 100) {
     qDebug() << "FixtureGroup::FixtureGroup(int fixture_id) --> группа создалась";
 }
 

@@ -11,6 +11,7 @@
 
 #include "./name_property/labelnameproperty.h"
 #include "./value_property/buttonvalueproperty.h"
+#include "./modal_window/qdialogsetter.h"
 
 class ButtonValue : public QWidget {
     Q_OBJECT
@@ -21,6 +22,7 @@ public:
 
 signals:
     void valueChanged(int value);
+    void ChangingChannel(bool flag);
 
 public slots:
     void onSliderChanged(int value);
@@ -41,7 +43,7 @@ private:
 
     AbstractCommand** main_command_;
     Fixture** selected_fixture_;
-    const ChannelType type_property_;
+    const ChannelType type_channel_;
 
     uint8_t current_value_ = 0;
     const uint8_t* ptr_value_ = &current_value_;
@@ -55,6 +57,8 @@ private:
     QVBoxLayout* vlayout_main_;
     LabelNameProperty* name_property_; // не меняю никогда, можно сделать константой
     ButtonValueProperty* value_property_;
+
+    QDialogSetter* qdial_setter_;
 };
 
 #endif // BUTTONVALUE_H

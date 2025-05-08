@@ -26,7 +26,7 @@ bool AbstractCommand::SetData(ProgrammingType type_channels, int number, QString
     type_channels_ = type_channels;
     name_ = name;
 
-    ClearUnusedCommands();
+    if (type_channels_ != ProgrammingType::Cue) ClearUnusedCommands();
 
     return actions_.size() != 0 ? true : false; // точно ли произойдет это? проверить, если вообще не проходит комманда под этот тип
 }

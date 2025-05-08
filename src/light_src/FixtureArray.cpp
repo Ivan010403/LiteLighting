@@ -59,7 +59,9 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
     if (role == Qt::EditRole && index.isValid()) {
         Fixture* fixture = vector_fixture_[index.row()];
         *selected_fixture_ = fixture;
+
         emit Mediator::instance().SelectingFixture();
+        emit Mediator::instance().SelectingCommand();
 
         qDebug() << "FixtureArrayModel --> selected fixture id = " << (*selected_fixture_)->GetFixtureId();
 
@@ -187,7 +189,7 @@ void FixtureArrayModel::Clear() {
 void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
     Clear();
 
-    emit Mediator::instance().CreationGroup(-1, nullptr);
+    emit Mediator::instance().CreationGroup(-1, nullptr, QStringLiteral(""));
 
     QJsonArray fixtures_array = root["fixtures"].toArray();
 
@@ -201,6 +203,7 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
         uint16_t chan_amount = fixture["chan_amount"].toInt();
         QString name = fixture["name"].toString();
         int group_id = fixture["group_id"].toInt();
+        QString group_name = fixture["group_name"].toString();
 
         ChannelType channel_types[chan_amount];
 
@@ -213,7 +216,7 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
 
         CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name.toStdString(), channel_types);
 
-        if (group_id != 0) emit Mediator::instance().CreationGroup(group_id, vector_fixture_[fixtures_amount_-1]);
+        if (group_id != 0) emit Mediator::instance().CreationGroup(group_id, vector_fixture_[fixtures_amount_-1], group_name);
 
         for (int i = 0; i < channel_values_json.size(); ++i) {
             vector_fixture_[fixtures_amount_-1]->ChangeData(channel_types[i], channel_values_json[i].toInt());

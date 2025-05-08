@@ -24,7 +24,7 @@ protected:
 
 private slots:
     void OnGroupCreated(const QModelIndexList& selected_indexes, const QString& name);
-    void OnGroupCreatedMediator(int, Fixture*);
+    void OnGroupCreatedMediator(int, Fixture*, const QString&);
     void OnDeleteFixture(Fixture*);
 
 private:

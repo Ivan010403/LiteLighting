@@ -38,6 +38,8 @@ void GroupButton::mousePressEvent(QMouseEvent* event) {
 void GroupButton::mouseDoubleClickEvent(QMouseEvent* event) {
     if ((event->button() == Qt::LeftButton) && (group_)) {
         (*selected_fixture_) = group_;
+        emit Mediator::instance().SelectingFixture();
+        emit Mediator::instance().SelectingCommand();
         qDebug() << "GroupButton::mouseDoubleClickEvent() --> выбор группы как selected_fixture";
 
         QPushButton::mouseDoubleClickEvent(event);
@@ -52,7 +54,7 @@ void GroupButton::OnDeleteFixture(Fixture* fxtr) {
     }
 }
 
-void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr) {
+void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr, const QString& group_name) {
     if ((group_id == -1) && (group_)) {
         delete group_;
         group_ = nullptr;
@@ -66,10 +68,11 @@ void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr) {
             qDebug() << "OnGroupCreatedMediator() --> добавление фикстуры в группу с group id " << group_id << " fix id = " << fxtr->GetFixtureId();
         }
         else {
-            group_ = new FixtureGroup(group_id);
+            group_ = new FixtureGroup(group_id, group_name);
             dmx_fixture_array_->AddFixtureToMap(group_);
             qDebug() << "OnGroupCreatedMediator() --> добавление фикстуры в группу с group id " << group_id << " fix id = " << fxtr->GetFixtureId();
             group_->AddFixture(fxtr);
+            setText(group_name);
         }
     }
 }
@@ -88,7 +91,7 @@ void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes, const 
         vect_fxtr.push_back(dmx_fixture_array_->GetFixtureByIndex(var));
     }
 
-    group_ = new FixtureGroup(number_, name.toStdString(), vect_fxtr);
+    group_ = new FixtureGroup(number_, vect_fxtr, name);
 
     qDebug() << "GroupButton::OnGroupCreated() --> создание группы";
 

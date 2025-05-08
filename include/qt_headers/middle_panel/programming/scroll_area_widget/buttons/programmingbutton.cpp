@@ -74,6 +74,8 @@ void ProgrammingButton::onSaveClicked(const QString& name) {
         setText("Empty cue");
         qDebug() << "ProgrammingButton::onSaveClicked() --> командна не сохранена. Нет подходящих каналов";
     }
+
+    emit Mediator::instance().SelectingCommand();
 }
 
 void ProgrammingButton::SetupUi() {

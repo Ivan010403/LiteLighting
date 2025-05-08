@@ -5,9 +5,9 @@
 
 class FixtureGroup : public Fixture {
 public:
-    explicit FixtureGroup(int fixture_id, std::string name, const std::vector<Fixture*>& group_fxtrs);
+    explicit FixtureGroup(int fixture_id, const std::vector<Fixture*>& group_fxtrs, const QString& group_name);
 
-    explicit FixtureGroup(int fixture_id);
+    explicit FixtureGroup(int fixture_id, const QString& group_name);
 
     ~FixtureGroup() override = default;
 
@@ -19,6 +19,8 @@ public:
 
 private:
     std::vector<Fixture*> group_fxtrs_;
+
+    QString group_name_;
 };
 
 #endif // FIXTUREGROUP_H

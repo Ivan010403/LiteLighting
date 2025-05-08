@@ -26,8 +26,8 @@ private:
     QScrollArea* scrl_groups_;
     ScrollAreaWidget* cntnt_wdgt_groups_;
 
-    QScrollArea* scrl_default_;
-    ScrollAreaWidget* cntnt_wdgt_default_;
+    QScrollArea* scrl_cue_;
+    ScrollAreaWidget* cntnt_wdgt_cue_;
 
     QScrollArea* scrl_positions_;
     ScrollAreaWidget* cntnt_wdgt_positions_;

@@ -12,6 +12,8 @@ public:
 
     ~FixtureProperty() = default;
 
+    ButtonValue* btn_value_;
+
 private:
     void SetupUi(AbstractCommand** main_command, Fixture** selected_fixture);
 
@@ -20,7 +22,6 @@ private:
     const ChannelType type_property_; // в button value тоже хранится это. Нужно ли хранить это ещё дополнительно здесь?
 
     QHBoxLayout* hlayout_main_;
-    ButtonValue* btn_value_;
     ScrollBarValue* scrl_bar_value_;
 };
 

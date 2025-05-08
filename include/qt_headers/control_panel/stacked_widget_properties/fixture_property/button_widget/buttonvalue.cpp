@@ -3,30 +3,37 @@
 ButtonValue::ButtonValue(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, QWidget* parent) :
     main_command_(main_command),
     selected_fixture_(selected_fixture),
-    type_property_(type),
+    type_channel_(type),
     QWidget(parent)
 {
     SetupUi();
-    SetupConnections();
+
+    if (selected_fixture) {
+        SetupConnections();
+    }
 }
 
 void ButtonValue::onSliderChanged(int value) {
-    if (*selected_fixture_) {
+    if ((*selected_fixture_) && ((*selected_fixture_)->isHaveChannel(type_channel_))) {
         current_value_ = 255 - value; // заменить 255 на константу
         SendDmxData();
         flag_command_ = true;
         value_property_->update();
+        emit ChangingChannel(true);
+        emit valueChanged(current_value_);
     }
 }
 
 void ButtonValue::onSelectedCommand() {
-    flag_command_ = (*main_command_)->CheckExistingChannel(*selected_fixture_, type_property_);
+    flag_command_ = (*main_command_)->CheckExistingChannel(*selected_fixture_, type_channel_);
     value_property_->update();
+    emit ChangingChannel(flag_command_);
 }
 
 void ButtonValue::onUnselectedCommand() {
-    flag_command_ = false;
-    value_property_->update();
+    // flag_command_ = false;
+    // value_property_->update();
+    // emit ChangingChannel(false);
 }
 
 void ButtonValue::onSelectedFixture() {
@@ -35,8 +42,9 @@ void ButtonValue::onSelectedFixture() {
 }
 
 void ButtonValue::onUnselectedFixture() {
-    flag_fixture = false;
-    value_property_->update();
+    // flag_fixture = false;
+    // value_property_->update();
+    // emit ChangingChannel(false);
 }
 
 void ButtonValue::SetupUi() {
@@ -46,7 +54,7 @@ void ButtonValue::SetupUi() {
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
     vlayout_main_->setSpacing(0);
 
-    name_property_ = new LabelNameProperty(ChannelTypeToQString(type_property_), this);
+    name_property_ = new LabelNameProperty(ChannelTypeToQString(type_channel_), this);
     name_property_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
     value_property_ = new ButtonValueProperty(ptr_value_, ptr_command_, ptr_fixture_, this);
@@ -54,11 +62,13 @@ void ButtonValue::SetupUi() {
 
     vlayout_main_->addWidget(name_property_);
     vlayout_main_->addWidget(value_property_);
+
+    qdial_setter_ = new QDialogSetter(type_channel_);
 }
 
 void ButtonValue::SendDmxData() {
-    (*selected_fixture_)->ChangeData(type_property_, current_value_);
-    (*main_command_)->AddAction(*selected_fixture_, type_property_, current_value_);
+    (*selected_fixture_)->ChangeData(type_channel_, current_value_);
+    (*main_command_)->AddAction(*selected_fixture_, type_channel_, current_value_);
 }
 
 void ButtonValue::SetupConnections() {
@@ -67,5 +77,8 @@ void ButtonValue::SetupConnections() {
 
     connect(&Mediator::instance(), &Mediator::SelectingCommand, this, &ButtonValue::onSelectedCommand);
     connect(&Mediator::instance(), &Mediator::UnselectingCommand, this, &ButtonValue::onUnselectedCommand);
+
+    connect(value_property_, &ButtonValueProperty::clicked, qdial_setter_, &QDialogSetter::exec);
+    connect(qdial_setter_, &QDialogSetter::BtnClicking, this, &ButtonValue::onSliderChanged);
 }
 

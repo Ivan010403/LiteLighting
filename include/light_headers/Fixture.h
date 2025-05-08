@@ -16,7 +16,7 @@ class Fixture {
     friend class FixtureArrayModel;
 public:
     //--------------------constructors and destructor--------------------------------
-    explicit Fixture(int group_id, std::string name);
+    explicit Fixture(int group_id);
 
     explicit Fixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
                      std::string name, const ChannelType* channels, ola::DmxBuffer* dmx_data);
@@ -30,6 +30,8 @@ public:
 
     //---------------------------local functions-------------------------------------
     int GetFixtureId() const;
+
+    bool isHaveChannel(ChannelType type) const;
 
     virtual void ChangeData(ChannelType channel_type, int value);
     virtual void AddFixture(Fixture*);
@@ -48,6 +50,7 @@ public: // надо заменить как-то
     void SendDmxData();
     std::unordered_map <ChannelType, uint8_t*> channels_; // может заменить на map?
     int group_id_ = 0;
+    QString group_name_ = "";
 
 private:
 

@@ -7,9 +7,9 @@ ScrollAreaWidget::ScrollAreaWidget(AbstractCommand** main_command, Fixture** sel
     type_channels_(scrl_area_type),
     QWidget(parent)
 {
-    columns_per_row_ = (scrl_area_type == ProgrammingType::Group || scrl_area_type == ProgrammingType::Default) ? 20 : 10;
+    columns_per_row_ = (scrl_area_type == ProgrammingType::Group || scrl_area_type == ProgrammingType::Cue) ? 20 : 10;
 
-    batch_size_ = (scrl_area_type == ProgrammingType::Group || scrl_area_type == ProgrammingType::Default ||
+    batch_size_ = (scrl_area_type == ProgrammingType::Group || scrl_area_type == ProgrammingType::Cue ||
                    scrl_area_type == ProgrammingType::Focus || scrl_area_type == ProgrammingType::Beam ) ? 40 : 50;
 
     SetupUi();

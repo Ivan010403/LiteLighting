@@ -1,11 +1,11 @@
 #include "light_headers/Fixture.h"
 
-Fixture::Fixture(int group_id, std::string name) :
+Fixture::Fixture(int group_id) :
     fixture_id_(group_id),
     universe_id_(0),
     dmx_address_(0),
     channel_amount_(0),
-    name_(name),
+    name_(""),
     channel_types_(nullptr),
     dmx_data_(nullptr),
     raw_data_(nullptr) {}
@@ -59,6 +59,11 @@ int Fixture::GetFixtureId() const {
     return fixture_id_;
 }
 
+bool Fixture::isHaveChannel(ChannelType type) const {
+    return channels_.count(type) > 0 ? true : false;
+}
+
+
 void Fixture::ChangeData(ChannelType channel_type, int value) {
     *channels_[channel_type] = value; // что если value больше 255?
     SendDmxData();
@@ -76,6 +81,8 @@ QJsonObject Fixture::SaveDataToShow() {
     json["chan_amount"] = channel_amount_;
     json["name"] = QString::fromStdString(name_); // сделать так чтобы name был QString!
     json["group_id"] = group_id_;
+    json["group_name"] = group_name_;
+
 
     QJsonArray channels_array;
     QJsonArray channels_value;
