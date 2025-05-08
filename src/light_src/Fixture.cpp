@@ -11,7 +11,7 @@ Fixture::Fixture(int group_id) :
     raw_data_(nullptr) {}
 
 Fixture::Fixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                 std::string name, const ChannelType* channels, ola::DmxBuffer* dmx_data) :
+                 QString name, const ChannelType* channels, ola::DmxBuffer* dmx_data) :
     fixture_id_ (fixture_id),
     universe_id_(universe_id),
     dmx_address_(dmx_address),
@@ -79,7 +79,7 @@ QJsonObject Fixture::SaveDataToShow() {
     json["univ_id"] =  universe_id_;
     json["dmx_addr"] = dmx_address_;
     json["chan_amount"] = channel_amount_;
-    json["name"] = QString::fromStdString(name_); // сделать так чтобы name был QString!
+    json["name"] = name_;
     json["group_id"] = group_id_;
     json["group_name"] = group_name_;
 

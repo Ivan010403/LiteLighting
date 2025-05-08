@@ -13,6 +13,10 @@ public:
     ~ScrollAreaWidget() = default;
 
     ProgrammingButton* GetProgrammButton(int number);
+
+private slots:
+    void onEndedButtons();
+
 private:
     void SetupUi();
 
@@ -24,6 +28,7 @@ private:
     ProgrammingType type_channels_;
 
     int current_count_ = 1;
+    const int* ptr_current_amount_ = &current_count_;
     int columns_per_row_;
 
     const int button_size_ = 60;

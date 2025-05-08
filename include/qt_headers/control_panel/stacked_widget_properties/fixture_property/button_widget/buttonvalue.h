@@ -21,13 +21,15 @@ public:
     ~ButtonValue() = default;
 
 signals:
-    void valueChanged(int value);
+    void BtnValueChanged(int value);
     void ChangingChannel(bool flag);
 
 public slots:
     void onSliderChanged(int value);
 
 private slots:
+    void onQdialChanged(int value, int type);
+
     void onSelectedCommand();
     void onUnselectedCommand();
 
@@ -43,7 +45,8 @@ private:
 
     AbstractCommand** main_command_;
     Fixture** selected_fixture_;
-    const ChannelType type_channel_;
+    ChannelType type_channel_;
+    bool isFlex_;
 
     uint8_t current_value_ = 0;
     const uint8_t* ptr_value_ = &current_value_;

@@ -17,6 +17,8 @@ public:
 
     void DeleteFixture(Fixture* fxtr) override;
 
+    bool isHaveChannel(ChannelType type) const override;
+
 private:
     std::vector<Fixture*> group_fxtrs_;
 

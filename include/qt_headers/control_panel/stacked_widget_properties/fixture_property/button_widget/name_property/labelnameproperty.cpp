@@ -1,7 +1,8 @@
 #include "labelnameproperty.h"
 
-LabelNameProperty::LabelNameProperty(QString name, QWidget* parent) :
+LabelNameProperty::LabelNameProperty(QString name, ChannelType* type, QWidget* parent) :
     name_(name),
+    type_(type),
     QLabel(parent) {}
 
 void LabelNameProperty::paintEvent(QPaintEvent* event) {
@@ -33,5 +34,5 @@ void LabelNameProperty::drawBorder(QPainter& painter) {
 
 void LabelNameProperty::drawText(QPainter& painter) {
     painter.setPen(Qt::white);
-    painter.drawText(rect(), Qt::AlignCenter, name_);
+    painter.drawText(rect(), Qt::AlignCenter, name_ + " " + (type_ ? ChannelTypeToQString(*type_) : ""));
 }

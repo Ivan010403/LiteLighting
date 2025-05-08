@@ -33,13 +33,20 @@ void QDialogPatching::closeEvent(QCloseEvent* event) {
 
 void QDialogPatching::OnBtnClicked() {
     dmx_fixture_array_->CreateNewFixture(linedit_fixture_id_->text().toInt(), linedit_universe_id_->text().toInt(),
-                                         linedit_dmx_address_->text().toInt(), channel_amount_, linedit_name_->text().toStdString(),
+                                         linedit_dmx_address_->text().toInt(), channel_amount_, linedit_name_->text(),
                                          channels);
     qDebug() << "QDialogPatching::OnBtnClicked() --> создание фикстуры с fix_id = " << linedit_fixture_id_->text().toInt();
     emit accept();
 }
 
 void QDialogPatching::OnChannelAmountEntered() {
+    QString text = linedit_channel_amount_->text();
+    int pos = 0;
+    if (validator->validate(text, pos) != QValidator::Acceptable) {
+        linedit_channel_amount_->clear();
+        return;
+    }
+
     channel_amount_ = linedit_channel_amount_->text().toInt();
 
     if (channel_amount_ > current_order_channel_) {
@@ -79,9 +86,15 @@ void QDialogPatching::SetupUi() {
     label_patching_ = new QLabel("patching", this);
 
     linedit_name_ = new QLineEdit(this);
+
     linedit_fixture_id_ = new QLineEdit(this);
+    linedit_fixture_id_->setValidator(new QIntValidator(0, 10000, linedit_fixture_id_));
+
     linedit_universe_id_ = new QLineEdit(this);
+    linedit_universe_id_->setValidator(new QIntValidator(0, 10000, linedit_universe_id_));
+
     linedit_dmx_address_ = new QLineEdit(this);
+
     linedit_channel_amount_ = new QLineEdit(this);
 
     // сделать юнифицированно и нормально!
@@ -114,10 +127,27 @@ void QDialogPatching::SetupUi() {
     gridlayout_main_->addWidget(qcmbox_patching_, 5, 1);
 
     gridlayout_main_->addWidget(btn_enter_fixture_, 6, 0, 1, 2);
+
+    validator = new QIntValidator(0, 512, this);
 }
 
 void QDialogPatching::SetupConnections() {
     connect(btn_enter_fixture_, &QPushButton::clicked, this, &QDialogPatching::OnBtnClicked);
     connect(linedit_channel_amount_, &QLineEdit::editingFinished, this, &QDialogPatching::OnChannelAmountEntered);
     connect(qcmbox_patching_, &QComboBox::activated, this, &QDialogPatching::OnIndexChanged);
+
+    connect(linedit_fixture_id_, &QLineEdit::editingFinished, [=]() {
+        while (dmx_fixture_array_->isExistingFixId(linedit_fixture_id_->text().toInt())) {
+            linedit_fixture_id_->setText(QString::number(linedit_fixture_id_->text().toInt() + 1));
+        }
+    });
+
+    connect(linedit_dmx_address_, &QLineEdit::editingFinished, [=]() {
+        QString text = linedit_dmx_address_->text();
+        int pos = 0;
+        if (validator->validate(text, pos) != QValidator::Acceptable) {
+            linedit_dmx_address_->clear();
+            return;
+        }
+    });
 }

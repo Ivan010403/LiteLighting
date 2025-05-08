@@ -58,6 +58,7 @@ void CommandArray::LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fi
             int fix_id = fixture["fix_id"].toInt();
 
             Fixture* curr_fxtr = dmx_fixture_array->GetFixtureByFixtureId(fix_id); // что если нет такой фикстуры?
+            if (!curr_fxtr) continue;
 
             QJsonArray actions = fixture["actions"].toArray();
 

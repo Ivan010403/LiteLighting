@@ -36,3 +36,11 @@ void FixtureGroup::ChangeData(ChannelType channel_type, int value) {
         fxtr->SendDmxData();
     }
 }
+
+bool FixtureGroup::isHaveChannel(ChannelType type) const {
+    for (const auto& fxtr : group_fxtrs_) {
+        if (!fxtr->isHaveChannel(type)) return false;
+    }
+    return true;
+}
+

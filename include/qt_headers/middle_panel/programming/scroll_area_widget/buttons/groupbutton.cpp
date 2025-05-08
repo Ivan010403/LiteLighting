@@ -1,9 +1,10 @@
 #include "groupbutton.h"
 
-GroupButton::GroupButton(Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, int number, QWidget* parent) :
+GroupButton::GroupButton(Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, int number, const int* ptr, QWidget* parent) :
     selected_fixture_(selected_fixture),
     dmx_fixture_array_(dmx_fixture_array),
     number_(number),
+    ptr_current_amount_(ptr),
     QPushButton(parent)
 {
     SetupUi();
@@ -63,6 +64,8 @@ void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr, const QStr
     }
 
     if (number_ == group_id) {
+        if (*ptr_current_amount_ <= number_ + 1) emit onEndedButtons();
+
         if (group_) {
             group_->AddFixture(fxtr);
             qDebug() << "OnGroupCreatedMediator() --> добавление фикстуры в группу с group id " << group_id << " fix id = " << fxtr->GetFixtureId();
@@ -96,6 +99,8 @@ void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes, const 
     qDebug() << "GroupButton::OnGroupCreated() --> создание группы";
 
     setText(name);
+
+    if (*ptr_current_amount_ == number_ + 1) emit onEndedButtons();
 }
 
 void GroupButton::SetupUi() {

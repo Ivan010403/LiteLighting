@@ -11,9 +11,12 @@
 class GroupButton : public QPushButton {
     Q_OBJECT
 public:
-    explicit GroupButton(Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, int number, QWidget* parent = nullptr);
+    explicit GroupButton(Fixture** selected_fixture, FixtureArrayModel* dmx_fixture_array, int number, const int* ptr, QWidget* parent = nullptr);
 
     ~GroupButton();
+
+signals:
+    void onEndedButtons();
 
 protected:
     void paintEvent(QPaintEvent* event) override;
@@ -42,6 +45,7 @@ private:
     Fixture** selected_fixture_;
     FixtureArrayModel* dmx_fixture_array_;
     const int number_;
+    const int* ptr_current_amount_;
 
     Fixture* group_ = nullptr;
 

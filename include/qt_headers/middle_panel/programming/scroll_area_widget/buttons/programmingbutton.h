@@ -12,12 +12,15 @@
 class ProgrammingButton : public QPushButton {
     Q_OBJECT
 public:
-    explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent = nullptr);
+    explicit ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, const int* ptr, QWidget* parent = nullptr);
 
     ~ProgrammingButton();
 
     void SetCommand(AbstractCommand* command);
     void DeleteCurrentCommand();
+
+signals:
+    void onEndedButtons();
 
 protected:
     void paintEvent(QPaintEvent* event) override;
@@ -46,6 +49,7 @@ private:
 
     ProgrammingType type_channels_;
     const int number_;
+    const int* ptr_current_amount_;
 
     QDialogCommand* qdial_save_command_;
 };

@@ -6,21 +6,39 @@ ButtonValue::ButtonValue(AbstractCommand** main_command, Fixture** selected_fixt
     type_channel_(type),
     QWidget(parent)
 {
-    SetupUi();
+    isFlex_ = type_channel_ == ChannelType::Flex ? true : false;
 
-    if (selected_fixture) {
-        SetupConnections();
-    }
+    SetupUi();
+    SetupConnections();
 }
 
 void ButtonValue::onSliderChanged(int value) {
-    if ((*selected_fixture_) && ((*selected_fixture_)->isHaveChannel(type_channel_))) {
+    if ((*selected_fixture_) && ((*selected_fixture_)->isHaveChannel(type_channel_)) && type_channel_ != ChannelType::Flex) {
         current_value_ = 255 - value; // заменить 255 на константу
         SendDmxData();
         flag_command_ = true;
         value_property_->update();
+
         emit ChangingChannel(true);
-        emit valueChanged(current_value_);
+    }
+}
+
+void ButtonValue::onQdialChanged(int value, int type) {
+    if (*selected_fixture_) {
+        if (type != 0) {
+            type_channel_ = static_cast<ChannelType>(type - 1);
+            name_property_->update();
+        }
+
+        if ((*selected_fixture_)->isHaveChannel(type_channel_)) {
+            current_value_ = value; // заменить 255 на константу
+            SendDmxData();
+            flag_command_ = true;
+            value_property_->update();
+
+            emit ChangingChannel(true);
+            emit BtnValueChanged(255 - static_cast<int>(current_value_));
+        }
     }
 }
 
@@ -54,7 +72,7 @@ void ButtonValue::SetupUi() {
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
     vlayout_main_->setSpacing(0);
 
-    name_property_ = new LabelNameProperty(ChannelTypeToQString(type_channel_), this);
+    name_property_ = new LabelNameProperty(ChannelTypeToQString(type_channel_), (type_channel_ == ChannelType::Flex ? &type_channel_ : nullptr), this);
     name_property_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
     value_property_ = new ButtonValueProperty(ptr_value_, ptr_command_, ptr_fixture_, this);
@@ -79,6 +97,6 @@ void ButtonValue::SetupConnections() {
     connect(&Mediator::instance(), &Mediator::UnselectingCommand, this, &ButtonValue::onUnselectedCommand);
 
     connect(value_property_, &ButtonValueProperty::clicked, qdial_setter_, &QDialogSetter::exec);
-    connect(qdial_setter_, &QDialogSetter::BtnClicking, this, &ButtonValue::onSliderChanged);
+    connect(qdial_setter_, &QDialogSetter::BtnClicking, this, &ButtonValue::onQdialChanged);
 }
 

@@ -4,9 +4,11 @@
 #include <QLabel>
 #include <QPainter>
 
+#include "light_headers/CustomTypeEnum.h"
+
 class LabelNameProperty : public QLabel {
 public:
-    explicit LabelNameProperty(QString name, QWidget* parent = nullptr);
+    explicit LabelNameProperty(QString name, ChannelType* type = nullptr, QWidget* parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent* event) override;
@@ -19,6 +21,7 @@ protected:
 
 private:
     const QString name_;
+    const ChannelType* type_;
 };
 
 #endif // LABELNAMEPROPERTY_H

@@ -53,6 +53,8 @@ private:
     ChannelType* channels = nullptr; // проверить на утечку
     uint16_t channel_amount_ = 0;
     uint16_t current_order_channel_ = 0;
+
+    QIntValidator* validator;
 };
 
 #endif // QDIALOGHELPER_H

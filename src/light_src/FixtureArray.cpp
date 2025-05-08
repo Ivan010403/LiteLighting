@@ -32,7 +32,7 @@ QVariant FixtureArrayModel::data(const QModelIndex& index, int role) const {
     if (role == Qt::DisplayRole || role == Qt::EditRole) {
         switch (index.column()) {
             case 0: return fixture->fixture_id_;
-            case 1: return QString::fromStdString(fixture->name_);
+            case 1: return fixture->name_;
             case 2: return QString::number(fixture->universe_id_) + "." + QString::number(fixture->dmx_address_);
             case 3: return fixture->channel_amount_;
             case 4: return fixture->group_id_;
@@ -71,7 +71,7 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
                 fixture->fixture_id_ = value.toInt();
                 break;
             case 1:
-                fixture->name_ = value.toString().toStdString();
+                fixture->name_ = value.toString();
                 break;
             case 2:
             { // чтобы не было ошибки из-за скоупа list --- придумать как сделать лучше
@@ -119,7 +119,7 @@ Qt::ItemFlags FixtureArrayModel::flags(const QModelIndex& index) const {
 
 
 void FixtureArrayModel::CreateNewFixture(int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                                        std::string name, const ChannelType* channels)
+                                        QString name, const ChannelType* channels)
 {
     ++fixtures_amount_;
     beginInsertRows(QModelIndex(), vector_fixture_.size(), vector_fixture_.size());
@@ -166,6 +166,11 @@ Fixture* FixtureArrayModel::GetFixtureByIndex(int index) {
 Fixture* FixtureArrayModel::GetFixtureByFixtureId(int fix_id) {
     return map_fixture_[fix_id];
 }
+
+bool FixtureArrayModel::isExistingFixId(int fix_id) const {
+    return map_fixture_.count(fix_id) > 0;
+}
+
 
 void FixtureArrayModel::AddFixtureToMap(Fixture* fxtr) {
     map_fixture_[fxtr->GetFixtureId()] = fxtr;
@@ -214,7 +219,10 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
             channel_types[i] = static_cast<ChannelType>(channel_types_json[i].toInt());
         }
 
-        CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name.toStdString(), channel_types);
+        CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name, channel_types);
+
+        vector_fixture_[fixtures_amount_-1]->group_id_ = group_id;
+        vector_fixture_[fixtures_amount_-1]->group_name_ = group_name;
 
         if (group_id != 0) emit Mediator::instance().CreationGroup(group_id, vector_fixture_[fixtures_amount_-1], group_name);
 

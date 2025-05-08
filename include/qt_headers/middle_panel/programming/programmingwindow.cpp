@@ -56,26 +56,32 @@ void ProgrammingWindow::SetupUi(AbstractCommand** main_command, Fixture** select
 
     scrl_groups_ = new QScrollArea(this);
     cntnt_wdgt_groups_ = new ScrollAreaWidget(main_command, selected_fixture, dmx_fixture_array, ProgrammingType::Group);
+    scrl_groups_->setWidgetResizable(true);
     scrl_groups_->setWidget(cntnt_wdgt_groups_);
 
     scrl_cue_ = new QScrollArea(this);
     cntnt_wdgt_cue_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Cue);
+    scrl_cue_->setWidgetResizable(true);
     scrl_cue_->setWidget(cntnt_wdgt_cue_);
 
     scrl_positions_ = new QScrollArea(this);
     cntnt_wdgt_positions_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Position);
+    scrl_positions_->setWidgetResizable(true);
     scrl_positions_->setWidget(cntnt_wdgt_positions_);
 
     scrl_color_ = new QScrollArea(this);
     cntnt_wdgt_color_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Color);
+    scrl_color_->setWidgetResizable(true);
     scrl_color_->setWidget(cntnt_wdgt_color_);
 
     scrl_beam_ = new QScrollArea(this);
     cntnt_wdgt_beam_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Beam);
+    scrl_beam_->setWidgetResizable(true);
     scrl_beam_->setWidget(cntnt_wdgt_beam_);
 
     scrl_focus_ = new QScrollArea(this);
     cntnt_wdgt_focus_ = new ScrollAreaWidget(main_command, nullptr, nullptr, ProgrammingType::Focus);
+    scrl_focus_->setWidgetResizable(true);
     scrl_focus_->setWidget(cntnt_wdgt_focus_);
 
     gridlayout_main_->addWidget(scrl_groups_, 0, 0, 1, 2);

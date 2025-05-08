@@ -26,6 +26,6 @@ void StackedWidgetProperty::SetupUi(AbstractCommand** main_command, Fixture** se
     }
 
     for (int i = map_property_to_channel[prop_type_].size(); i < 4; ++i) {
-        hlayout_main_->addWidget(new FixtureProperty(nullptr, nullptr, ChannelType::Flex, this));
+        hlayout_main_->addWidget(new FixtureProperty(main_command, selected_fixture, ChannelType::Flex, this));
     }
 }

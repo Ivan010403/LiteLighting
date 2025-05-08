@@ -3,7 +3,6 @@
 
 #include <ola/DmxBuffer.h>
 
-#include <string>
 #include <stdint.h> // проверить мало ли уже где-то заинклудили
 
 #include <QWidget> // для qdebug
@@ -19,7 +18,7 @@ public:
     explicit Fixture(int group_id);
 
     explicit Fixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                     std::string name, const ChannelType* channels, ola::DmxBuffer* dmx_data);
+                     QString name, const ChannelType* channels, ola::DmxBuffer* dmx_data);
 
     explicit Fixture (Fixture&& fxtr);
 
@@ -31,7 +30,7 @@ public:
     //---------------------------local functions-------------------------------------
     int GetFixtureId() const;
 
-    bool isHaveChannel(ChannelType type) const;
+    virtual bool isHaveChannel(ChannelType type) const;
 
     virtual void ChangeData(ChannelType channel_type, int value);
     virtual void AddFixture(Fixture*);
@@ -59,7 +58,7 @@ private:
     uint16_t dmx_address_; // пока пусть будет константой?
     uint16_t channel_amount_;
 
-    std::string name_;
+    QString name_;
     ChannelType* channel_types_;
 
     ola::DmxBuffer* dmx_data_;

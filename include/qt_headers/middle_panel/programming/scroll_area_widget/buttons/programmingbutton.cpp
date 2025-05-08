@@ -1,9 +1,10 @@
 #include "programmingbutton.h"
 
-ProgrammingButton::ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, QWidget* parent) :
+ProgrammingButton::ProgrammingButton(AbstractCommand** main_command, ProgrammingType type_channels, int number, const int* ptr, QWidget* parent) :
     main_command_(main_command),
     type_channels_(type_channels),
     number_(number),
+    ptr_current_amount_(ptr),
     QPushButton(parent)
 {
     SetupUi();
@@ -65,6 +66,8 @@ void ProgrammingButton::onSaveClicked(const QString& name) {
         setText(name);
 
         qDebug() << "ProgrammingButton::onSaveClicked() --> командна сохранена успешно";
+
+        if (*ptr_current_amount_ == number_ + 1) emit onEndedButtons();
     }
     else {
         delete current_command_;

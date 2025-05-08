@@ -31,12 +31,14 @@ public:
 
     //---------------------------local functions-------------------------------------
     void CreateNewFixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                          std::string name, const ChannelType* channels);
+                          QString name, const ChannelType* channels);
     void DeleteFixture(int index);
 
     int GetFixtureIdByIndex(int index);
     Fixture* GetFixtureByIndex(int index);
     Fixture* GetFixtureByFixtureId(int fix_id);
+
+    bool isExistingFixId(int fix_id) const;
 
     void AddFixtureToMap(Fixture*);
 

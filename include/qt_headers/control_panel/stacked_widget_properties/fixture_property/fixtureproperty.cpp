@@ -5,10 +5,7 @@ FixtureProperty::FixtureProperty(AbstractCommand** main_command, Fixture** selec
     QWidget(parent)
 {
     SetupUi(main_command, selected_fixture);
-
-    if (selected_fixture) {
-        SetupConnections();
-    }
+    SetupConnections();
 }
 
 void FixtureProperty::SetupUi(AbstractCommand** main_command, Fixture** selected_fixture) {
@@ -25,5 +22,5 @@ void FixtureProperty::SetupUi(AbstractCommand** main_command, Fixture** selected
 
 void FixtureProperty::SetupConnections() {
     connect(scrl_bar_value_, &QScrollBar::valueChanged, btn_value_, &ButtonValue::onSliderChanged);
-    connect(btn_value_, &ButtonValue::valueChanged, scrl_bar_value_, &QScrollBar::setValue);
+    connect(btn_value_, &ButtonValue::BtnValueChanged, scrl_bar_value_, &QScrollBar::setValue);
 }

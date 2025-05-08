@@ -17,9 +17,13 @@ ScrollAreaWidget::ScrollAreaWidget(AbstractCommand** main_command, Fixture** sel
 }
 
 ProgrammingButton* ScrollAreaWidget::GetProgrammButton(int number) {
+    if (number >= current_count_ - 1) AddButtons(batch_size_);
     return qobject_cast<ProgrammingButton*>(gridlayout_main_->itemAt(number)->widget());
 }
 
+void ScrollAreaWidget::onEndedButtons() {
+    AddButtons(batch_size_);
+}
 
 void ScrollAreaWidget::SetupUi() {
     gridlayout_main_ = new QGridLayout(this);
@@ -28,14 +32,17 @@ void ScrollAreaWidget::SetupUi() {
 }
 
 void ScrollAreaWidget::AddButtons(int count) {
-    TypeButton* button = new TypeButton(type_channels_, this);
-    button->setFixedSize(button_size_, button_size_);
-    gridlayout_main_->addWidget(button, 0, 0);
+    if (current_count_ == 1) {
+        TypeButton* button = new TypeButton(type_channels_, this);
+        button->setFixedSize(button_size_, button_size_);
+        gridlayout_main_->addWidget(button, 0, 0);
+    }
 
     for (int i = 1; i < count; ++i) {
         if (type_channels_ == ProgrammingType::Group) {
-            GroupButton* button = new GroupButton(selected_fixture_, dmx_fixture_array_,  current_count_, this);
+            GroupButton* button = new GroupButton(selected_fixture_, dmx_fixture_array_,  current_count_, ptr_current_amount_, this);
             button->setFixedSize(button_size_, button_size_);
+            connect(button, &GroupButton::onEndedButtons, this, &ScrollAreaWidget::onEndedButtons);
 
             int row = current_count_ / columns_per_row_;
             int column = current_count_ % columns_per_row_;
@@ -43,8 +50,9 @@ void ScrollAreaWidget::AddButtons(int count) {
             gridlayout_main_->addWidget(button, row, column);
         }
         else {
-            ProgrammingButton* button = new ProgrammingButton(main_command_, type_channels_,  current_count_, this);
+            ProgrammingButton* button = new ProgrammingButton(main_command_, type_channels_,  current_count_, ptr_current_amount_, this);
             button->setFixedSize(button_size_, button_size_);
+            connect(button, &ProgrammingButton::onEndedButtons, this, &ScrollAreaWidget::onEndedButtons);
 
             int row = current_count_ / columns_per_row_;
             int column = current_count_ % columns_per_row_;
@@ -55,6 +63,5 @@ void ScrollAreaWidget::AddButtons(int count) {
         ++current_count_;
     }
 
-    // Обновляем размер контента
     adjustSize();
 }
