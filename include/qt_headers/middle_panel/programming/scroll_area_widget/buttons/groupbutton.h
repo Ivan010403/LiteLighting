@@ -6,7 +6,9 @@
 #include <QPainter>
 
 #include "./modal_windows/qdialoggrouping.h"
+#include "./modal_windows/qdialogeditor.h"
 #include "light_headers/FixtureGroup.h"
+
 
 class GroupButton : public QPushButton {
     Q_OBJECT
@@ -30,6 +32,8 @@ private slots:
     void OnGroupCreatedMediator(int, Fixture*, const QString&);
     void OnDeleteFixture(Fixture*);
 
+    void onDeleteCurrent();
+
 private:
     void SetupUi();
 
@@ -50,6 +54,7 @@ private:
     Fixture* group_ = nullptr;
 
     QDialogGrouping* qdial_grouping_;
+    QDialogEditor* qdial_editor_;
 };
 
 #endif // GROUPBUTTON_H

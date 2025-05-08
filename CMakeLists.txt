@@ -113,6 +113,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/light_headers/programming_command/CommandArray.h
         src/light_src/programming_command/CommandArray.cpp
         include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/modal_window/qdialogsetter.h include/qt_headers/control_panel/stacked_widget_properties/fixture_property/button_widget/modal_window/qdialogsetter.cpp
+        include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogeditor.h include/qt_headers/middle_panel/programming/scroll_area_widget/buttons/modal_windows/qdialogeditor.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

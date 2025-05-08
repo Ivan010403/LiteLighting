@@ -40,6 +40,8 @@ void ProgrammingButton::paintEvent(QPaintEvent* event) {
 void ProgrammingButton::mousePressEvent(QMouseEvent* event) {
     if ((event->button() == Qt::RightButton) && (!current_command_) && ((*main_command_)->Size() != 0)) {
         qdial_save_command_->exec();
+    } else if ((event->button() == Qt::RightButton) && (current_command_)){
+        qdial_editor_->exec();
     } else {
         QPushButton::mousePressEvent(event);
     }
@@ -81,14 +83,23 @@ void ProgrammingButton::onSaveClicked(const QString& name) {
     emit Mediator::instance().SelectingCommand();
 }
 
+void ProgrammingButton::onDeleteCurrent() {
+    CommandArray::instance().DeleteCommand(type_channels_, number_);
+    delete current_command_;
+    current_command_ = nullptr;
+    setText("");
+}
+
 void ProgrammingButton::SetupUi() {
     setFixedSize(60, 60);
 
     qdial_save_command_ = new QDialogCommand(this);
+    qdial_editor_ = new QDialogEditor(this);
 }
 
 void ProgrammingButton::SetupConnections() {
     connect(qdial_save_command_, &QDialogCommand::SaveClicked, this, &ProgrammingButton::onSaveClicked);
+    connect(qdial_editor_, &QDialogEditor::onDeleteClicked, this, &ProgrammingButton::onDeleteCurrent);
 }
 
 void ProgrammingButton::drawBackground(QPainter& painter) {

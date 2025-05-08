@@ -30,8 +30,9 @@ void GroupButton::mousePressEvent(QMouseEvent* event) {
         if (qdial_grouping_->exec() == QDialog::Accepted) {
             qDebug() << "конец работы модального окна!!!";
         }
-    }
-    else {
+    } else if ((event->button() == Qt::RightButton) && (group_)) {
+        qdial_editor_->exec();
+    } else {
         QPushButton::mousePressEvent(event);
     }
 }
@@ -53,6 +54,12 @@ void GroupButton::OnDeleteFixture(Fixture* fxtr) {
     if (group_) {
         group_->DeleteFixture(fxtr);
     }
+}
+
+void GroupButton::onDeleteCurrent() {
+    delete group_;
+    group_ = nullptr;
+    setText("");
 }
 
 void GroupButton::OnGroupCreatedMediator(int group_id, Fixture* fxtr, const QString& group_name) {
@@ -107,12 +114,16 @@ void GroupButton::SetupUi() {
     setFixedSize(60, 60);
 
     qdial_grouping_ = new QDialogGrouping(dmx_fixture_array_, this);
+    qdial_editor_ = new QDialogEditor(this);
 }
 
 void GroupButton::SetupConnections() {
     connect(qdial_grouping_, &QDialogGrouping::GroupCreating, this, &GroupButton::OnGroupCreated);
+
     connect(&Mediator::instance(), &Mediator::CreationGroup, this, &GroupButton::OnGroupCreatedMediator);
     connect(&Mediator::instance(), &Mediator::DeletingFixture, this, &GroupButton::OnDeleteFixture);
+
+    connect(qdial_editor_, &QDialogEditor::onDeleteClicked, this, &GroupButton::onDeleteCurrent);
 }
 
 void GroupButton::drawBackground(QPainter& painter) {

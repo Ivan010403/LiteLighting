@@ -16,6 +16,13 @@ FixtureGroup::FixtureGroup(int fixture_id, const QString& group_name) : group_na
     qDebug() << "FixtureGroup::FixtureGroup(int fixture_id) --> группа создалась";
 }
 
+FixtureGroup::~FixtureGroup() {
+    for (auto& var : group_fxtrs_) {
+        var->group_id_ = 0;
+        var->group_name_ = "";
+    }
+}
+
 void FixtureGroup::DeleteFixture(Fixture* fxtr) {
     for (int i = 0; i < group_fxtrs_.size(); ++i) {
         if (*group_fxtrs_[i] == *fxtr) {

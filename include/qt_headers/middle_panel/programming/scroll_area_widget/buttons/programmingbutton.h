@@ -6,6 +6,7 @@
 #include <QPainter>
 
 #include "./modal_windows/qdialogcommand.h"
+#include "./modal_windows/qdialogeditor.h"
 #include "light_headers/programming_command/AbstractCommand.h"
 #include "light_headers/programming_command/CommandArray.h"
 
@@ -31,6 +32,7 @@ protected:
 
 private slots:
     void onSaveClicked(const QString& name);
+    void onDeleteCurrent();
 
 private:
     void SetupUi();
@@ -52,6 +54,7 @@ private:
     const int* ptr_current_amount_;
 
     QDialogCommand* qdial_save_command_;
+    QDialogEditor* qdial_editor_;
 };
 
 #endif // PROGRAMMINGBUTTON_H

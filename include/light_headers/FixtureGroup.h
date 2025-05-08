@@ -9,7 +9,7 @@ public:
 
     explicit FixtureGroup(int fixture_id, const QString& group_name);
 
-    ~FixtureGroup() override = default;
+    ~FixtureGroup() override;
 
     void ChangeData(ChannelType channel_type, int value) override;
 
