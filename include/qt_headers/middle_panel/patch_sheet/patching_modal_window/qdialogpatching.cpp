@@ -91,7 +91,6 @@ void QDialogPatching::SetupUi() {
     linedit_fixture_id_->setValidator(new QIntValidator(0, 10000, linedit_fixture_id_));
 
     linedit_universe_id_ = new QLineEdit(this);
-    linedit_universe_id_->setValidator(new QIntValidator(0, 10000, linedit_universe_id_));
 
     linedit_dmx_address_ = new QLineEdit(this);
 
@@ -147,6 +146,15 @@ void QDialogPatching::SetupConnections() {
         int pos = 0;
         if (validator->validate(text, pos) != QValidator::Acceptable) {
             linedit_dmx_address_->clear();
+            return;
+        }
+    });
+
+    connect(linedit_universe_id_, &QLineEdit::editingFinished, [=]() {
+        QString text = linedit_universe_id_->text();
+        int pos = 0;
+        if ((validator->validate(text, pos) != QValidator::Acceptable) || (text.toInt() > 10)) {
+            linedit_universe_id_->clear();
             return;
         }
     });

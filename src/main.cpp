@@ -12,9 +12,9 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     app.setStyle(QStyleFactory::create("Fusion"));
 
-    app.setPalette(СreateAppPalette()); // стилизовать палетку
+    app.setPalette(СreateAppPalette());
 
-    const unsigned int univ_amount = 3; // сделать нормальный ввод количество юниверсов
+    const unsigned int univ_amount = 10; // сделать нормальный ввод количество юниверсов
     DmxGateway dmx_gtw(univ_amount);
     if (!dmx_gtw.Start()) {
         qFatal("Failed to start OLA thread");

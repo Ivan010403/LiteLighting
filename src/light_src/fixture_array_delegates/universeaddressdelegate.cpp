@@ -2,6 +2,17 @@
 
 UniverseAddressDelegate::UniverseAddressDelegate(QWidget* parent) : QStyledItemDelegate(parent) {}
 
+void UniverseAddressDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
+{
+    QStringList values = index.model()->data(index, Qt::EditRole).toString().split(".");
+
+    QSpinBox* spn_bx_universe = editor->findChild<QSpinBox*>();
+    QSpinBox* spn_bx_address = editor->findChildren<QSpinBox*>()[1];
+
+    spn_bx_universe->setValue(values[0].toInt());
+    spn_bx_address->setValue(values[1].toInt());
+}
+
 QWidget* UniverseAddressDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const {
     QWidget* editor = new QWidget(parent);
     QHBoxLayout* hlayout_main = new QHBoxLayout(editor);

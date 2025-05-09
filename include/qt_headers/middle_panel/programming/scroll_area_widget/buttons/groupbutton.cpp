@@ -96,17 +96,21 @@ void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes, const 
     std::vector<Fixture*> vect_fxtr;
 
     for (const int var : unique_rows) {
-        vect_fxtr.push_back(dmx_fixture_array_->GetFixtureByIndex(var));
+        if (dmx_fixture_array_->GetFixtureByIndex(var)->group_id_ == 0) {
+            vect_fxtr.push_back(dmx_fixture_array_->GetFixtureByIndex(var));
+        }
     }
 
-    group_ = new FixtureGroup(number_, vect_fxtr, name);
-    dmx_fixture_array_->AddFixtureToMap(group_);
+    if (vect_fxtr.size() > 1) {
+        group_ = new FixtureGroup(number_, vect_fxtr, name);
+        dmx_fixture_array_->AddFixtureToMap(group_);
 
-    qDebug() << "GroupButton::OnGroupCreated() --> создание группы";
+        qDebug() << "GroupButton::OnGroupCreated() --> создание группы";
 
-    setText(name);
+        setText(name);
 
-    if (*ptr_current_amount_ == number_ + 1) emit onEndedButtons();
+        if (*ptr_current_amount_ == number_ + 1) emit onEndedButtons();
+    }
 }
 
 void GroupButton::SetupUi() {

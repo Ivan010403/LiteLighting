@@ -84,7 +84,7 @@ void ButtonValue::SetupUi() {
     vlayout_main_->addWidget(name_property_);
     vlayout_main_->addWidget(value_property_);
 
-    qdial_setter_ = new QDialogSetter(type_channel_);
+    qdial_setter_ = new QDialogSetter(type_channel_, this);
 }
 
 void ButtonValue::SendDmxData() {
