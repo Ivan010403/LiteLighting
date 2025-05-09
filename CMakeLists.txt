@@ -85,7 +85,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/middle_panel/middlepanel.h include/qt_headers/middle_panel/middlepanel.cpp
 
         include/qt_headers/middle_panel/patch_sheet/patchsheetwindow.h include/qt_headers/middle_panel/patch_sheet/patchsheetwindow.cpp
-        include/qt_headers/middle_panel/busking/fixture_display/fixtureproperties.h
+
         include/qt_headers/middle_panel/busking/buskingwindow.h include/qt_headers/middle_panel/busking/buskingwindow.cpp
         include/qt_headers/middle_panel/programming/programmingwindow.h include/qt_headers/middle_panel/programming/programmingwindow.cpp
         include/qt_headers/middle_panel/settings/settingswindow.h include/qt_headers/middle_panel/settings/settingswindow.cpp
