@@ -36,6 +36,13 @@ bool AbstractCommand::CheckExistingChannel(Fixture* fxtr, ChannelType channel) {
     return false;
 } // нужна для перерисовки контента баттонов в control panel
 
+bool AbstractCommand::CheckExistingProperty(Fixture* fxtr, PropertyType prop_type) {
+    for (const auto& var : map_property_to_channel[prop_type]) {
+        if ((actions_.count(fxtr) > 0) && (actions_[fxtr].count(var) > 0)) return true;
+    }
+    return false;
+}
+
 void AbstractCommand::onDeletedFixture(Fixture* fxtr) {
     for (const auto& var : actions_) {
         if (*var.first == *fxtr) {

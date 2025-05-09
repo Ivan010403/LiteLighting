@@ -1,7 +1,6 @@
 #ifndef GROUPBUTTON_H
 #define GROUPBUTTON_H
 
-#include <QPushButton>
 #include <QMouseEvent>
 #include <QPainter>
 

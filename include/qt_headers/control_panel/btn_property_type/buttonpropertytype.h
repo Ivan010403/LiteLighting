@@ -20,6 +20,7 @@ protected:
     void paintEvent(QPaintEvent* event) override;
 
     bool flag_ = false;
+    PropertyType prop_type_;
 };
 
 #endif // BUTTONPROPERTYTYPE_H

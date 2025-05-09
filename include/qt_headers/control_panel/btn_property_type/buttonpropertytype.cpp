@@ -1,6 +1,7 @@
 #include "buttonpropertytype.h"
 
 ButtonPropertyType::ButtonPropertyType(PropertyType prop_type, QWidget* parent) :
+    prop_type_(prop_type),
     QPushButton(PropertyTypeToQString(prop_type), parent) {}
 
 

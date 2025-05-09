@@ -16,7 +16,7 @@
 class ButtonValue : public QWidget {
     Q_OBJECT
 public:
-    explicit ButtonValue(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, QWidget* parent = nullptr);
+    explicit ButtonValue(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, PropertyType prop_type, QWidget* parent = nullptr);
 
     ~ButtonValue() = default;
 
@@ -46,6 +46,7 @@ private:
     AbstractCommand** main_command_;
     Fixture** selected_fixture_;
     ChannelType type_channel_;
+    PropertyType prop_type_;
     bool isFlex_;
 
     uint8_t current_value_ = 0;

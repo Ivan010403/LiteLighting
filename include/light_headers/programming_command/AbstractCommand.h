@@ -24,6 +24,8 @@ public:
 
     bool CheckExistingChannel(Fixture* fxtr, ChannelType channel);
 
+    bool CheckExistingProperty(Fixture* fxtr, PropertyType prop_type);
+
     QString name_;
 
 private slots:

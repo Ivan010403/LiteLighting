@@ -1,9 +1,12 @@
 #include "buttonvalue.h"
 
-ButtonValue::ButtonValue(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, QWidget* parent) :
+#include "light_headers/FixtureGroup.h"
+
+ButtonValue::ButtonValue(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, PropertyType prop_type, QWidget* parent) :
     main_command_(main_command),
     selected_fixture_(selected_fixture),
     type_channel_(type),
+    prop_type_(prop_type),
     QWidget(parent)
 {
     isFlex_ = type_channel_ == ChannelType::Flex ? true : false;
@@ -45,7 +48,7 @@ void ButtonValue::onQdialChanged(int value, int type) {
 void ButtonValue::onSelectedCommand() {
     flag_command_ = (*main_command_)->CheckExistingChannel(*selected_fixture_, type_channel_);
     value_property_->update();
-    emit ChangingChannel(flag_command_);
+    emit ChangingChannel((*main_command_)->CheckExistingProperty(*selected_fixture_, prop_type_));
 }
 
 void ButtonValue::onUnselectedCommand() {

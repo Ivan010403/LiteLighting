@@ -27,9 +27,7 @@ void GroupButton::paintEvent(QPaintEvent* event) {
 
 void GroupButton::mousePressEvent(QMouseEvent* event) {
     if ((event->button() == Qt::RightButton) && (!group_)) {
-        if (qdial_grouping_->exec() == QDialog::Accepted) {
-            qDebug() << "конец работы модального окна!!!";
-        }
+        qdial_grouping_->exec();
     } else if ((event->button() == Qt::RightButton) && (group_)) {
         qdial_editor_->exec();
     } else {
@@ -102,6 +100,7 @@ void GroupButton::OnGroupCreated(const QModelIndexList& selected_indexes, const 
     }
 
     group_ = new FixtureGroup(number_, vect_fxtr, name);
+    dmx_fixture_array_->AddFixtureToMap(group_);
 
     qDebug() << "GroupButton::OnGroupCreated() --> создание группы";
 

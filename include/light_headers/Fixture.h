@@ -47,18 +47,20 @@ public:
 
 public: // надо заменить как-то
     void SendDmxData();
+
     std::unordered_map <ChannelType, uint8_t*> channels_; // может заменить на map?
+
     int group_id_ = 0;
     QString group_name_ = "";
 
-private:
+    QString name_;
 
+private:
     int fixture_id_;
     int universe_id_;
     uint16_t dmx_address_; // пока пусть будет константой?
     uint16_t channel_amount_;
 
-    QString name_;
     ChannelType* channel_types_;
 
     ola::DmxBuffer* dmx_data_;

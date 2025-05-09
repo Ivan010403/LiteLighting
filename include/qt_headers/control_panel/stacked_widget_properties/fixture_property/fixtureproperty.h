@@ -8,14 +8,14 @@
 
 class FixtureProperty : public QWidget {
 public:
-    explicit FixtureProperty(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, QWidget* parent = nullptr);
+    explicit FixtureProperty(AbstractCommand** main_command, Fixture** selected_fixture, ChannelType type, PropertyType prop_type, QWidget* parent = nullptr);
 
     ~FixtureProperty() = default;
 
     ButtonValue* btn_value_;
 
 private:
-    void SetupUi(AbstractCommand** main_command, Fixture** selected_fixture);
+    void SetupUi(AbstractCommand** main_command, Fixture** selected_fixture, PropertyType prop_type);
 
     void SetupConnections();
 
