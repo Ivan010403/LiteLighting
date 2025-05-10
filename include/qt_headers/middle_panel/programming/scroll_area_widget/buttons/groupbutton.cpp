@@ -160,6 +160,7 @@ void GroupButton::drawText(QPainter& painter) {
 
     painter.setPen(Qt::white);
     painter.setFont(new_font);
-    painter.drawText(rect().adjusted(20, 10, 0, 0), Qt::AlignLeft, QString::number(number_));
-    painter.drawText(rect().adjusted(0, 25, 0, 0), Qt::TextWordWrap | Qt::AlignCenter, text());
+
+    painter.drawText(rect().adjusted(0, 10, 0, 0), Qt::AlignTop | Qt::AlignHCenter, QString::number(number_));
+    painter.drawText(rect().adjusted(0, 20, 0, 0), Qt::TextWordWrap | Qt::AlignCenter, text());
 }

@@ -1,8 +1,10 @@
 #ifndef PAGESPANEL_H
 #define PAGESPANEL_H
+
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include "./pages_button/pagesbutton.h"
 
 class PagesPanel : public QWidget {
     Q_OBJECT
@@ -23,10 +25,10 @@ private:
     void SetupConnections();
 
     QVBoxLayout* vlayout_main_;
-    QPushButton* btn_programming_;
-    QPushButton* btn_busking_;
-    QPushButton* btn_patching_;
-    QPushButton* btn_settings_;
+    PagesButton* btn_programming_;
+    PagesButton* btn_busking_;
+    PagesButton* btn_patching_;
+    PagesButton* btn_settings_;
 };
 
 #endif // PAGESPANEL_H

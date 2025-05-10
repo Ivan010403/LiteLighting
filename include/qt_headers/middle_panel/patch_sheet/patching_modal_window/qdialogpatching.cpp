@@ -42,7 +42,8 @@ void QDialogPatching::OnBtnClicked() {
 void QDialogPatching::OnChannelAmountEntered() {
     QString text = linedit_channel_amount_->text();
     int pos = 0;
-    if (validator->validate(text, pos) != QValidator::Acceptable) {
+    int temp = linedit_dmx_address_->text().toInt() + text.toInt();
+    if ((validator->validate(text, pos) != QValidator::Acceptable) || (temp > 512)) {
         linedit_channel_amount_->clear();
         return;
     }
@@ -96,16 +97,13 @@ void QDialogPatching::SetupUi() {
 
     linedit_channel_amount_ = new QLineEdit(this);
 
-    // сделать юнифицированно и нормально!
     qcmbox_patching_ = new QComboBox(this);
-    qcmbox_patching_->addItem("Dimmer");
-    qcmbox_patching_->addItem("R");
-    qcmbox_patching_->addItem("G");
-    qcmbox_patching_->addItem("B");
-    qcmbox_patching_->addItem("Pan");
-    qcmbox_patching_->addItem("Tilt");
+    for (int i = 0; i < static_cast<int>(ChannelType::Flex); ++i) {
+        qcmbox_patching_->addItem(ChannelTypeToQString(static_cast<ChannelType>(i)));
+    }
 
     btn_enter_fixture_ = new QPushButton("Enter fixture", this);
+    btn_enter_fixture_->setFixedHeight(30);
 
     gridlayout_main_->addWidget(label_name_, 0, 0);
     gridlayout_main_->addWidget(linedit_name_, 0, 1);
@@ -127,7 +125,7 @@ void QDialogPatching::SetupUi() {
 
     gridlayout_main_->addWidget(btn_enter_fixture_, 6, 0, 1, 2);
 
-    validator = new QIntValidator(0, 512, this);
+    validator = new QIntValidator(0, 511, this);
 }
 
 void QDialogPatching::SetupConnections() {
@@ -136,7 +134,7 @@ void QDialogPatching::SetupConnections() {
     connect(qcmbox_patching_, &QComboBox::activated, this, &QDialogPatching::OnIndexChanged);
 
     connect(linedit_fixture_id_, &QLineEdit::editingFinished, [=]() {
-        while (dmx_fixture_array_->isExistingFixId(linedit_fixture_id_->text().toInt())) {
+        while ((dmx_fixture_array_->isExistingFixId(linedit_fixture_id_->text().toInt())) || (linedit_fixture_id_->text().toInt() % 100 == 0)) {
             linedit_fixture_id_->setText(QString::number(linedit_fixture_id_->text().toInt() + 1));
         }
     });

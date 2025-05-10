@@ -16,7 +16,7 @@ void ButtonPropertyType::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    QBrush brush = flag_ ? QBrush(QColor(Qt::red)) : QBrush(QColor(Qt::gray));
+    QBrush brush = flag_ ? QBrush(QColor(255, 0, 0, 128)) : QBrush(QColor(92,92,92));
 
     const int min_dimension = qMin(width(), height());
     int square_size = qBound(10,  min_dimension / 5, 100);

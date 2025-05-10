@@ -73,6 +73,10 @@ void Fixture::AddFixture(Fixture*) {}
 
 void Fixture::DeleteFixture(Fixture*) {}
 
+void Fixture::SetDmxBuffer(ola::DmxBuffer* dmx_data) {
+    dmx_data_ = dmx_data;
+}
+
 QJsonObject Fixture::SaveDataToShow() {
     QJsonObject json;
     json["fix_id"] = fixture_id_;

@@ -18,6 +18,9 @@ void QDialogEditor::SetupUi() {
     btn_delete_ = new QPushButton("Delete", this);
     btn_cancel_ = new QPushButton("Cancel", this);
 
+    btn_delete_->setFixedSize(70, 30);
+    btn_cancel_->setFixedSize(70, 30);
+
     hlayout_main_->addWidget(btn_delete_);
     hlayout_main_->addWidget(btn_cancel_);
 }

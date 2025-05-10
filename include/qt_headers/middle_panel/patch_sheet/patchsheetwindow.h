@@ -32,7 +32,6 @@ private:
     QHBoxLayout* hlayout_btns_;
     QPushButton* btn_add_fixture_;
     QPushButton* btn_delete_fixture_;
-    QPushButton* btn_edit_fixture_;
 
     QDialogPatching* qdial_patching_;
 

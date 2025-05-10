@@ -36,6 +36,8 @@ public:
     virtual void AddFixture(Fixture*);
     virtual void DeleteFixture(Fixture*);
 
+    void SetDmxBuffer(ola::DmxBuffer* dmx_data);
+
     QJsonObject SaveDataToShow();
     //-------------------------------------------------------------------------------
 

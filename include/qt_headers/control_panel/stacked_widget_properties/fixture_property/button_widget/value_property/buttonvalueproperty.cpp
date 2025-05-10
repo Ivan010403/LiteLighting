@@ -20,7 +20,7 @@ void ButtonValueProperty::drawBackground(QPainter& painter) {
     QBrush brush (QColor(29, 33, 34));
 
     if ((*is_fixture_selected_) && (*flag_command_)) {
-        brush.setColor(QColor(Qt::red));
+        brush.setColor(QColor(255, 0, 0, 128));
     }
 
     painter.setPen(Qt::NoPen);

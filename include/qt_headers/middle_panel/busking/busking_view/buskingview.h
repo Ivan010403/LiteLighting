@@ -8,11 +8,7 @@
 class BuskingView : public QWidget {
     Q_OBJECT
 public:
-    explicit BuskingView(FixtureArrayModel* dmx_fixture_array, Fixture** selected_fixture, QPushButton* btn_move, QWidget* parent = nullptr) :
-        dmx_fixture_array_(dmx_fixture_array),
-        selected_fixture_(selected_fixture),
-        btn_move_(btn_move),
-        QWidget(parent) {}
+    explicit BuskingView(FixtureArrayModel* dmx_fixture_array, Fixture** selected_fixture, QPushButton* btn_move, QWidget* parent = nullptr);
 
     ~BuskingView() = default;
 
@@ -21,20 +17,7 @@ signals:
     void PressingByFixture(int fix_id);
 
 public slots:
-    void onBtnAddClicked() {
-        if (qvect_fixture_buttons_.size() < dmx_fixture_array_->FixtureAmount()) {
-            qvect_fixture_buttons_.push_back(new FixtureButton(dmx_fixture_array_, btn_move_, selected_fixture_, dmx_fixture_array_->GetFixtureByIndex(qvect_fixture_buttons_.size()), this));
-            connect(qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::GroupChoosen, this, &BuskingView::SelectingByGroup);
-            connect(this, &BuskingView::SelectingByGroup, qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::SelectedByGroup);
-
-            connect(qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::FixtureChoosen, this, &BuskingView::PressingByFixture);
-            connect(this, &BuskingView::PressingByFixture, qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::PressedByFixture);
-        }
-    }
-
-    void onBtnDelClicked() {
-
-    }
+    void onBtnAddClicked();
 
 private:
     FixtureArrayModel* dmx_fixture_array_;

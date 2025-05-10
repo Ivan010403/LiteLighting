@@ -3,56 +3,34 @@ MainWindow SettingsPanel {
   background-color: #131516;
 }
 
-MainWindow SettingsPanel QPushButton {
+/* Панель посередине */
+
+MainWindow MiddlePanel {
   background-color: #1D2122;
-  border-radius: 10px; /* Закруглённые углы */
   border: 2px solid #606668; /* Граница */
 }
 
-MainWindow SettingsPanel QPushButton:pressed {
+MainWindow MiddlePanel ProgrammingWindow ScrollAreaWidget TypeButton {
+  background-color: #1D2122;
+  border-radius: 10px; /* Закруглённые углы */
+  border: 1px solid #606668; /* Граница */
+}
+
+MainWindow MiddlePanel QPushButton {
+  background-color: #1D2122;
+  border-radius: 10px; /* Закруглённые углы */
+  border: 1px solid #606668; /* Граница */
+}
+
+MainWindow MiddlePanel QPushButton:pressed {
   background-color: #3B3F40;
   border: 2px solid #769CE3; /* Граница */
 }
 
-/* MainWindow QScrollArea QPushButton#btn_patching_ {
-  text-align: center;
-  padding: 5px;
-} */
-
-
-/* Панель посередине */
-
-/* MainWindow QWidget#fixtures_layout_ FixtureDisplay#fixture_display_ {
-  border: 1px solid #fabb33;
-  
+MainWindow MiddlePanel QPushButton:checked {
+  background-color: #3B3F40;
+  border: 2px solid #769CE3; /* Граница */
 }
-
-MainWindow QWidget#fixtures_layout_ FixtureDisplay#fixture_display_ QFrame {
-  border: 1px solid #fabb33;
-  
-}
-
-MainWindow QWidget#fixtures_layout_  QFrame#fixture_properties_ {
-  border: 1px solid #fabb33;
-}
-
-MainWindow FixtureProperties FixtureProperty QSlider::groove:vertical {
-    width: 40px;
-    background: #e0e0e0;
-    border-radius: 5px;
-}
-
-MainWindow FixtureProperties FixtureProperty QSlider::sub-page:vertical {
-    background: #2196F3;
-    border-radius: 5px;
-}
-
-MainWindow FixtureProperties FixtureProperty QSlider::handle:vertical {
-    image: url(/home/ivan/LiteLighting/res/spot.jpg);
-    width: 32px;
-    height: 32px;
-    margin: 0 -11px;
-} */
 
 /* Правая панель */
 
@@ -67,6 +45,23 @@ MainWindow PagesPanel QPushButton {
 }
 
 MainWindow PagesPanel QPushButton:pressed {
+  background-color: #3B3F40;
+  border: 2px solid #769CE3; /* Граница */
+}
+
+/* Нижняя панель */
+
+MainWindow ControlPanel {
+  background-color: #131516;
+}
+
+MainWindow ControlPanel QPushButton {
+  background-color: #1D2122;
+  border-radius: 20px; /* Закруглённые углы */
+  border: 2px solid #606668; /* Граница */
+}
+
+MainWindow ControlPanel QPushButton:pressed {
   background-color: #3B3F40;
   border: 2px solid #769CE3; /* Граница */
 }

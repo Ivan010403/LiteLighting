@@ -32,6 +32,7 @@ void QDialogGrouping::SetupUi(FixtureArrayModel* dmx_fixture_array) {
     line_edit_name_ = new QLineEdit(this);
 
     btn_create_group_ = new QPushButton("Create group", this);
+    btn_create_group_->setFixedHeight(30);
 
     vlayout_main_->addWidget(table_fixtures_, 3);
     vlayout_main_->addWidget(line_edit_name_, 1);

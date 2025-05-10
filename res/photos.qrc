@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/photo">
+        <file>busking.jpg</file>
+        <file>logo.jpg</file>
+        <file>patching.jpg</file>
+        <file>programming.png</file>
+        <file>settings.jpg</file>
+        <file>spot.jpg</file>
+        <file>logo.png</file>
+        <file>spotnobg.png</file>
+    </qresource>
+</RCC>

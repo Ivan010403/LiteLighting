@@ -20,12 +20,12 @@ QWidget* UniverseAddressDelegate::createEditor(QWidget* parent, const QStyleOpti
     hlayout_main->setSpacing(0);
 
     QSpinBox* spn_bx_universe = new QSpinBox(editor);
-    spn_bx_universe->setMinimum(1);
-    spn_bx_universe->setMaximum(std::numeric_limits<uint16_t>::max() + 1);
+    spn_bx_universe->setMinimum(0);
+    spn_bx_universe->setMaximum(10);
 
     QSpinBox* spn_bx_address = new QSpinBox(editor);
-    spn_bx_address->setMinimum(1);
-    spn_bx_address->setMaximum(512);
+    spn_bx_address->setMinimum(0);
+    spn_bx_address->setMaximum(511);
 
     hlayout_main->addWidget(spn_bx_universe);
     hlayout_main->addWidget(spn_bx_address);

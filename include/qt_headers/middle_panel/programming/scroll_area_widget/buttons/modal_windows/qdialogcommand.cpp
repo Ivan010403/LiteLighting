@@ -23,6 +23,9 @@ void QDialogCommand::SetupUi() {
     btn_save_ = new QPushButton("Save command", this);
     btn_close_ = new QPushButton("Close", this);
 
+    btn_save_->setFixedHeight(30);
+    btn_close_->setFixedHeight(30);
+
     gridlayout_main_->addWidget(line_name_, 0, 0, 1, 2);
     gridlayout_main_->addWidget(btn_save_, 1, 0);
     gridlayout_main_->addWidget(btn_close_, 1, 1);

@@ -27,7 +27,7 @@ void ScrollAreaWidget::onEndedButtons() {
 
 void ScrollAreaWidget::SetupUi() {
     gridlayout_main_ = new QGridLayout(this);
-    gridlayout_main_->setContentsMargins(16, 16, 10, 16);
+    gridlayout_main_->setContentsMargins(14, 16, 10, 16);
     gridlayout_main_->setSpacing(15);
 }
 

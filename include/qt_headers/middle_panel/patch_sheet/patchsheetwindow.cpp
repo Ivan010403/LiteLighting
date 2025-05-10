@@ -35,26 +35,29 @@ void PatchSheetWindow::OnBtnDeleteFxtrClicked() {
 void PatchSheetWindow::SetupUi() {
     vlayout_main_ = new QVBoxLayout(this);
     vlayout_main_->setContentsMargins(0, 0, 0, 0);
-    // vlayout_main_->setVerticalSpacing(10);
+    vlayout_main_->setSpacing(0);
 
     table_fixtures_ = new QTableView(this);
     table_fixtures_->setModel(dmx_fixture_array_);
-    // table_fixtures_->setItemDelegateForColumn(0, new FixtureArrayModelDelegate());
-    // table_fixtures_->setItemDelegateForColumn(1, new FixtureArrayModelDelegate());
     table_fixtures_->setItemDelegateForColumn(2, new UniverseAddressDelegate(table_fixtures_));
     table_fixtures_->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+    table_fixtures_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     selection_model_ = table_fixtures_->selectionModel();
 
 
     hlayout_btns_ = new QHBoxLayout();
+    hlayout_btns_->setContentsMargins(10, 0, 10, 0);
+    hlayout_btns_->setSpacing(10);
+
     btn_add_fixture_ = new QPushButton("Add fixture", this);
     btn_delete_fixture_ = new QPushButton("Delete fixture", this);
-    btn_edit_fixture_ = new QPushButton("Edit fixture", this);
+    btn_add_fixture_->setFixedHeight(30);
+    btn_delete_fixture_->setFixedHeight(30);
 
     hlayout_btns_->addWidget(btn_add_fixture_);
     hlayout_btns_->addWidget(btn_delete_fixture_);
-    hlayout_btns_->addWidget(btn_edit_fixture_);
 
     vlayout_main_->addWidget(table_fixtures_, 4);
     vlayout_main_->addLayout(hlayout_btns_, 1);

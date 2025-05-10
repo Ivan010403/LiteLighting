@@ -66,33 +66,27 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
         qDebug() << "FixtureArrayModel --> selected fixture id = " << (*selected_fixture_)->GetFixtureId();
 
         switch (index.column()) {
-            // ПРОВЕРИТЬ НА СУЖЕНИЯ ДАННЫХ, У МЕНЯ ТАМ UINT8_T
             case 0:
-                fixture->fixture_id_ = value.toInt();
+            {
+                int value_ = value.toInt();
+
+                while ((isExistingFixId(value_)) && (fixture->fixture_id_ != value_)) {
+                    ++value_;
+                }
+
+                fixture->fixture_id_ = value_;
                 break;
+            }
             case 1:
                 fixture->name_ = value.toString();
                 break;
             case 2:
-            { // чтобы не было ошибки из-за скоупа list --- придумать как сделать лучше
+            {
                 QVariantList list = value.toList();
-
-                // if (list.size() < 2) return false;
-
-                // // 3. Проверяем конвертацию в uint8_t
-                // bool ok1, ok2;
-                // quint32 universe = list[0].toUInt(&ok1);
-                // quint32 dmx = list[1].toUInt(&ok2);
-
-                // if (!ok1 || !ok2 || universe > UINT8_MAX || dmx > UINT8_MAX) {
-                //     return false; // Некорректные данные
-                // }
-
                 fixture->universe_id_ = list[0].toInt();
                 fixture->dmx_address_ = list[1].toInt();
 
-                // fixture->universe_id_ = static_cast<uint8_t>(universe);
-                // fixture->dmx_address_ = static_cast<uint8_t>(dmx);
+                fixture->SetDmxBuffer(dmx_gateway_.GetBuffer(fixture->universe_id_));
                 break;
             }
             case 3:
