@@ -12,6 +12,7 @@ enum class ChannelType: uint8_t {
     R,
     G,
     B,
+    A,
     Pan,
     Tilt,
     Gobo,

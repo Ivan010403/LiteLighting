@@ -12,13 +12,13 @@ public:
 
 signals:
     void SelectingFixture();
-    void UnselectingFixture();
-
     void SelectingCommand();
-    void UnselectingCommand();
 
     void DeletingFixture(Fixture*);
     void CreationGroup(int, Fixture*, const QString&);
+
+    void SaveBuskToShow();
+    void LoadBuskFromShow();
 
 private:
     Mediator() = default;

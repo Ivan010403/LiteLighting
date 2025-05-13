@@ -1,6 +1,6 @@
 #include "fixturebutton.h"
 
-FixtureButton::FixtureButton(FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, QWidget* parent) :
+FixtureButton::FixtureButton(FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, int pos_x, int pos_y, QWidget* parent) :
     dmx_fixture_array_(dmx_fixture_array),
     btn_parent_move_fixture_(btn_parent_move),
     selected_fixture_(selected_fixture),
@@ -19,6 +19,20 @@ FixtureButton::FixtureButton(FixtureArrayModel* dmx_fixture_array, QPushButton* 
     SetupConnections();
 
     show();
+
+    move(pos_x, pos_y);
+}
+
+int FixtureButton::getFixId() const {
+    return fixture_under_button_->GetFixtureId();
+}
+
+int FixtureButton::getPosX() const {
+    return x();
+}
+
+int FixtureButton::getPosY() const {
+    return y();
 }
 
 void FixtureButton::SelectedByGroup(int group_id) {

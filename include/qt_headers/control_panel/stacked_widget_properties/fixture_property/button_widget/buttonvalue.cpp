@@ -51,21 +51,9 @@ void ButtonValue::onSelectedCommand() {
     emit ChangingChannel((*main_command_)->CheckExistingProperty(*selected_fixture_, prop_type_));
 }
 
-void ButtonValue::onUnselectedCommand() {
-    // flag_command_ = false;
-    // value_property_->update();
-    // emit ChangingChannel(false);
-}
-
 void ButtonValue::onSelectedFixture() {
     flag_fixture = true;
     value_property_->update();
-}
-
-void ButtonValue::onUnselectedFixture() {
-    // flag_fixture = false;
-    // value_property_->update();
-    // emit ChangingChannel(false);
 }
 
 void ButtonValue::SetupUi() {
@@ -94,10 +82,7 @@ void ButtonValue::SendDmxData() {
 
 void ButtonValue::SetupConnections() {
     connect(&Mediator::instance(), &Mediator::SelectingFixture, this, &ButtonValue::onSelectedFixture);
-    connect(&Mediator::instance(), &Mediator::UnselectingFixture, this, &ButtonValue::onUnselectedFixture);
-
     connect(&Mediator::instance(), &Mediator::SelectingCommand, this, &ButtonValue::onSelectedCommand);
-    connect(&Mediator::instance(), &Mediator::UnselectingCommand, this, &ButtonValue::onUnselectedCommand);
 
     connect(value_property_, &ButtonValueProperty::clicked, qdial_setter_, &QDialogSetter::exec);
     connect(qdial_setter_, &QDialogSetter::BtnClicking, this, &ButtonValue::onQdialChanged);

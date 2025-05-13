@@ -12,7 +12,11 @@
 class FixtureButton : public QPushButton {
     Q_OBJECT
 public:
-    explicit FixtureButton(FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, QWidget* parent = nullptr);
+    explicit FixtureButton(FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, int pos_x, int pos_y, QWidget* parent = nullptr);
+
+    int getFixId() const;
+    int getPosX() const;
+    int getPosY() const;
 
 signals:
     void GroupChoosen(int);

@@ -31,10 +31,8 @@ private slots:
     void onQdialChanged(int value, int type);
 
     void onSelectedCommand();
-    void onUnselectedCommand();
 
     void onSelectedFixture();
-    void onUnselectedFixture();
 
 private:
     void SetupUi();

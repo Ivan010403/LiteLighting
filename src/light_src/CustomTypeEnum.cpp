@@ -16,6 +16,8 @@ QString ChannelTypeToQString(ChannelType type) {
         return QStringLiteral("G");
     case ChannelType::B:
         return QStringLiteral("B");
+    case ChannelType::A:
+        return QStringLiteral("A");
     case ChannelType::Beam:
         return QStringLiteral("Beam");
     case ChannelType::Focus:
@@ -75,7 +77,7 @@ std::map<const PropertyType, const std::vector<ChannelType>> map_property_to_cha
     {PropertyType::Dimmer, {ChannelType::Dimmer}},
     {PropertyType::Position, {ChannelType::Pan, ChannelType::Tilt}},
     {PropertyType::Gobo, {ChannelType::Gobo}},
-    {PropertyType::Color, {ChannelType::R, ChannelType::G, ChannelType::B}},
+    {PropertyType::Color, {ChannelType::R, ChannelType::G, ChannelType::B, ChannelType::A}},
     {PropertyType::Beam, {ChannelType::Beam}},
     {PropertyType::Focus, {ChannelType::Focus}},
     {PropertyType::Control, {ChannelType::Control}},

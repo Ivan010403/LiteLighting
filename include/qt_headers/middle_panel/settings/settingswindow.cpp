@@ -19,6 +19,8 @@ void SettingsWindow::onLoadClicked() {
     dmx_fixture_array_->LoadDataFromShow(root);
 
     CommandArray::instance().LoadDataFromShow(root, dmx_fixture_array_);
+
+    emit Mediator::instance().LoadBuskFromShow();
 }
 
 void SettingsWindow::onSaveClicked() {
@@ -28,6 +30,7 @@ void SettingsWindow::onSaveClicked() {
 
     CommandArray::instance().SaveDataToShow(root);
 
+    emit Mediator::instance().SaveBuskToShow();
 
     QFile file("showfile.json");
     if (!file.open(QIODevice::WriteOnly)) { // а что если не открылось?

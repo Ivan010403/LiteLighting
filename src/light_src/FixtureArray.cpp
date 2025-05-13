@@ -200,9 +200,9 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
         int univ_id = fixture["univ_id"].toInt();
         uint16_t dmx_addr = fixture["dmx_addr"].toInt();
         uint16_t chan_amount = fixture["chan_amount"].toInt();
-        QString name = fixture["name"].toString();
+        const QString name = fixture["name"].toString();
         int group_id = fixture["group_id"].toInt();
-        QString group_name = fixture["group_name"].toString();
+        const QString group_name = fixture["group_name"].toString();
 
         ChannelType channel_types[chan_amount];
 

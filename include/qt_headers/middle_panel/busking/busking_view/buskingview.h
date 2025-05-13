@@ -18,8 +18,12 @@ signals:
 
 public slots:
     void onBtnAddClicked();
+    void SaveToShow();
+    void LoadFromShow();
 
 private:
+    void SetupConnections();
+
     FixtureArrayModel* dmx_fixture_array_;
     Fixture** selected_fixture_;
     QPushButton* btn_move_;
