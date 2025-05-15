@@ -120,6 +120,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/qt_headers/middle_panel/busking/busking_view/fixture_display_button/fixturebutton.cpp include/qt_headers/middle_panel/busking/busking_view/fixture_display_button/fixturebutton.h
         include/qt_headers/pages_panel/pages_button/pagesbutton.h include/qt_headers/pages_panel/pages_button/pagesbutton.cpp
         res/photos.qrc
+        include/light_headers/CircuitBreaker.h src/light_src/CircuitBreaker.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LiteLighting APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

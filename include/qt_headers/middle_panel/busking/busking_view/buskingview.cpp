@@ -68,6 +68,12 @@ void BuskingView::LoadFromShow() {
         int pos_y = button["pos_y"].toInt();
 
         qvect_fixture_buttons_.push_back(new FixtureButton(dmx_fixture_array_, btn_move_, selected_fixture_, dmx_fixture_array_->GetFixtureByFixtureId(fix_id), pos_x, pos_y, this));
+
+        connect(qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::GroupChoosen, this, &BuskingView::SelectingByGroup);
+        connect(this, &BuskingView::SelectingByGroup, qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::SelectedByGroup);
+
+        connect(qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::FixtureChoosen, this, &BuskingView::PressingByFixture);
+        connect(this, &BuskingView::PressingByFixture, qvect_fixture_buttons_[qvect_fixture_buttons_.size()-1], &FixtureButton::PressedByFixture);
     }
 }
 

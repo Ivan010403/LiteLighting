@@ -8,5 +8,7 @@
         <file>spot.jpg</file>
         <file>logo.png</file>
         <file>spotnobg.png</file>
+        <file>C16.png</file>
+        <file>C100.png</file>
     </qresource>
 </RCC>
