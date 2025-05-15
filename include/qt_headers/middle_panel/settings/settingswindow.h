@@ -7,6 +7,7 @@
 
 #include "light_headers/FixtureArray.h"
 #include "light_headers/programming_command/CommandArray.h"
+#include "light_headers/CircuitBreaker.h"
 
 class SettingsWindow : public QWidget {
     Q_OBJECT
@@ -19,7 +20,9 @@ private slots:
 
     void onSaveClicked();
 
-    void onEnteringData();
+    void onEnteringData(int value);
+
+    void onSetupClicked();
 
 private:
     void SetupUi();
@@ -33,10 +36,10 @@ private:
     QPushButton* btn_save_showfile_;
 
     QLabel* label_amperage_;
-    QLineEdit* line_edit_amperage_;
+    QSpinBox* spnbox_edit_amperage_;
 
     QLabel* label_amount_;
-    QLineEdit* line_edit_amount_;
+    QSpinBox* spnbox_edit_amount_;
 
     QHBoxLayout* hlayout_patching_;
 
