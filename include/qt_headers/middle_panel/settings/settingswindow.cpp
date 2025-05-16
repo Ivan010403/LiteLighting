@@ -58,12 +58,16 @@ void SettingsWindow::onEnteringData(int value) {
         cmb_box->addItem("2nd phase");
         cmb_box->addItem("3rd phase");
 
+        QSpinBox* spn_box = new QSpinBox(this);
+        spn_box->setMaximum(250);
+
         QVBoxLayout* vlayout = new QVBoxLayout();
         vlayout->setContentsMargins(0,0,0,0);
         vlayout->setSpacing(0);
 
         vlayout->addWidget(temp);
         vlayout->addWidget(cmb_box);
+        vlayout->addWidget(spn_box);
 
         if (hlayout_patching_->count() > 1) {
             QLayoutItem* last = hlayout_patching_->takeAt(hlayout_patching_->count()-1);
@@ -84,9 +88,11 @@ void SettingsWindow::onSetupClicked() {
         QLayoutItem* item = hlayout_patching_->itemAt(i);
 
         int phase_number = qobject_cast<QComboBox*>(item->layout()->itemAt(1)->widget())->currentIndex();
+        int breaker_amperage = qobject_cast<QSpinBox*>(item->layout()->itemAt(2)->widget())->value();
+
         // QString order = item->layout()->itemAt(1)->widget()->objectName();
 
-        CircuitBreaker::instance().AddBreaker(phase_number);
+        CircuitBreaker::instance().AddBreaker(i - 1, phase_number, breaker_amperage);
     }
 
     CircuitBreaker::instance().SetAmperage(spnbox_edit_amperage_->value());

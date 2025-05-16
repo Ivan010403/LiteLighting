@@ -33,7 +33,7 @@ void QDialogPatching::closeEvent(QCloseEvent* event) {
 
 void QDialogPatching::OnBtnClicked() {
     dmx_fixture_array_->CreateNewFixture(linedit_fixture_id_->text().toInt(), linedit_universe_id_->text().toInt(),
-                                         linedit_dmx_address_->text().toInt(), channel_amount_, linedit_name_->text(),
+                                         linedit_dmx_address_->text().toInt(), channel_amount_, linedit_name_->text(), linedit_power_->text().toInt(),
                                          channels);
     qDebug() << "QDialogPatching::OnBtnClicked() --> создание фикстуры с fix_id = " << linedit_fixture_id_->text().toInt();
     emit accept();
@@ -84,7 +84,9 @@ void QDialogPatching::SetupUi() {
     label_universe_id_ = new QLabel("universe_id", this);
     label_dmx_address_ = new QLabel("dmx_address", this);
     label_channel_amount_ = new QLabel("channel_amount", this);
+    label_power_ = new QLabel("power", this);
     label_patching_ = new QLabel("patching", this);
+
 
     linedit_name_ = new QLineEdit(this);
 
@@ -92,10 +94,11 @@ void QDialogPatching::SetupUi() {
     linedit_fixture_id_->setValidator(new QIntValidator(0, 10000, linedit_fixture_id_));
 
     linedit_universe_id_ = new QLineEdit(this);
-
     linedit_dmx_address_ = new QLineEdit(this);
-
     linedit_channel_amount_ = new QLineEdit(this);
+
+    linedit_power_ = new QLineEdit(this);
+    linedit_power_->setValidator(new QIntValidator(0, 10000, linedit_power_));
 
     qcmbox_patching_ = new QComboBox(this);
     for (int i = 0; i < static_cast<int>(ChannelType::Flex); ++i) {
@@ -120,10 +123,13 @@ void QDialogPatching::SetupUi() {
     gridlayout_main_->addWidget(label_channel_amount_, 4, 0);
     gridlayout_main_->addWidget(linedit_channel_amount_, 4, 1);
 
-    gridlayout_main_->addWidget(label_patching_, 5, 0);
-    gridlayout_main_->addWidget(qcmbox_patching_, 5, 1);
+    gridlayout_main_->addWidget(label_power_, 5, 0);
+    gridlayout_main_->addWidget(linedit_power_, 5, 1);
 
-    gridlayout_main_->addWidget(btn_enter_fixture_, 6, 0, 1, 2);
+    gridlayout_main_->addWidget(label_patching_, 6, 0);
+    gridlayout_main_->addWidget(qcmbox_patching_, 6, 1);
+
+    gridlayout_main_->addWidget(btn_enter_fixture_, 7, 0, 1, 2);
 
     validator = new QIntValidator(0, 511, this);
 }

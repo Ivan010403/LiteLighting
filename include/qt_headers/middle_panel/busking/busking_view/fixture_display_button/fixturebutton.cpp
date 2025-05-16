@@ -1,6 +1,7 @@
 #include "fixturebutton.h"
 
-FixtureButton::FixtureButton(FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, int pos_x, int pos_y, QWidget* parent) :
+FixtureButton::FixtureButton(FixtureButton** selected_fixture_button, FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, int pos_x, int pos_y, QWidget* parent) :
+    selected_fixture_button_(selected_fixture_button),
     dmx_fixture_array_(dmx_fixture_array),
     btn_parent_move_fixture_(btn_parent_move),
     selected_fixture_(selected_fixture),
@@ -77,6 +78,8 @@ void FixtureButton::mousePressEvent(QMouseEvent* event) {
         (*selected_fixture_) = fixture_under_button_;
         emit Mediator::instance().SelectingFixture();
         emit Mediator::instance().SelectingCommand();
+
+        (*selected_fixture_button_) = this;
 
         isPressed = true;
         isSelected = true;

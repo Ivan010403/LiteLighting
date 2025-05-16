@@ -10,5 +10,6 @@
         <file>spotnobg.png</file>
         <file>C16.png</file>
         <file>C100.png</file>
+        <file>socket.png</file>
     </qresource>
 </RCC>

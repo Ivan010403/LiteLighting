@@ -18,7 +18,7 @@ public:
     explicit Fixture(int group_id);
 
     explicit Fixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                     QString name, const ChannelType* channels, ola::DmxBuffer* dmx_data);
+                     QString name, int power, const ChannelType* channels, ola::DmxBuffer* dmx_data);
 
     explicit Fixture (Fixture&& fxtr);
 
@@ -56,6 +56,7 @@ public: // надо заменить как-то
     QString group_name_ = "";
 
     QString name_;
+    int power_;
 
 private:
     int fixture_id_;

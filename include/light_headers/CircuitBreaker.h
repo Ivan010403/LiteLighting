@@ -16,11 +16,14 @@ public:
 
     void LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fixture_array);
 
-    void AddBreaker(int);
-
+    void AddBreaker(int, int, int);
     void SetAmperage(int);
 
     int size() const;
+    int getPhase(int) const;
+    int getBreakerAmperage(int) const;
+
+    bool isExisting(int) const;
 
     CircuitBreaker& operator++();
 
@@ -33,7 +36,7 @@ private:
     int amperage_;
     int breakers_number_;
 
-    std::vector<int> breakers_phases_;
+    std::vector<std::pair<int, int>> breakers_;
 };
 
 #endif // CIRCUITBREAKER_H

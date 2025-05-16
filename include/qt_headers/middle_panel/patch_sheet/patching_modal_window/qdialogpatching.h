@@ -38,6 +38,7 @@ private:
     QLabel* label_universe_id_;
     QLabel* label_dmx_address_;
     QLabel* label_channel_amount_;
+    QLabel* label_power_;
     QLabel* label_patching_;
 
     QLineEdit* linedit_name_;
@@ -45,6 +46,7 @@ private:
     QLineEdit* linedit_universe_id_;
     QLineEdit* linedit_dmx_address_;
     QLineEdit* linedit_channel_amount_;
+    QLineEdit* linedit_power_;
     QComboBox* qcmbox_patching_;
 
     QPushButton* btn_enter_fixture_;

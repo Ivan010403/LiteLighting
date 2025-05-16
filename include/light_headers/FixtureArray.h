@@ -31,7 +31,7 @@ public:
 
     //---------------------------local functions-------------------------------------
     void CreateNewFixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                          QString name, const ChannelType* channels);
+                          QString name, int power, const ChannelType* channels);
     void DeleteFixture(int index);
 
     int GetFixtureIdByIndex(int index);

@@ -16,7 +16,7 @@ int FixtureArrayModel::rowCount(const QModelIndex& parent) const {
     return fixtures_amount_;
 }
 
-#define COLUMN_AMOUNT 5  // ЗАМЕНИТЬ!!!
+#define COLUMN_AMOUNT 6  // ЗАМЕНИТЬ!!!
 
 int FixtureArrayModel::columnCount(const QModelIndex& parent) const {
     Q_UNUSED(parent);
@@ -36,6 +36,7 @@ QVariant FixtureArrayModel::data(const QModelIndex& index, int role) const {
             case 2: return QString::number(fixture->universe_id_) + "." + QString::number(fixture->dmx_address_);
             case 3: return fixture->channel_amount_;
             case 4: return fixture->group_id_;
+            case 5: return fixture->power_;
         }
     }
 
@@ -50,6 +51,7 @@ QVariant FixtureArrayModel::headerData(int section, Qt::Orientation orientation,
             case 2: return "Address";
             case 3: return "Channel";
             case 4: return "Group";
+            case 5: return "Power";
         }
     }
     return QVariant();
@@ -95,6 +97,9 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
             case 4:
                 fixture->group_id_ = value.toInt();
                 break;
+            case 5:
+                fixture->power_ = value.toInt();
+                break;
             default:
                 return false;
         }
@@ -105,7 +110,7 @@ bool FixtureArrayModel::setData(const QModelIndex& index, const QVariant& value,
 }
 
 Qt::ItemFlags FixtureArrayModel::flags(const QModelIndex& index) const {
-    if (index.column() >= 3) {
+    if ((index.column() >= 3) && (index.column() != 5))  {
         return QAbstractTableModel::flags(index) & ~Qt::ItemIsEditable;
     }
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
@@ -113,12 +118,12 @@ Qt::ItemFlags FixtureArrayModel::flags(const QModelIndex& index) const {
 
 
 void FixtureArrayModel::CreateNewFixture(int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                                        QString name, const ChannelType* channels)
+                                        QString name, int power, const ChannelType* channels)
 {
     ++fixtures_amount_;
     beginInsertRows(QModelIndex(), vector_fixture_.size(), vector_fixture_.size());
 
-    Fixture* fxtr = new Fixture(fixture_id, universe_id, dmx_address, channel_amount, name,
+    Fixture* fxtr = new Fixture(fixture_id, universe_id, dmx_address, channel_amount, name, power,
                                 channels, dmx_gateway_.GetBuffer(universe_id));
     vector_fixture_.append(fxtr);
     map_fixture_[fixture_id] = fxtr;
@@ -201,6 +206,7 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
         uint16_t dmx_addr = fixture["dmx_addr"].toInt();
         uint16_t chan_amount = fixture["chan_amount"].toInt();
         const QString name = fixture["name"].toString();
+        int power = fixture["power"].toInt();
         int group_id = fixture["group_id"].toInt();
         const QString group_name = fixture["group_name"].toString();
 
@@ -213,7 +219,7 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
             channel_types[i] = static_cast<ChannelType>(channel_types_json[i].toInt());
         }
 
-        CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name, channel_types);
+        CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name, power, channel_types);
 
         vector_fixture_[fixtures_amount_-1]->group_id_ = group_id;
         vector_fixture_[fixtures_amount_-1]->group_name_ = group_name;

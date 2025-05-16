@@ -6,17 +6,19 @@ Fixture::Fixture(int group_id) :
     dmx_address_(0),
     channel_amount_(0),
     name_(""),
+    power_(0),
     channel_types_(nullptr),
     dmx_data_(nullptr),
     raw_data_(nullptr) {}
 
 Fixture::Fixture (int fixture_id, int universe_id, uint16_t dmx_address, uint16_t channel_amount,
-                 QString name, const ChannelType* channels, ola::DmxBuffer* dmx_data) :
+                 QString name, int power, const ChannelType* channels, ola::DmxBuffer* dmx_data) :
     fixture_id_ (fixture_id),
     universe_id_(universe_id),
     dmx_address_(dmx_address),
     channel_amount_(channel_amount),
     name_(name),
+    power_(power),
     channel_types_(new ChannelType[channel_amount_] {}),
     dmx_data_(dmx_data),
     raw_data_(new uint8_t[channel_amount] {})
@@ -33,6 +35,7 @@ Fixture::Fixture (Fixture&& fxtr) :
     dmx_address_(fxtr.dmx_address_),
     channel_amount_(fxtr.channel_amount_),
     name_(fxtr.name_),
+    power_(fxtr.power_),
     channels_(std::move(fxtr.channels_)),
     dmx_data_(fxtr.dmx_data_),
     raw_data_(fxtr.raw_data_)
@@ -84,6 +87,7 @@ QJsonObject Fixture::SaveDataToShow() {
     json["dmx_addr"] = dmx_address_;
     json["chan_amount"] = channel_amount_;
     json["name"] = name_;
+    json["power"] = power_;
     json["group_id"] = group_id_;
     json["group_name"] = group_name_;
 

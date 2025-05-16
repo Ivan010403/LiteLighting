@@ -19,9 +19,14 @@ private:
     void SetupConnections();
 
     QGridLayout* gridlayout_main_;
+
     QPushButton* btn_add_fixture_;
     QPushButton* btn_move_fixture_;
+    QPushButton* btn_add_socket_;
+
     BuskingView* busking_view_;
+
+    BreakerButton* btn_breaker_;
 };
 
 #endif // BUSKINGWINDOW_H
