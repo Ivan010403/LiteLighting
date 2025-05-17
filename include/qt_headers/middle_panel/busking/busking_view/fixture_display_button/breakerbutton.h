@@ -22,8 +22,6 @@ private slots:
 private:
     void SetupUi();
 
-    // int breakers_number_ = 0;
-
     QHBoxLayout* hlayout_main_;
     std::vector <QLabel*> vect_breakers_;
 

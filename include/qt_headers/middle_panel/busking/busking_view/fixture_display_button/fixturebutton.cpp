@@ -24,6 +24,10 @@ FixtureButton::FixtureButton(FixtureButton** selected_fixture_button, FixtureArr
     move(pos_x, pos_y);
 }
 
+int FixtureButton::getPower() const {
+    return fixture_under_button_->power_;
+}
+
 int FixtureButton::getFixId() const {
     return fixture_under_button_->GetFixtureId();
 }
@@ -101,7 +105,17 @@ void FixtureButton::mouseReleaseEvent(QMouseEvent* event) {
 
 void FixtureButton::mouseMoveEvent(QMouseEvent* event) {
     if (is_holded && btn_parent_move_fixture_->isChecked()) {
-        this->move(QPoint(this->pos() + event->pos()));
+        QPoint currentPos = parentWidget()->mapFromGlobal(event->globalPosition().toPoint());
+        QPoint delta = currentPos - this->pos();
+        QPoint newPos = this->pos() + delta;
+
+        int maxX = qMax(0, parentWidget()->width() - width());
+        int maxY = qMax(0, parentWidget()->height() - height());
+
+        newPos.setX(qBound(0, newPos.x(), maxX));
+        newPos.setY(qBound(0, newPos.y(), maxY));
+
+        this->move(newPos);
     }
 }
 

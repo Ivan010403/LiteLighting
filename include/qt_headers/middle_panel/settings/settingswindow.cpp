@@ -8,6 +8,48 @@ SettingsWindow::SettingsWindow(FixtureArrayModel* dmx_fixture_array, QWidget* pa
     SetupConnections();
 }
 
+void SettingsWindow::paintEvent(QPaintEvent* event) {
+    QWidget::paintEvent(event);
+
+    QPainter painter(this);
+
+    const auto& vector = CircuitBreaker::instance().data_of_breakers;
+
+    for (int i = 0; i < vector.size(); ++i) {
+        if (vector[i].first) {
+            QPainterPath path;
+
+            QLayoutItem* item = hlayout_patching_->itemAt(i+1);
+            int init_x = item->layout()->itemAt(2)->widget()->x();
+            int init_y = item->layout()->itemAt(2)->widget()->y();
+            int width = item->layout()->itemAt(2)->widget()->width();
+            int height = item->layout()->itemAt(2)->widget()->height();
+
+
+            path.moveTo(init_x + 5, init_y + height);
+            path.lineTo(init_x + 5, init_y + height + 10);
+            path.lineTo(init_x + width - 5, init_y + height + 10);
+            path.lineTo(init_x + width - 5, init_y + height);
+
+
+            QPen pen(Qt::red, 2);
+            painter.setPen(pen);
+            painter.drawPath(path);
+
+            QFont new_font = font();
+            new_font.setPointSize(8);
+
+            QRect rect = item->layout()->itemAt(2)->widget()->rect();
+            rect.moveTo(init_x, init_y + height);
+
+            painter.setPen(Qt::white);
+            painter.setFont(new_font);
+            painter.drawText(rect.adjusted(0, 10, 0, -70), Qt::AlignTop | Qt::AlignHCenter, QString("Current: ") + QString::number(vector[i].second));
+            painter.drawText(rect.adjusted(0, 10, 0, -60), Qt::TextWordWrap | Qt::AlignCenter, QString("Max: ") + QString::number(CircuitBreaker::instance().getBreakerAmperage(i)));
+        }
+    }
+}
+
 void SettingsWindow::onLoadClicked() {
     QFile file("showfile.json");
     if (!file.open(QIODevice::ReadOnly)) return; // обработать нормально - а что если не открылось?
@@ -44,10 +86,9 @@ void SettingsWindow::onSaveClicked() {
 
 void SettingsWindow::onEnteringData(int value) {
     for (int i = CircuitBreaker::instance().size(); i < value; ++i) {
-
         QLabel* temp = new QLabel(this);
-        temp->setFixedSize(100, 380);
-        temp->setPixmap(pixmap_);
+        temp->setFixedSize(80, 300);
+        temp->setPixmap(pixmap_C16_);
         temp->setScaledContents(true);
 
         QComboBox* cmb_box = new QComboBox(this);
@@ -57,9 +98,11 @@ void SettingsWindow::onEnteringData(int value) {
         cmb_box->addItem("1st phase");
         cmb_box->addItem("2nd phase");
         cmb_box->addItem("3rd phase");
+        cmb_box->setFixedWidth(80);
 
         QSpinBox* spn_box = new QSpinBox(this);
         spn_box->setMaximum(250);
+        spn_box->setFixedWidth(80);
 
         QVBoxLayout* vlayout = new QVBoxLayout();
         vlayout->setContentsMargins(0,0,0,0);
@@ -75,8 +118,7 @@ void SettingsWindow::onEnteringData(int value) {
             if (last->spacerItem()) delete last->spacerItem();
         }
 
-        if (hlayout_patching_->count() == 0) hlayout_patching_->addStretch();
-        hlayout_patching_->addLayout(vlayout);
+        hlayout_patching_->addLayout(vlayout, Qt::AlignTop);
         hlayout_patching_->addStretch();
 
         ++CircuitBreaker::instance();
@@ -84,13 +126,11 @@ void SettingsWindow::onEnteringData(int value) {
 }
 
 void SettingsWindow::onSetupClicked() {
-    for (int i = 1; i < hlayout_patching_->count() - 1; ++i) {
+    for (int i = 2; i < hlayout_patching_->count() - 1; ++i) {
         QLayoutItem* item = hlayout_patching_->itemAt(i);
 
         int phase_number = qobject_cast<QComboBox*>(item->layout()->itemAt(1)->widget())->currentIndex();
         int breaker_amperage = qobject_cast<QSpinBox*>(item->layout()->itemAt(2)->widget())->value();
-
-        // QString order = item->layout()->itemAt(1)->widget()->objectName();
 
         CircuitBreaker::instance().AddBreaker(i - 1, phase_number, breaker_amperage);
     }
@@ -144,7 +184,16 @@ void SettingsWindow::SetupUi() {
     hlayout_patching_ = new QHBoxLayout(cont_patching_);
     hlayout_patching_->setSpacing(0);
     hlayout_patching_->setContentsMargins(0, 0, 0, 0);
+    hlayout_patching_->setAlignment(Qt::AlignTop);
 
+    QLabel* c100 = new QLabel(this);
+    c100->setFixedSize(315, 300);
+    c100->setPixmap(pixmap_C100_);
+    c100->setScaledContents(true);
+
+    if (hlayout_patching_->count() == 0) hlayout_patching_->addStretch();
+    hlayout_patching_->addWidget(c100);
+    hlayout_patching_->addStretch();
 
     btn_setup_electrical_ = new QPushButton("Setup", this);
     btn_setup_electrical_->setFixedHeight(30);

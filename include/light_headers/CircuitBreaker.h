@@ -12,10 +12,6 @@ class CircuitBreaker : public QObject {
 public:
     static CircuitBreaker& instance() { static CircuitBreaker m; return m; }
 
-    void SaveDataToShow(QJsonObject& root);
-
-    void LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fixture_array);
-
     void AddBreaker(int, int, int);
     void SetAmperage(int);
 
@@ -27,13 +23,20 @@ public:
 
     CircuitBreaker& operator++();
 
+    int amperage_;
+
+    std::vector<std::pair<bool, int>> data_of_breakers;
+    bool isPhaseFirst = false;
+    bool isPhaseSecond = false;
+    bool isPhaseThird = false;
+    bool isTotal = false;
+
 signals:
     void UploadingData();
 
 private:
     CircuitBreaker() = default;
 
-    int amperage_;
     int breakers_number_;
 
     std::vector<std::pair<int, int>> breakers_;

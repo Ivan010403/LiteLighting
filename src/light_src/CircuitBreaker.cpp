@@ -1,16 +1,14 @@
 #include "light_headers/CircuitBreaker.h"
 
-void CircuitBreaker::SaveDataToShow(QJsonObject& root){
-
-}
-
-void CircuitBreaker::LoadDataFromShow(QJsonObject& root, FixtureArrayModel* dmx_fixture_array){
-
-}
-
 void CircuitBreaker::AddBreaker(int index, int phase_number, int amperage) {
-    if (index >= breakers_.size()) breakers_.push_back(std::pair<int, int> (phase_number, amperage));
-    else { breakers_[index].first = phase_number; breakers_[index].second = amperage; }
+    if (index >= breakers_.size()) {
+        breakers_.push_back(std::pair<int, int> (phase_number, amperage));
+        data_of_breakers.push_back(std::pair <bool, int> (false, 0));
+    }
+    else {
+        breakers_[index].first = phase_number;
+        breakers_[index].second = amperage;
+    }
 }
 
 void CircuitBreaker::SetAmperage(int value) {

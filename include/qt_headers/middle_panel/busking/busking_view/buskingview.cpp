@@ -35,6 +35,9 @@ void BuskingView::onBtnAddSocket() {
 
 void BuskingView::onSocketPatched(FixtureButton* btn, SocketButton* sckt, int break_number) {
     map_connected_fix_socket_[sckt].push_back(btn);
+
+    CalculateElectricity();
+
     update();
 }
 
@@ -49,6 +52,8 @@ void BuskingView::onSocketUnpatched(FixtureButton* btn, SocketButton* sckt, int 
     }
 
     if (inner_vector.size() == 0) map_connected_fix_socket_.erase(sckt);
+
+    CalculateElectricity();
 
     update();
 }
@@ -120,15 +125,22 @@ void BuskingView::paintEvent(QPaintEvent* event) {
         int x_socket = (var.first)->x() + (var.first)->width()/2;
         int y_socket = (var.first)->y() + (var.first)->height();
 
+        QPen pen;
         switch ((var.first)->getBreaker()) {
         case 1:
-            painter.setPen(QPen(Qt::red, 1));
+            pen = QPen(QColor(255, 0, 0, 150), 1);
+            pen.setStyle(Qt::DashLine);
+            painter.setPen(pen);
             break;
         case 2:
-            painter.setPen(QPen(Qt::green, 1));
+            pen = QPen(QColor(0, 255, 0, 150), 1);
+            pen.setStyle(Qt::DashLine);
+            painter.setPen(pen);
             break;
         case 3:
-            painter.setPen(QPen(Qt::blue, 1));
+            pen = QPen(QColor(0, 0, 255, 150), 1);
+            pen.setStyle(Qt::DashLine);
+            painter.setPen(pen);
             break;
         }
 
@@ -139,14 +151,14 @@ void BuskingView::paintEvent(QPaintEvent* event) {
             QPainterPath path;
             if (y_socket > y_button) {
                 path.moveTo(x_socket, y_socket);
-                path.lineTo(x_socket, y_socket + 20);
-                path.lineTo(x_button, y_socket + 20);
+                path.lineTo(x_socket, qBound(0, y_socket + 20, height() - 1));
+                path.lineTo(x_button, qBound(0, y_socket + 20, height() - 1));
                 path.lineTo(x_button, y_button);
             }
             else {
                 path.moveTo(x_button, y_button);
-                path.lineTo(x_button, y_button + 20);
-                path.lineTo(x_socket, y_button + 20);
+                path.lineTo(x_button, qBound(0, y_button + 20, height() - 1));
+                path.lineTo(x_socket, qBound(0, y_button + 20, height() - 1));
                 path.lineTo(x_socket, y_socket);
             }
 
@@ -159,3 +171,91 @@ void BuskingView::SetupConnections() {
     connect(&Mediator::instance(), &Mediator::SaveBuskToShow, this, &BuskingView::SaveToShow);
     connect(&Mediator::instance(), &Mediator::LoadBuskFromShow, this, &BuskingView::LoadFromShow);
 }
+
+void BuskingView::CalculateElectricity() {
+    qDebug() << "\n-------------------------------------------";
+    auto& vector = CircuitBreaker::instance().data_of_breakers;
+
+    int power_phase_1 = 0;
+    int power_phase_2 = 0;
+    int power_phase_3 = 0;
+
+    int total_power = 0;
+
+    for (const auto& var : map_connected_fix_socket_) {
+        int temp = 0;
+
+        for (const auto& elem_vect : var.second) {
+            temp += elem_vect->getPower();
+        }
+
+        vector[(var.first)->getBreaker() - 1].second += temp;
+
+        switch(CircuitBreaker::instance().getPhase((var.first)->getBreaker() - 1)) {
+        case 1:
+            power_phase_1 += temp;
+            break;
+        case 2:
+            power_phase_2 += temp;
+            break;
+        case 3:
+            power_phase_3 += temp;
+            break;
+        }
+
+        total_power += temp;
+
+        qDebug() << "Розетка от автомата № " << (var.first)->getBreaker() << " имеет суммарную мощность на себе в " << temp << " ватт";
+    }
+
+    qDebug() << "Фаза 1. Суммарное мощность = " << power_phase_1;
+    qDebug() << "Фаза 2. Суммарное мощность = " << power_phase_2;
+    qDebug() << "Фаза 3. Суммарное мощность = " << power_phase_3;
+
+    qDebug() << "ОБЩЕЕ. Суммарное мощность = " << total_power;
+    qDebug() << "-------------------------------------------";
+
+    // 1. проверка занятости автоматов
+    for (int i = 0; i < vector.size(); ++i) {
+        if (vector[i].second > CircuitBreaker::instance().getBreakerAmperage(i) * 220) {
+            vector[i].first = true;
+            qDebug() << "Переполнение автомата номер " << i + 1;
+        } else {
+            vector[i].first = false;
+        }
+    }
+
+    // 2. проверка общей занятости каждой из фаз. Если больше чем 1/3 от номинала, то тоже опасно
+
+    if (power_phase_1 >= (CircuitBreaker::instance().amperage_ / 3) * 220) {
+        CircuitBreaker::instance().isPhaseFirst = true;
+        qDebug() << "Переполнение фазы номер 1";
+    } else {
+        CircuitBreaker::instance().isPhaseFirst = false;
+    }
+
+    if (power_phase_2 >= (CircuitBreaker::instance().amperage_ / 3) * 220) {
+        CircuitBreaker::instance().isPhaseSecond = true;
+        qDebug() << "Переполнение фазы номер 2";
+    } else {
+        CircuitBreaker::instance().isPhaseSecond = false;
+    }
+
+    if (power_phase_3 >= (CircuitBreaker::instance().amperage_ / 3) * 220) {
+        CircuitBreaker::instance().isPhaseThird = true;
+        qDebug() << "Переполнение фазы номер 3";
+    } else {
+        CircuitBreaker::instance().isPhaseThird = false;
+    }
+
+    // 3. проверка общего входной мощности. Если суммарная мощность на всём > номинальной входной, то может расплавиться провод
+
+    if (total_power >= CircuitBreaker::instance().amperage_ * 220) {
+        CircuitBreaker::instance().isTotal = true;
+        qDebug() << "Переполнение силового кабеля";
+    } else {
+        CircuitBreaker::instance().isTotal = false;
+    }
+}
+
+

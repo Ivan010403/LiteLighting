@@ -55,14 +55,24 @@ void SocketButton::mouseReleaseEvent(QMouseEvent* event) {
 
 void SocketButton::mouseMoveEvent(QMouseEvent* event) {
     if (is_holded && btn_parent_move_->isChecked()) {
-        this->move(QPoint(this->pos() + event->pos()));
+        QPoint currentPos = parentWidget()->mapFromGlobal(event->globalPosition().toPoint());
+        QPoint delta = currentPos - this->pos();
+        QPoint newPos = this->pos() + delta;
+
+        int maxX = qMax(0, parentWidget()->width() - width());
+        int maxY = qMax(0, parentWidget()->height() - height());
+
+        newPos.setX(qBound(0, newPos.x(), maxX));
+        newPos.setY(qBound(0, newPos.y(), maxY));
+
+        this->move(newPos);
     }
 }
 
 void SocketButton::onHold() { is_holded = true; }
 
 void SocketButton::onSaveClicked(int value) {
-    if (CircuitBreaker::instance().isExisting(value)) {
+    if (CircuitBreaker::instance().isExisting(value - 1)) {
         breaker_number_ = value;
 
         switch(CircuitBreaker::instance().getPhase(breaker_number_ - 1)) {

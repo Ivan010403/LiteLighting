@@ -34,6 +34,8 @@ protected:
 private:
     void SetupConnections();
 
+    void CalculateElectricity();
+
     FixtureArrayModel* dmx_fixture_array_;
     Fixture** selected_fixture_;
     QPushButton* btn_move_;

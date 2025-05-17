@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QPainter>
+#include <QPainterPath>
 
 #include "light_headers/FixtureArray.h"
 #include "light_headers/programming_command/CommandArray.h"
@@ -14,6 +16,9 @@ class SettingsWindow : public QWidget {
 public:
     explicit SettingsWindow(FixtureArrayModel* dmx_fixture_array, QWidget* parent = nullptr);
     ~SettingsWindow() = default;
+
+protected:
+    void paintEvent(QPaintEvent* event) override;
 
 private slots:
     void onLoadClicked();
@@ -45,7 +50,8 @@ private:
 
     QPushButton* btn_setup_electrical_;
 
-    QPixmap pixmap_ = QPixmap(":/photo/C16.png");
-};
+    const QPixmap pixmap_C100_ = QPixmap(":/photo/C100.png");
+    const QPixmap pixmap_C16_ = QPixmap(":/photo/C16.png");
 
+};
 #endif // SETTINGSWINDOW_H

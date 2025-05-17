@@ -14,6 +14,8 @@ class FixtureButton : public QPushButton {
 public:
     explicit FixtureButton(FixtureButton** selected_fixture_button, FixtureArrayModel* dmx_fixture_array, QPushButton* btn_parent_move, Fixture** selected_fixture, Fixture* fixture, int pos_x, int pos_y, QWidget* parent = nullptr);
 
+    int getPower() const;
+
     int getFixId() const;
     int getPosX() const;
     int getPosY() const;
