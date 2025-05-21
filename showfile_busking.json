@@ -1,0 +1,84 @@
+{
+    "busking_buttons": [
+        {
+            "fixture_id": 1,
+            "pos_x": 120,
+            "pos_y": 67
+        },
+        {
+            "fixture_id": 2,
+            "pos_x": 295,
+            "pos_y": 71
+        },
+        {
+            "fixture_id": 3,
+            "pos_x": 495,
+            "pos_y": 69
+        },
+        {
+            "fixture_id": 4,
+            "pos_x": 674,
+            "pos_y": 71
+        },
+        {
+            "fixture_id": 5,
+            "pos_x": 848,
+            "pos_y": 69
+        },
+        {
+            "fixture_id": 6,
+            "pos_x": 1016,
+            "pos_y": 65
+        },
+        {
+            "fixture_id": 7,
+            "pos_x": 1173,
+            "pos_y": 64
+        },
+        {
+            "fixture_id": 8,
+            "pos_x": 1337,
+            "pos_y": 65
+        },
+        {
+            "fixture_id": 10,
+            "pos_x": 78,
+            "pos_y": 308
+        },
+        {
+            "fixture_id": 11,
+            "pos_x": 1393,
+            "pos_y": 309
+        },
+        {
+            "fixture_id": 20,
+            "pos_x": 608,
+            "pos_y": 445
+        },
+        {
+            "fixture_id": 21,
+            "pos_x": 842,
+            "pos_y": 445
+        },
+        {
+            "fixture_id": 30,
+            "pos_x": 388,
+            "pos_y": 209
+        },
+        {
+            "fixture_id": 31,
+            "pos_x": 629,
+            "pos_y": 209
+        },
+        {
+            "fixture_id": 32,
+            "pos_x": 864,
+            "pos_y": 210
+        },
+        {
+            "fixture_id": 33,
+            "pos_x": 1097,
+            "pos_y": 211
+        }
+    ]
+}

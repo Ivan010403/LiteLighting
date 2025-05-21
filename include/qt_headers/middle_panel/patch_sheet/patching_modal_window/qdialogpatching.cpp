@@ -101,7 +101,7 @@ void QDialogPatching::SetupUi() {
     linedit_power_->setValidator(new QIntValidator(0, 10000, linedit_power_));
 
     qcmbox_patching_ = new QComboBox(this);
-    for (int i = 0; i < static_cast<int>(ChannelType::Flex); ++i) {
+    for (int i = 0; i <= static_cast<int>(ChannelType::Empty); ++i) {
         qcmbox_patching_->addItem(ChannelTypeToQString(static_cast<ChannelType>(i)));
     }
 

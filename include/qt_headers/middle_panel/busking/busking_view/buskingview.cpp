@@ -126,7 +126,7 @@ void BuskingView::paintEvent(QPaintEvent* event) {
         int y_socket = (var.first)->y() + (var.first)->height();
 
         QPen pen;
-        switch ((var.first)->getBreaker()) {
+        switch (CircuitBreaker::instance().getPhase((var.first)->getBreaker() - 1)) {
         case 1:
             pen = QPen(QColor(255, 0, 0, 150), 1);
             pen.setStyle(Qt::DashLine);
@@ -175,6 +175,7 @@ void BuskingView::SetupConnections() {
 void BuskingView::CalculateElectricity() {
     qDebug() << "\n-------------------------------------------";
     auto& vector = CircuitBreaker::instance().data_of_breakers;
+    std::fill(vector.begin(), vector.end(), std::pair<bool, int> (false, 0));
 
     int power_phase_1 = 0;
     int power_phase_2 = 0;
@@ -227,35 +228,12 @@ void BuskingView::CalculateElectricity() {
 
     // 2. проверка общей занятости каждой из фаз. Если больше чем 1/3 от номинала, то тоже опасно
 
-    if (power_phase_1 >= (CircuitBreaker::instance().amperage_ / 3) * 220) {
-        CircuitBreaker::instance().isPhaseFirst = true;
-        qDebug() << "Переполнение фазы номер 1";
-    } else {
-        CircuitBreaker::instance().isPhaseFirst = false;
-    }
-
-    if (power_phase_2 >= (CircuitBreaker::instance().amperage_ / 3) * 220) {
-        CircuitBreaker::instance().isPhaseSecond = true;
-        qDebug() << "Переполнение фазы номер 2";
-    } else {
-        CircuitBreaker::instance().isPhaseSecond = false;
-    }
-
-    if (power_phase_3 >= (CircuitBreaker::instance().amperage_ / 3) * 220) {
-        CircuitBreaker::instance().isPhaseThird = true;
-        qDebug() << "Переполнение фазы номер 3";
-    } else {
-        CircuitBreaker::instance().isPhaseThird = false;
-    }
+    CircuitBreaker::instance().phase_powers_[0] = power_phase_1;
+    CircuitBreaker::instance().phase_powers_[1] = power_phase_2;
+    CircuitBreaker::instance().phase_powers_[2] = power_phase_3;
 
     // 3. проверка общего входной мощности. Если суммарная мощность на всём > номинальной входной, то может расплавиться провод
-
-    if (total_power >= CircuitBreaker::instance().amperage_ * 220) {
-        CircuitBreaker::instance().isTotal = true;
-        qDebug() << "Переполнение силового кабеля";
-    } else {
-        CircuitBreaker::instance().isTotal = false;
-    }
+    CircuitBreaker::instance().total_power_ = total_power;
 }
 
 

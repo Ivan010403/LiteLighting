@@ -1,0 +1,939 @@
+{
+    "commands": [
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 5,
+                            "value": 0
+                        },
+                        {
+                            "channel": 6,
+                            "value": 41
+                        }
+                    ],
+                    "fix_id": 400
+                }
+            ],
+            "name": "sharpy 0",
+            "number": 1,
+            "progr_type": 2
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 5,
+                            "value": 95
+                        },
+                        {
+                            "channel": 6,
+                            "value": 36
+                        }
+                    ],
+                    "fix_id": 10
+                },
+                {
+                    "actions": [
+                        {
+                            "channel": 5,
+                            "value": 76
+                        },
+                        {
+                            "channel": 6,
+                            "value": 38
+                        }
+                    ],
+                    "fix_id": 11
+                }
+            ],
+            "name": "wash back 0",
+            "number": 2,
+            "progr_type": 2
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 5,
+                            "value": 128
+                        },
+                        {
+                            "channel": 6,
+                            "value": 64
+                        }
+                    ],
+                    "fix_id": 300
+                }
+            ],
+            "name": "wash front 0",
+            "number": 3,
+            "progr_type": 2
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 255
+                        },
+                        {
+                            "channel": 2,
+                            "value": 0
+                        },
+                        {
+                            "channel": 3,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 100
+                }
+            ],
+            "name": "BAR RED",
+            "number": 1,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 0
+                        },
+                        {
+                            "channel": 2,
+                            "value": 255
+                        },
+                        {
+                            "channel": 3,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 100
+                }
+            ],
+            "name": "BAR GREEN",
+            "number": 2,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 0
+                        },
+                        {
+                            "channel": 2,
+                            "value": 0
+                        },
+                        {
+                            "channel": 3,
+                            "value": 255
+                        }
+                    ],
+                    "fix_id": 100
+                }
+            ],
+            "name": "BAR BLUE",
+            "number": 3,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 255
+                        },
+                        {
+                            "channel": 2,
+                            "value": 0
+                        },
+                        {
+                            "channel": 3,
+                            "value": 70
+                        }
+                    ],
+                    "fix_id": 100
+                }
+            ],
+            "name": "BAR PURPLE",
+            "number": 4,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 255
+                        },
+                        {
+                            "channel": 2,
+                            "value": 0
+                        },
+                        {
+                            "channel": 3,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 200
+                }
+            ],
+            "name": "wash back red",
+            "number": 5,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 0
+                        },
+                        {
+                            "channel": 2,
+                            "value": 255
+                        },
+                        {
+                            "channel": 3,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 200
+                }
+            ],
+            "name": "wash back green",
+            "number": 6,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 0
+                        },
+                        {
+                            "channel": 2,
+                            "value": 0
+                        },
+                        {
+                            "channel": 3,
+                            "value": 255
+                        }
+                    ],
+                    "fix_id": 200
+                }
+            ],
+            "name": "wash back blue",
+            "number": 7,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 1,
+                            "value": 255
+                        },
+                        {
+                            "channel": 2,
+                            "value": 255
+                        },
+                        {
+                            "channel": 3,
+                            "value": 143
+                        }
+                    ],
+                    "fix_id": 300
+                }
+            ],
+            "name": "wash front white",
+            "number": 11,
+            "progr_type": 3
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 0,
+                            "value": 255
+                        }
+                    ],
+                    "fix_id": 100
+                }
+            ],
+            "name": "BAR DIM 100",
+            "number": 1,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 0,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 100
+                }
+            ],
+            "name": "BAR DIM 0",
+            "number": 2,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 0,
+                            "value": 255
+                        }
+                    ],
+                    "fix_id": 400
+                }
+            ],
+            "name": "sharpy dim 100",
+            "number": 3,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 0,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 400
+                }
+            ],
+            "name": "sharpy dim 0",
+            "number": 4,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 0,
+                            "value": 255
+                        }
+                    ],
+                    "fix_id": 200
+                }
+            ],
+            "name": "wash back 100",
+            "number": 5,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 0,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 200
+                }
+            ],
+            "name": "wash back 0",
+            "number": 6,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 10,
+                            "value": 255
+                        }
+                    ],
+                    "fix_id": 400
+                }
+            ],
+            "name": "sharpy frost",
+            "number": 10,
+            "progr_type": 4
+        },
+        {
+            "command": [
+                {
+                    "actions": [
+                        {
+                            "channel": 10,
+                            "value": 0
+                        }
+                    ],
+                    "fix_id": 400
+                }
+            ],
+            "name": "sharpy normal",
+            "number": 11,
+            "progr_type": 4
+        }
+    ],
+    "fixtures": [
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 399,
+            "fix_id": 1,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 1",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 405,
+            "fix_id": 2,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 2",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 411,
+            "fix_id": 3,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 3",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 417,
+            "fix_id": 4,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 4",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 423,
+            "fix_id": 5,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 5",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 429,
+            "fix_id": 6,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 6",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 435,
+            "fix_id": 7,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 7",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 5,
+            "channels_type": [
+                1,
+                2,
+                3,
+                0,
+                9
+            ],
+            "channels_value": [
+                255,
+                0,
+                70,
+                255,
+                0
+            ],
+            "dmx_addr": 441,
+            "fix_id": 8,
+            "group_id": 1,
+            "group_name": "LED BAR",
+            "name": "LB395 8",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 15,
+            "channels_type": [
+                5,
+                15,
+                6,
+                15,
+                15,
+                9,
+                15,
+                15,
+                15,
+                15,
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "channels_value": [
+                95,
+                0,
+                36,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                255,
+                255,
+                0,
+                0,
+                0
+            ],
+            "dmx_addr": 199,
+            "fix_id": 10,
+            "group_id": 2,
+            "group_name": "WASH BACK",
+            "name": "wash back 1",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 15,
+            "channels_type": [
+                5,
+                15,
+                6,
+                15,
+                15,
+                9,
+                15,
+                15,
+                15,
+                15,
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "channels_value": [
+                76,
+                0,
+                38,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                255,
+                255,
+                0,
+                0,
+                0
+            ],
+            "dmx_addr": 294,
+            "fix_id": 11,
+            "group_id": 2,
+            "group_name": "WASH BACK",
+            "name": "wash back 2",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 12,
+            "channels_type": [
+                5,
+                15,
+                6,
+                15,
+                15,
+                11,
+                0,
+                9,
+                1,
+                2,
+                3,
+                4
+            ],
+            "channels_value": [
+                128,
+                0,
+                64,
+                0,
+                0,
+                0,
+                0,
+                255,
+                255,
+                255,
+                143,
+                0
+            ],
+            "dmx_addr": 138,
+            "fix_id": 20,
+            "group_id": 3,
+            "group_name": "WASH FRONT",
+            "name": "front wash 1",
+            "power": 0,
+            "univ_id": 1
+        },
+        {
+            "chan_amount": 12,
+            "channels_type": [
+                5,
+                15,
+                6,
+                15,
+                15,
+                11,
+                0,
+                9,
+                1,
+                2,
+                3,
+                4
+            ],
+            "channels_value": [
+                128,
+                0,
+                64,
+                0,
+                0,
+                0,
+                0,
+                255,
+                255,
+                255,
+                143,
+                0
+            ],
+            "dmx_addr": 154,
+            "fix_id": 21,
+            "group_id": 3,
+            "group_name": "WASH FRONT",
+            "name": "front wash 2",
+            "power": 0,
+            "univ_id": 1
+        },
+        {
+            "chan_amount": 16,
+            "channels_type": [
+                1,
+                9,
+                0,
+                7,
+                15,
+                15,
+                15,
+                10,
+                11,
+                5,
+                15,
+                6,
+                15,
+                15,
+                15,
+                13
+            ],
+            "channels_value": [
+                0,
+                255,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                41,
+                0,
+                0,
+                0,
+                255
+            ],
+            "dmx_addr": 383,
+            "fix_id": 30,
+            "group_id": 4,
+            "group_name": "SHARPY",
+            "name": "SHARPY 1",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 16,
+            "channels_type": [
+                1,
+                9,
+                0,
+                7,
+                15,
+                15,
+                15,
+                10,
+                11,
+                5,
+                15,
+                6,
+                15,
+                15,
+                15,
+                13
+            ],
+            "channels_value": [
+                0,
+                255,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                41,
+                0,
+                0,
+                0,
+                255
+            ],
+            "dmx_addr": 463,
+            "fix_id": 31,
+            "group_id": 4,
+            "group_name": "SHARPY",
+            "name": "SHARPY 2",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 16,
+            "channels_type": [
+                1,
+                9,
+                0,
+                7,
+                15,
+                15,
+                15,
+                10,
+                11,
+                5,
+                15,
+                6,
+                15,
+                15,
+                15,
+                13
+            ],
+            "channels_value": [
+                0,
+                255,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                41,
+                0,
+                0,
+                0,
+                255
+            ],
+            "dmx_addr": 447,
+            "fix_id": 32,
+            "group_id": 4,
+            "group_name": "SHARPY",
+            "name": "SHARPY 3",
+            "power": 0,
+            "univ_id": 0
+        },
+        {
+            "chan_amount": 16,
+            "channels_type": [
+                1,
+                9,
+                0,
+                7,
+                15,
+                15,
+                15,
+                10,
+                11,
+                5,
+                15,
+                6,
+                15,
+                15,
+                15,
+                13
+            ],
+            "channels_value": [
+                0,
+                255,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                41,
+                0,
+                0,
+                0,
+                255
+            ],
+            "dmx_addr": 479,
+            "fix_id": 33,
+            "group_id": 4,
+            "group_name": "SHARPY",
+            "name": "SHARPY 4",
+            "power": 0,
+            "univ_id": 0
+        }
+    ]
+}

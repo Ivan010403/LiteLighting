@@ -123,7 +123,7 @@ void FixtureArrayModel::CreateNewFixture(int fixture_id, int universe_id, uint16
     ++fixtures_amount_;
     beginInsertRows(QModelIndex(), vector_fixture_.size(), vector_fixture_.size());
 
-    Fixture* fxtr = new Fixture(fixture_id, universe_id, dmx_address, channel_amount, name, power,
+    Fixture* fxtr = new Fixture(fixture_id, universe_id, dmx_address - 1, channel_amount, name, power,
                                 channels, dmx_gateway_.GetBuffer(universe_id));
     vector_fixture_.append(fxtr);
     map_fixture_[fixture_id] = fxtr;
@@ -219,7 +219,7 @@ void FixtureArrayModel::LoadDataFromShow(QJsonObject& root) {
             channel_types[i] = static_cast<ChannelType>(channel_types_json[i].toInt());
         }
 
-        CreateNewFixture(fix_id, univ_id, dmx_addr, chan_amount, name, power, channel_types);
+        CreateNewFixture(fix_id, univ_id, dmx_addr + 1, chan_amount, name, power, channel_types);
 
         vector_fixture_[fixtures_amount_-1]->group_id_ = group_id;
         vector_fixture_[fixtures_amount_-1]->group_name_ = group_name;

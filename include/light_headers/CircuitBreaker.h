@@ -26,10 +26,10 @@ public:
     int amperage_;
 
     std::vector<std::pair<bool, int>> data_of_breakers;
-    bool isPhaseFirst = false;
-    bool isPhaseSecond = false;
-    bool isPhaseThird = false;
-    bool isTotal = false;
+
+    std::vector<int> phase_powers_ = std::vector<int> (3, 0);
+
+    int total_power_ = 0;
 
 signals:
     void UploadingData();

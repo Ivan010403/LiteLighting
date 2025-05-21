@@ -30,6 +30,10 @@ private slots:
     void onSetupClicked();
 
 private:
+    void PaintElectrPerAutomat(QPainter& painter);
+    void PaintTotal(QPainter& painter);
+    void PaintElectrPerPhase(QPainter& painter);
+
     void SetupUi();
 
     void SetupConnections();
@@ -47,6 +51,8 @@ private:
     QSpinBox* spnbox_edit_amount_;
 
     QHBoxLayout* hlayout_patching_;
+
+    QWidget* for_painting_;
 
     QPushButton* btn_setup_electrical_;
 

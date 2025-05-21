@@ -20,12 +20,20 @@ QString ChannelTypeToQString(ChannelType type) {
         return QStringLiteral("A");
     case ChannelType::Beam:
         return QStringLiteral("Beam");
+    case ChannelType::Shutter:
+        return QStringLiteral("Shutter");
+    case ChannelType::Frost:
+        return QStringLiteral("Frost");
     case ChannelType::Focus:
         return QStringLiteral("Focus");
+    case ChannelType::Zoom:
+        return QStringLiteral("Zoom");
     case ChannelType::Control:
         return QStringLiteral("Control");
     case ChannelType::Flex:
         return QStringLiteral("Flex");
+    case ChannelType::Empty:
+        return QStringLiteral("Empty");
     default:
         return QStringLiteral("error");
     }
@@ -78,8 +86,8 @@ std::map<const PropertyType, const std::vector<ChannelType>> map_property_to_cha
     {PropertyType::Position, {ChannelType::Pan, ChannelType::Tilt}},
     {PropertyType::Gobo, {ChannelType::Gobo}},
     {PropertyType::Color, {ChannelType::R, ChannelType::G, ChannelType::B, ChannelType::A}},
-    {PropertyType::Beam, {ChannelType::Beam}},
-    {PropertyType::Focus, {ChannelType::Focus}},
+    {PropertyType::Beam, {ChannelType::Beam, ChannelType::Shutter, ChannelType::Frost}},
+    {PropertyType::Focus, {ChannelType::Focus, ChannelType::Zoom}},
     {PropertyType::Control, {ChannelType::Control}},
 };
 

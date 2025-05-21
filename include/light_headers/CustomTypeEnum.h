@@ -17,9 +17,13 @@ enum class ChannelType: uint8_t {
     Tilt,
     Gobo,
     Beam,
+    Shutter,
+    Frost,
     Focus,
+    Zoom,
     Control,
-    Flex
+    Flex,
+    Empty
 }; // добавить
 
 enum class PropertyType: uint8_t {
