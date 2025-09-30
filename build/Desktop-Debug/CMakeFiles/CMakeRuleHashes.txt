@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+de7b2fc9e3d4706da9ddb8d63869e7aa CMakeFiles/LiteLighting_autogen
+0979329660d06bfb2a045e92eded63cd LiteLighting_autogen/PNK5WDWK6L/qrc_photos.cpp
+1d73a5e8af1712879e87490c83a2fd7d LiteLighting_autogen/timestamp

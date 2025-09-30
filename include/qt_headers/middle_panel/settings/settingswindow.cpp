@@ -84,7 +84,7 @@ void SettingsWindow::PaintTotal(QPainter& painter) {
 
         QPen pen;
         pen.setWidth(2);
-        pen.setColor((CircuitBreaker::instance().total_power_ > CircuitBreaker::instance().amperage_ * 220) ? QColor(Qt::red) : QColor(118, 156, 227));
+        pen.setColor((CircuitBreaker::instance().total_power_ > CircuitBreaker::instance().amperage_ * 220 * 3) ? QColor(Qt::red) : QColor(118, 156, 227));
 
         painter.setPen(pen);
         painter.setBrush(Qt::NoBrush);
@@ -125,7 +125,7 @@ void SettingsWindow::PaintElectrPerPhase(QPainter& painter) {
 
             QPen pen;
             pen.setWidth(2);
-            pen.setColor((CircuitBreaker::instance().phase_powers_[i] > CircuitBreaker::instance().amperage_ * 220 / 3) ? QColor(Qt::red) : QColor(118, 156, 227));
+            pen.setColor((CircuitBreaker::instance().phase_powers_[i] > CircuitBreaker::instance().amperage_ * 220) ? QColor(Qt::red) : QColor(118, 156, 227));
 
             painter.setPen(pen);
             painter.setBrush(Qt::NoBrush);

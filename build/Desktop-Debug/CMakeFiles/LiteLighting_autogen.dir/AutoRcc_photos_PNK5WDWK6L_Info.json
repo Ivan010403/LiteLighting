@@ -1,0 +1,35 @@
+{
+	"BUILD_DIR" : "/home/ivan/LiteLighting/build/Desktop-Debug/LiteLighting_autogen",
+	"CMAKE_BINARY_DIR" : "/home/ivan/LiteLighting/build/Desktop-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/ivan/LiteLighting/build/Desktop-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/ivan/LiteLighting",
+	"CMAKE_SOURCE_DIR" : "/home/ivan/LiteLighting",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/ivan/LiteLighting/build/Desktop-Debug/LiteLighting_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/ivan/LiteLighting/res/patching.jpg",
+		"/home/ivan/LiteLighting/res/settings.jpg",
+		"/home/ivan/LiteLighting/res/busking.jpg",
+		"/home/ivan/LiteLighting/res/spot.jpg",
+		"/home/ivan/LiteLighting/res/C100.png",
+		"/home/ivan/LiteLighting/res/spotnobg.png",
+		"/home/ivan/LiteLighting/res/logo.jpg",
+		"/home/ivan/LiteLighting/res/socket.png",
+		"/home/ivan/LiteLighting/res/logo.png",
+		"/home/ivan/LiteLighting/res/programming.png",
+		"/home/ivan/LiteLighting/res/C16.png"
+	],
+	"LOCK_FILE" : "/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/LiteLighting_autogen.dir/AutoRcc_photos_PNK5WDWK6L_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "photos" ],
+	"OUTPUT_CHECKSUM" : "PNK5WDWK6L",
+	"OUTPUT_NAME" : "qrc_photos.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/ivan/LiteLighting/build/Desktop-Debug/CMakeFiles/LiteLighting_autogen.dir/AutoRcc_photos_PNK5WDWK6L_Used.txt",
+	"SOURCE" : "/home/ivan/LiteLighting/res/photos.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}
